@@ -1,0 +1,1 @@
+(()=>{"use strict";(()=>{const t=new class{constructor(t,s,e){this.title=t,this.description=s,this.dueDate=e}alertNewToDo=()=>this}("shit","shit in my toilet","11/09/2022");console.log(t.alertNewToDo())})()})();
