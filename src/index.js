@@ -4,7 +4,6 @@ import {displayTodoForm, returnFormValues} from "./displayForm";
 createTodoModule();
 
 const addTodoButton = document.getElementById('add-todo-button');
-console.log(addTodoButton);
 
 const submitTodoButton = document.getElementById('submit-todo-button');
 addTodoButton.addEventListener('click', (e) => {
