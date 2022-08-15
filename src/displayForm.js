@@ -29,6 +29,11 @@ const displayTodoForm = () => {
     todoForm.appendChild(cancelButton);
 
     wrapper.appendChild(todoForm);
+
 }
 
-export {displayTodoForm};
+const returnFormValues = () => {
+    return {titleInput, descInput, dueDate};
+}
+
+export {displayTodoForm, returnFormValues};
