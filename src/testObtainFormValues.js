@@ -1,4 +1,4 @@
-import { returnFormValues } from "./displayForm";
+import { returnFormValues } from "./displayModule";
 
 const testForm = () => {
     return returnFormValues();

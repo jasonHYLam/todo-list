@@ -1,7 +1,5 @@
 const createTodoModule = () => {
 
-    let todoArray = [];
-
     const wrapper = document.getElementById('wrapper');
 
     class ToDo {
@@ -29,17 +27,11 @@ const createTodoModule = () => {
 
             wrapper.appendChild(todoContainer);
         }
-
-        pushToList = () => {
-            todoArray.push(this);
-        }
-
     }
         const testTodo = new ToDo('stare in mirror', 'in bathroom', '11/09/2022');
-        testTodo.renderTodo();
-        testTodo.pushToList();
+        // testTodo.renderTodo();
 
-        console.log(todoArray);
+        return {testTodo};
 }
 
 export {createTodoModule};

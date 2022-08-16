@@ -1,1 +1,0 @@
-const addTodoButton = document.getElementById('add-todo-button');

@@ -32,6 +32,7 @@ const displayTodoForm = () => {
 
 }
 
+//titleInput, descInput, dueDate not accessible due to in another scope
 const returnFormValues = () => {
     return {titleInput, descInput, dueDate};
 }

@@ -1,5 +1,8 @@
-import { createTodoModule } from "./createTodoModule";
-import {displayTodoForm, returnFormValues} from "./displayForm";
+import { createTodoModule } from "./TodoModule";
+
+import {displayTodoForm, returnFormValues} from "./displayModule";
+
+import {addToList, todoListModule} from "./todoListModule";
 
 createTodoModule();
 
@@ -15,7 +18,6 @@ document.addEventListener('click', (e)=> {
     console.log(e.target);
     if (e.target.id != 'submit-todo-button') {
         return;}
-
-    console.log('hehe ttttttt');
-    console.log(returnFormValues());
 })
+
+addToList();
