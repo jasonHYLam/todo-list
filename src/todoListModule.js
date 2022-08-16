@@ -2,13 +2,16 @@
 
 import { ToDo } from "./todoClass";
 
-const testTodo = new ToDo("walk", "til me feet hurt", "tomorrow");
+
 let todoList = [];
 
-const addToList = () => {
-    console.log(testTodo);
-    return testTodo;
-    todoList.push();
+const addToList = (todo) => {
+    console.log(todo);
+    todoList.push(todo);
 }
 
-export {addToList};
+const getTodoList = () => {
+    return todoList;
+}
+
+export {addToList, getTodoList};
