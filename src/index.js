@@ -1,20 +1,29 @@
-import {displayTodoForm, returnFormValues} from "./displayModule";
+import {displayTodoForm, returnFormValues, formComplete, isFormComplete} from "./todoForm";
 import {addToList, getTodoList, todoListModule} from "./todoListModule";
 import {ToDo} from "./todoClass";
 
 
 const addTodoButton = document.getElementById('add-todo-button');
-
-const submitTodoButton = document.getElementById('submit-todo-button');
 addTodoButton.addEventListener('click', (e) => {
     displayTodoForm();
 })
 
 //click on submit todo button
 document.addEventListener('click', (e)=> {
-    console.log(e.target);
-    if (e.target.id != 'submit-todo-button') {
-        return;}
+    if (e.target.id == 'submit-todo-button') {
+
+        let currentForm = returnFormValues();
+        if (isFormComplete(currentForm)) {
+            let newTodo = new ToDo(
+                currentForm.titleValue, 
+                currentForm.descValue, 
+                currentForm.dueDateValue
+                );
+            addToList(newTodo);
+        }
+        console.log(getTodoList());
+        
+    } 
 })
 
 const testTodo1 = new ToDo("walk", "til me feet hurt", "tomorrow");
@@ -26,6 +35,3 @@ addToList(testTodo1);
 addToList(testTodo2);
 addToList(testTodo3);
 addToList(testTodo4);
-
-console.log(getTodoList());
-
