@@ -1,7 +1,12 @@
 class Project {
-    constructor(title, tasksList) {
+    constructor(title) {
         this.title = title;
-        this.tasksList = tasksList;
+        this.tasksList = [];
+    }
 
+    addTasktoProject = (task) => {
+        this.tasksList.push(task);
     }
 }
+
+export {Project};
