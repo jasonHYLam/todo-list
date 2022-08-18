@@ -47,3 +47,6 @@ addToTaskList(testTodo1);
 addToTaskList(testTodo2);
 addToTaskList(testTodo3);
 addToTaskList(testTodo4);
+
+project1.addTasktoProject(getTaskList()[1]);
+console.log(project1);
