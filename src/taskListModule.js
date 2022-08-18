@@ -1,5 +1,6 @@
 // import { createTodoModule } from "./TodoModule"
 
+import {getProjectsList} from "./projectList";
 import { Task } from "./taskClass";
 
 
@@ -15,14 +16,14 @@ const getTaskList = () => {
 
 const editTask = (index, newTitle, newDesc, newDueDate) => {
 
-    const toEdit = getTaskIndexInList(index);
+    const toEdit = getTaskInListFromIndex(index);
     
     toEdit.title = newTitle;
     toEdit.description = newDesc;
     toEdit.dueDate = newDueDate;
 }
 
-const getTaskIndexInList = (index) => {
+const getTaskInListFromIndex = (index) => {
     return getTaskList()[index];
 
 }
@@ -35,4 +36,19 @@ const createNewTask = (formValues) => {
     return new Task(formValues.titleValue, formValues.descValue, formValues.dueDateValue);
 } 
 
-export {addToTaskList, getTaskList, deleteTask, editTask, createNewTask};
+const checkAvailableProjects = () => {
+    console.log(getProjectsList());
+}
+
+const chooseProjectToBeAddedTo = (index) => {
+    return getProjectsList()[index];
+}
+
+const addToProject = (task, index) => {
+    checkAvailableProjects();
+    const projectToBeAddedTo = chooseProjectToBeAddedTo(index);
+    projectToBeAddedTo.tasksList.push(task);
+    
+}
+
+export {addToTaskList, getTaskList, deleteTask, editTask, createNewTask, addToProject};

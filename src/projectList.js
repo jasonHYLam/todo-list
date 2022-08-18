@@ -22,8 +22,9 @@ const addNewProjectToList = (newProject) => {
     projectsList.push(newProject);
 } 
 
+
 const deleteProject = (index) => {
     projectsList.splice(index, 1);
 }
 
-export {createNewProject, addNewProjectToList, deleteProject};
+export {createNewProject, addNewProjectToList, deleteProject, getProjectsList};
