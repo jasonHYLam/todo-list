@@ -1,4 +1,4 @@
-class ToDo {
+class Task {
     constructor(title, description, dueDate) {
         this.title = title;
         this.description = description;
@@ -25,4 +25,4 @@ class ToDo {
     }
 }
 
-export {ToDo};
+export {Task};

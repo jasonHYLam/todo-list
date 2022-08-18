@@ -8,14 +8,14 @@ edit project
 */
 import {Project} from "./projectClass";
 
-projectsList = [];
+let projectsList = [];
 
 const getProjectsList = () => {
     return projectsList;
 }
 
 const createNewProject = (title) => {
-    const newProject = new Project(title);
+     return new Project(title);
 }
 
 const addNewProjectToList = (newProject) => {
@@ -23,7 +23,6 @@ const addNewProjectToList = (newProject) => {
 } 
 
 const deleteProject = (index) => {
-
     projectsList.splice(index, 1);
 }
 

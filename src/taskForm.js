@@ -4,7 +4,7 @@ let titleInput;
 let descInput;
 let dueDateInput;
 
-const displayTodoForm = () => {
+const displayTaskForm = () => {
     const todoForm = document.createElement('form');
 
     titleInput = document.createElement('input');
@@ -53,4 +53,4 @@ const isFormComplete = (form) => {
     return (formValues.every(isFieldFilled));
 }
 
-export {displayTodoForm, returnFormValues, isFormComplete};
+export {displayTaskForm, returnFormValues, isFormComplete};
