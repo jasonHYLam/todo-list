@@ -13,4 +13,22 @@ const getTodoList = () => {
     return todoList;
 }
 
-export {addToList, getTodoList};
+const editTodo = (index, newTitle, newDesc, newDueDate) => {
+
+    const toEdit = getTodoIndexInList(index);
+    
+    toEdit.title = newTitle;
+    toEdit.description = newDesc;
+    toEdit.dueDate = newDueDate;
+}
+
+const getTodoIndexInList = (index) => {
+    return getTodoList()[index];
+
+}
+
+const deleteTodo = (todoIndex) => {
+    todoList.splice(todoIndex, 1)
+}
+
+export {addToList, getTodoList, deleteTodo, editTodo};

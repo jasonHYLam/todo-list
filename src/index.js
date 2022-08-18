@@ -1,5 +1,5 @@
 import {displayTodoForm, returnFormValues, formComplete, isFormComplete} from "./todoForm";
-import {addToList, getTodoList, todoListModule} from "./todoListModule";
+import {addToList, deleteTodo, getTodoList, todoListModule, editTodo} from "./todoListModule";
 import {ToDo} from "./todoClass";
 
 
@@ -21,8 +21,15 @@ document.addEventListener('click', (e)=> {
                 );
             addToList(newTodo);
         }
+        console.log('adding a new todo :D');
         console.log(getTodoList());
-        
+
+        deleteTodo(2);
+        console.log('deleted');
+        console.log(getTodoList());
+
+        editTodo(2, "see", "about a girl", "tomr");
+        console.log(getTodoList());
     } 
 })
 
