@@ -4,7 +4,7 @@ import {addToTaskList, deleteTask, getTaskList, editTask, createNewTask, addToPr
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
 import { createNewProject, addNewProjectToList, deleteProject, getProjectsList } from "./projectList";
-import { renderTaskContainer, renderTasks } from "./render";
+import { renderButtonsOnTask, renderTaskContainer, setUpTasks} from "./render";
 import "./style.css"
 
 const addTodoButton = document.getElementById('add-todo-button');
@@ -20,6 +20,7 @@ document.addEventListener('click', (e)=> {
         if (isFormComplete(currentForm)) {
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
+            setUpTasks(getTaskList());
         }
     } 
 })
@@ -45,3 +46,5 @@ addToTaskList(testTodo4);
 project1.addTasktoProject(getTaskList()[1]);
 
 addToProject(testTodo1, 0);
+
+setUpTasks(getTaskList());
