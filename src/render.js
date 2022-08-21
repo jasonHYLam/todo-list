@@ -65,7 +65,11 @@ const sendToContainer = (taskDiv) => {
     taskContainer.appendChild(taskDiv)
 }
 
+const renderFormForTaskToBeEdited = () => {
 
+    const form = document.createElement('div');
+    form.classList.add('form-for-task-to-be-edited');
+}
 export {
     renderTaskContainer,
     setUpTasks,

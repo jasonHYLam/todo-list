@@ -3,3 +3,9 @@
     height: 30vh;
     background-color: beige;
 }
+
+.form-for-task-to-be-edited {
+    width: 400px;
+    height: 200px;
+    background-color: aqua;
+}

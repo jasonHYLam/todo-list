@@ -34,10 +34,17 @@ document.addEventListener('click', function(event) {
        deleteTask(indexOfTaskToBeRemoved);
        console.log(getTaskList());
        setUpTasks(getTaskList());
-
     }
 })
 
+//click on edit buttons
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('edit-button-for-task')) {
+        let task = event.target.parentNode;
+        let indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
+
+    }
+})
 // on page load
 
 renderTaskContainer();
