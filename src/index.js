@@ -4,12 +4,12 @@ import {addToTaskList, deleteTask, getTaskList, editTask, createNewTask, addToPr
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
 import { createNewProject, addNewProjectToList, deleteProject, getProjectsList } from "./projectList";
-import {renderTaskContainer, setUpTasks} from "./render";
+import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited} from "./render";
 import "./style.css"
 
 const addTodoButton = document.getElementById('add-todo-button');
 addTodoButton.addEventListener('click', (e) => {
-    displayTaskForm();
+    renderTaskForm();
 })
 
 //click on submit todo button
@@ -41,6 +41,9 @@ document.addEventListener('click', function(event) {
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('edit-button-for-task')) {
         let task = event.target.parentNode;
+
+        renderFormForTaskToBeEdited(task);
+
         let indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
 
     }

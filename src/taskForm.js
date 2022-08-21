@@ -1,21 +1,19 @@
-const wrapper = document.getElementById('wrapper');
-
-let titleInput;
-let descInput;
-let dueDateInput;
 
 const displayTaskForm = () => {
+
+    const wrapper = document.getElementById('wrapper');
+
     const todoForm = document.createElement('form');
 
-    titleInput = document.createElement('input');
+    let titleInput = document.createElement('input');
     titleInput.setAttribute('placeholder', 'task: ')
     titleInput.id = 'task-title';
 
-    descInput = document.createElement('input');
+    let descInput = document.createElement('input');
     descInput.setAttribute('placeholder', 'description: ')
     descInput.id = 'task-desc';
 
-    dueDateInput = document.createElement('input');
+    let dueDateInput = document.createElement('input');
     dueDateInput.setAttribute('placeholder', 'due date: ')
     dueDateInput.id = 'task-due-date';
 

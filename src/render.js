@@ -1,5 +1,42 @@
 const wrapper = document.getElementById('wrapper');
 
+const renderTaskForm = () => {
+
+    const wrapper = document.getElementById('wrapper');
+
+    const todoForm = document.createElement('form');
+
+    let titleInput = document.createElement('input');
+    titleInput.setAttribute('placeholder', 'task: ')
+    titleInput.id = 'task-title';
+
+    let descInput = document.createElement('input');
+    descInput.setAttribute('placeholder', 'description: ')
+    descInput.id = 'task-desc';
+
+    let dueDateInput = document.createElement('input');
+    dueDateInput.setAttribute('placeholder', 'due date: ')
+    dueDateInput.id = 'task-due-date';
+
+    const submitTodoButton = document.createElement('button');
+    submitTodoButton.setAttribute('type', 'button');
+    submitTodoButton.id = 'submit-todo-button';
+    submitTodoButton.textContent = 'add';
+
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'x';
+
+
+    todoForm.appendChild(titleInput);
+    todoForm.appendChild(descInput);
+    todoForm.appendChild(dueDateInput);
+    todoForm.appendChild(submitTodoButton);
+    todoForm.appendChild(cancelButton);
+
+    wrapper.appendChild(todoForm);
+
+}
+
 const renderTaskContainer = () => {
     const taskContainer = document.createElement('div');
     taskContainer.id = 'task-container';
@@ -65,12 +102,15 @@ const sendToContainer = (taskDiv) => {
     taskContainer.appendChild(taskDiv)
 }
 
-const renderFormForTaskToBeEdited = () => {
+const renderFormForTaskToBeEdited = (taskElement) => {
 
     const form = document.createElement('div');
     form.classList.add('form-for-task-to-be-edited');
+    taskElement.appendChild(form);
 }
 export {
+    renderTaskForm,
     renderTaskContainer,
     setUpTasks,
+    renderFormForTaskToBeEdited,
 }
