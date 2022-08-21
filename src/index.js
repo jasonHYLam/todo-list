@@ -4,7 +4,7 @@ import {addToTaskList, deleteTask, getTaskList, editTask, createNewTask, addToPr
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
 import { createNewProject, addNewProjectToList, deleteProject, getProjectsList } from "./projectList";
-import { renderButtonsOnTask, renderTaskContainer, setUpTasks} from "./render";
+import {renderTaskContainer, setUpTasks} from "./render";
 import "./style.css"
 
 const addTodoButton = document.getElementById('add-todo-button');
@@ -25,6 +25,18 @@ document.addEventListener('click', (e)=> {
     } 
 })
 
+//click on remove buttons
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('delete-button-for-task')) {
+        let task = event.target.parentNode;
+        let indexOfTaskToBeRemoved = Array.from(task.parentNode.children).indexOf(task);
+
+       deleteTask(indexOfTaskToBeRemoved);
+       console.log(getTaskList());
+       setUpTasks(getTaskList());
+
+    }
+})
 
 // on page load
 
