@@ -16,11 +16,14 @@ const getTaskList = () => {
 
 const editTask = (index, newTitle, newDesc, newDueDate) => {
 
+
     const toEdit = getTaskInListFromIndex(index);
-    
     toEdit.title = newTitle;
     toEdit.description = newDesc;
     toEdit.dueDate = newDueDate;
+
+    console.log(getTaskList());
+
 }
 
 const getTaskInListFromIndex = (index) => {

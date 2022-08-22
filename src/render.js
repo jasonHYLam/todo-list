@@ -108,22 +108,22 @@ const renderFormForTaskToBeEdited = (taskElement, taskData) => {
 
     const titleInput = document.createElement('input');
     titleInput.setAttribute('placeholder', 'task: ')
-    titleInput.id = 'task-title';
+    titleInput.id = 'edit-task-title';
     titleInput.value = taskData.title;
 
     const descInput = document.createElement('input');
     descInput.setAttribute('placeholder', 'description: ')
-    descInput.id = 'task-desc';
+    descInput.id = 'edit-task-desc';
     descInput.value = taskData.description;
 
     const dueDateInput = document.createElement('input');
     dueDateInput.setAttribute('placeholder', 'due date: ')
-    dueDateInput.id = 'task-due-date';
+    dueDateInput.id = 'edit-task-due-date';
     dueDateInput.value = taskData.dueDate;
 
     const editTodoButton = document.createElement('button');
     editTodoButton.setAttribute('type', 'button');
-    editTodoButton.id = 'edit-todo-button';
+    editTodoButton.id = 'submit-edit-todo-button';
     editTodoButton.textContent = 'change';
 
     const cancelButton = document.createElement('button');

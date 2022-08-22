@@ -1,6 +1,6 @@
 
-import {displayTaskForm, returnFormValues, formComplete, isFormComplete} from "./taskForm";
-import {addToTaskList, deleteTask, getTaskList, editTask, createNewTask, addToProject} from "./taskListModule";
+import {returnFormValues, formComplete, isFormComplete} from "./taskForm";
+import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask} from "./taskListModule";
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
 import { createNewProject, addNewProjectToList, deleteProject, getProjectsList } from "./projectList";
@@ -32,7 +32,6 @@ document.addEventListener('click', function(event) {
         let indexOfTaskToBeRemoved = Array.from(task.parentNode.children).indexOf(task);
 
        deleteTask(indexOfTaskToBeRemoved);
-       console.log(getTaskList());
        setUpTasks(getTaskList());
     }
 })
@@ -44,10 +43,32 @@ document.addEventListener('click', function(event) {
 
         let indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
         let taskData = getTaskList()[indexOfTaskToBeEdited];
-        console.log(taskData);
+
+        console.log('skooma');
+        console.log(getTaskList());
 
         renderFormForTaskToBeEdited(task, taskData);
+    }
+})
 
+document.addEventListener('click', function(event) {
+    if (event.target.id == 'submit-edit-todo-button') {
+        console.log('faster than i fall');
+        let task = event.target.parentNode.parentNode;
+
+        let newTitle = document.querySelector('#edit-task-title').value;
+        let newDesc = document.querySelector('#edit-task-desc').value;
+        let newDueDate = document.querySelector('#edit-task-due-date').value;
+
+        
+        let indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
+        editTask(
+            indexOfTaskToBeEdited,
+            newTitle,
+            newDesc,
+            newDueDate
+            );
+        setUpTasks(getTaskList());
 
     }
 })
