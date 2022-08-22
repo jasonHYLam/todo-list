@@ -42,9 +42,12 @@ document.addEventListener('click', function(event) {
     if (event.target.classList.contains('edit-button-for-task')) {
         let task = event.target.parentNode;
 
-        renderFormForTaskToBeEdited(task);
-
         let indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
+        let taskData = getTaskList()[indexOfTaskToBeEdited];
+        console.log(taskData);
+
+        renderFormForTaskToBeEdited(task, taskData);
+
 
     }
 })

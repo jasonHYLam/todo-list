@@ -2,19 +2,17 @@ const wrapper = document.getElementById('wrapper');
 
 const renderTaskForm = () => {
 
-    const wrapper = document.getElementById('wrapper');
-
     const todoForm = document.createElement('form');
 
-    let titleInput = document.createElement('input');
+    const titleInput = document.createElement('input');
     titleInput.setAttribute('placeholder', 'task: ')
     titleInput.id = 'task-title';
 
-    let descInput = document.createElement('input');
+    const descInput = document.createElement('input');
     descInput.setAttribute('placeholder', 'description: ')
     descInput.id = 'task-desc';
 
-    let dueDateInput = document.createElement('input');
+    const dueDateInput = document.createElement('input');
     dueDateInput.setAttribute('placeholder', 'due date: ')
     dueDateInput.id = 'task-due-date';
 
@@ -87,14 +85,14 @@ const renderClickables = (taskDiv) => {
     editButtonInTask.classList.add('edit-button-for-task');
     editButtonInTask.textContent = 'edit';
 
-    const deleteButtonInTask = document.createElement('button');
-    deleteButtonInTask.classList.add('task-button');
-    deleteButtonInTask.classList.add('delete-button-for-task');
-    deleteButtonInTask.textContent = 'delete';
+    const deconsteButtonInTask = document.createElement('button');
+    deconsteButtonInTask.classList.add('task-button');
+    deconsteButtonInTask.classList.add('delete-button-for-task');
+    deconsteButtonInTask.textContent = 'delete';
 
     taskDiv.appendChild(doneCheckBox);
     taskDiv.appendChild(editButtonInTask);
-    taskDiv.appendChild(deleteButtonInTask);
+    taskDiv.appendChild(deconsteButtonInTask);
 }
 
 const sendToContainer = (taskDiv) => {
@@ -102,11 +100,41 @@ const sendToContainer = (taskDiv) => {
     taskContainer.appendChild(taskDiv)
 }
 
-const renderFormForTaskToBeEdited = (taskElement) => {
+const renderFormForTaskToBeEdited = (taskElement, taskData) => {
 
     const form = document.createElement('div');
     form.classList.add('form-for-task-to-be-edited');
     taskElement.appendChild(form);
+
+    const titleInput = document.createElement('input');
+    titleInput.setAttribute('placeholder', 'task: ')
+    titleInput.id = 'task-title';
+    titleInput.value = taskData.title;
+
+    const descInput = document.createElement('input');
+    descInput.setAttribute('placeholder', 'description: ')
+    descInput.id = 'task-desc';
+    descInput.value = taskData.description;
+
+    const dueDateInput = document.createElement('input');
+    dueDateInput.setAttribute('placeholder', 'due date: ')
+    dueDateInput.id = 'task-due-date';
+    dueDateInput.value = taskData.dueDate;
+
+    const editTodoButton = document.createElement('button');
+    editTodoButton.setAttribute('type', 'button');
+    editTodoButton.id = 'edit-todo-button';
+    editTodoButton.textContent = 'change';
+
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'x';
+
+
+    form.appendChild(titleInput);
+    form.appendChild(descInput);
+    form.appendChild(dueDateInput);
+    form.appendChild(editTodoButton);
+    form.appendChild(cancelButton);
 }
 export {
     renderTaskForm,
