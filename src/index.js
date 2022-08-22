@@ -79,10 +79,10 @@ renderTaskContainer();
 const project1 = createNewProject('the great reckoning');
 addNewProjectToList(project1);
 
-const testTodo1 = new Task("walk", "til me feet hurt", "tomorrow");
-const testTodo2 = new Task("fish", "catch 50", "tomorrow");
-const testTodo3 = new Task("sing", "for the queen", "tomorrow");
-const testTodo4 = new Task("play", "the donkey game", "tomorrow");
+const testTodo1 = new Task("walk", "til me feet hurt", "tomorrow", "high");
+const testTodo2 = new Task("fish", "catch 50", "tomorrow", "low");
+const testTodo3 = new Task("sing", "for the queen", "tomorrow","chicalo");
+const testTodo4 = new Task("play", "the donkey game", "tomorrow","mcdonalds");
 
 addToTaskList(testTodo1);
 addToTaskList(testTodo2);
