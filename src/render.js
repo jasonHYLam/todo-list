@@ -58,13 +58,13 @@ const renderTasks = (taskArray) => {
     for (const task of taskArray) {
         const taskDiv = document.createElement('div');
 
-        renderText(task, taskDiv);
-        renderClickables(taskDiv);
+        renderTaskText(task, taskDiv);
+        renderTaskClickables(taskDiv);
         sendToContainer(taskDiv);
     }
 }
 
-const renderText = (task, taskDiv) => {
+const renderTaskText = (task, taskDiv) => {
     for (const [key, value] of Object.entries(task)) {
         if (key == 'title' || key == 'description' || key == 'dueDate') {
             const taskPropdiv = document.createElement('div');
@@ -74,7 +74,7 @@ const renderText = (task, taskDiv) => {
     }
 }
 
-const renderClickables = (taskDiv) => {
+const renderTaskClickables = (taskDiv) => {
     //done checkbox
     const doneCheckBox = document.createElement('input');
     doneCheckBox.setAttribute('type', 'checkbox');
@@ -136,9 +136,57 @@ const renderFormForTaskToBeEdited = (taskElement, taskData) => {
     form.appendChild(editTodoButton);
     form.appendChild(cancelButton);
 }
+
+
+const renderProjectContainer = () => {
+    const projectContainer = document.createElement('div');
+    projectContainer.id = 'project-container';
+
+    wrapper.appendChild(projectContainer);
+}
+
+const setUpProjects = (projectArray) => {
+
+    const projectContainer = document.querySelector('#project-container');
+    //for each project in a array of projects
+    for (const project of projectArray) {
+
+        //create a container
+        const projectDiv = document.createElement('div');
+
+        //populate with the project's data
+        console.log(project);
+
+        //project title
+        const projectTitle = document.createElement('div');
+        projectTitle.textContent = project.title;
+
+        projectDiv.appendChild(projectTitle);
+
+        const taskList = document.createElement('div');
+        console.log(project.tasksList);
+
+
+
+        //add buttons
+        const addTasktoProject = document.createElement('button');
+        addTasktoProject.id = 'add-task-to-project-button';
+        addTasktoProject.textContent = 'Add task';
+        projectDiv.appendChild(addTasktoProject);
+
+        //add project to project container
+        projectContainer.appendChild(projectDiv);
+        
+    }
+
+
+}
+
 export {
     renderTaskForm,
     renderTaskContainer,
     setUpTasks,
     renderFormForTaskToBeEdited,
+    renderProjectContainer,
+    setUpProjects,
 }

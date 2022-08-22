@@ -4,7 +4,7 @@ import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, edi
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
 import { createNewProject, addNewProjectToList, deleteProject, getProjectsList } from "./projectList";
-import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited} from "./render";
+import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects} from "./render";
 import "./style.css"
 
 const addTodoButton = document.getElementById('add-todo-button');
@@ -94,3 +94,7 @@ project1.addTasktoProject(getTaskList()[1]);
 addToProject(testTodo1, 0);
 
 setUpTasks(getTaskList());
+
+renderProjectContainer();
+
+setUpProjects(getProjectsList());

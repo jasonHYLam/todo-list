@@ -9,3 +9,10 @@
     height: 200px;
     background-color: aqua;
 }
+
+#project-container {
+    width: 60vw;
+    height: 30vh;
+    background-color: greenyellow;
+
+}
