@@ -81,20 +81,6 @@ const setUpTasks = (taskArray) => {
     renderTasks(taskArray);
 }
 
-const takeDownRenderedTasks = () => {
-    const taskContainer = document.getElementById('task-container');
-    while (taskContainer.lastChild) {
-        taskContainer.removeChild(taskContainer.lastElementChild);
-    }
-}
-
-const takeDownRenderedProjects = () => {
-    const projectContainer = document.getElementById('project-container');
-    while (projectContainer.lastChild) {
-        projectContainer.removeChild(projectContainer.lastElementChild);
-    }
-}
-
 const takeDownRenderedTasksOrProjects = (tasksOrProjects) => {
     let container;
     if (tasksOrProjects == 'tasks') {
@@ -266,8 +252,23 @@ const renderProjectForm = () => {
 
 const renderProjectInMainDisplay = (index) => {
 
+    removeFromMainDisplay();
+
     let currentProject = getProjectsList()[index];
     console.log(currentProject);
+
+    for (const task of currentProject.tasksList) {
+        console.log(task);
+
+    }
+
+}
+
+
+const removeFromMainDisplay = () => {
+    while (mainDisplay.lastChild) {
+        mainDisplay.removeChild(mainDisplay.lastChild);
+    }
 
 }
 
