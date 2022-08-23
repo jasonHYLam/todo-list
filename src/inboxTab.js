@@ -1,0 +1,5 @@
+const loadInboxTab = () => {
+
+}
+
+export {loadInboxTab}

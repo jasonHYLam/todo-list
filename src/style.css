@@ -1,4 +1,24 @@
-#task-container {
+#wrapper {
+    display: grid;
+    grid-template-rows: 1fr 8fr;
+}
+
+#below-header {
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    background-color: aquamarine;
+
+}
+
+#main-display {
+
+}
+
+#task-form-container {
+    display: absolute;
+}
+
+/* #task-container {
     width: 60vw;
     height: 30vh;
     background-color: beige;
@@ -15,7 +35,7 @@
     height: 30vh;
     background-color: greenyellow;
 
-}
+} */
 
 
 .drop-down {

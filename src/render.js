@@ -1,6 +1,16 @@
 const wrapper = document.getElementById('wrapper');
 
+const mainDisplay = document.getElementById('main-display');
+
+const sidebar = document.getElementById('sidebar');
+
+
 const renderTaskForm = () => {
+
+    const mainDisplay = document.getElementById('main-display');
+
+    const taskFormContainer = document.createElement('div');
+    taskFormContainer.id = 'task-form-container';
 
     const todoForm = document.createElement('form');
 
@@ -51,7 +61,9 @@ const renderTaskForm = () => {
     todoForm.appendChild(submitTodoButton);
     todoForm.appendChild(cancelButton);
 
-    wrapper.appendChild(todoForm);
+    // wrapper.appendChild(todoForm);
+    taskFormContainer.appendChild(todoForm);
+    wrapper.appendChild(taskFormContainer);
 
 }
 
@@ -59,7 +71,7 @@ const renderTaskContainer = () => {
     const taskContainer = document.createElement('div');
     taskContainer.id = 'task-container';
 
-    wrapper.appendChild(taskContainer);
+    mainDisplay.appendChild(taskContainer);
 }
 
 const setUpTasks = (taskArray) => {
@@ -97,14 +109,8 @@ const renderTaskText = (task, taskDiv) => {
 const renderTaskClickables = (taskDiv) => {
     //done checkbox
     const doneCheckBox = document.createElement('input');
+    doneCheckBox.classList.add('done-check-box');
     doneCheckBox.setAttribute('type', 'checkbox');
-
-    
-
-
-
-    
-
 
     //buttons
     const editButtonInTask = document.createElement('button');
@@ -169,7 +175,7 @@ const renderProjectContainer = () => {
     const projectContainer = document.createElement('div');
     projectContainer.id = 'project-container';
 
-    wrapper.appendChild(projectContainer);
+    sidebar.appendChild(projectContainer);
 }
 
 const setUpProjects = (projectArray) => {
@@ -205,7 +211,32 @@ const setUpProjects = (projectArray) => {
         projectContainer.appendChild(projectDiv);
         
     }
+}
 
+const renderProjectForm = () => {
+
+    const projectForm = document.createElement('div');
+
+    const titleInput = document.createElement('input');
+    titleInput.setAttribute('placeholder', 'project: ')
+    titleInput.id = 'project-title';
+
+    const addButton = document.createElement('button');
+    const cancelButton = document.createElement('button');
+
+    addButton.id = 'add-button';
+    cancelButton.id = 'cancel-button';
+
+    addButton.textContent = 'add';
+    cancelButton.textContent = 'x';
+
+    projectForm.appendChild(titleInput);
+    projectForm.appendChild(addButton);
+    projectForm.appendChild(cancelButton);
+
+
+
+    sidebar.appendChild(projectForm);
 
 }
 
@@ -216,4 +247,6 @@ export {
     renderFormForTaskToBeEdited,
     renderProjectContainer,
     setUpProjects,
+
+    renderProjectForm,
 }

@@ -4,7 +4,7 @@ import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, edi
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
 import { createNewProject, addNewProjectToList, deleteProject, getProjectsList } from "./projectList";
-import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects} from "./render";
+import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm} from "./render";
 import "./style.css"
 
 const addTodoButton = document.getElementById('add-todo-button');
@@ -18,7 +18,6 @@ document.addEventListener('click', (e)=> {
 
         let currentForm = returnFormValues();
         if (isFormComplete(currentForm)) {
-            const priorityTest = document.getElementById('priority-select');
 
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
@@ -72,7 +71,15 @@ document.addEventListener('click', function(event) {
 
     }
 })
+
+document.addEventListener('click', function(event) {
+    if (event.target.id == 'add-project-in-sidebar') {
+        renderProjectForm();
+
+    }
+})
 // on page load
+
 
 renderTaskContainer();
 
