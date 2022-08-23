@@ -93,13 +93,6 @@ const takeDownRenderedTasksOrProjects = (tasksOrProjects) => {
     }
 }
 
-
-
-
-
-
-
-
 const renderTasks = (taskArray) => {
     for (const task of taskArray) {
         const taskDiv = document.createElement('div');
@@ -109,12 +102,6 @@ const renderTasks = (taskArray) => {
         sendToContainer(taskDiv);
     }
 }
-
-
-
-
-
-
 
 const renderTaskText = (task, taskDiv) => {
     for (const [key, value] of Object.entries(task)) {
@@ -150,9 +137,7 @@ const renderTaskClickables = (taskDiv) => {
 
 const sendToContainer = (taskDiv) => {
     const taskContainer = document.getElementById('task-container');
-    console.log(taskContainer)
     taskContainer.appendChild(taskDiv);
-    console.log('h hewwo');
 }
 
 const renderFormForTaskToBeEdited = (taskElement, taskData) => {
@@ -212,7 +197,6 @@ const setUpProjects = (projectArray) => {
         const projectDiv = document.createElement('div');
 
         //populate with the project's data
-        console.log(project);
 
         //project title
         const projectTitle = document.createElement('div');
@@ -222,7 +206,6 @@ const setUpProjects = (projectArray) => {
         projectDiv.appendChild(projectTitle);
 
         const taskList = document.createElement('div');
-        console.log(project.tasksList);
 
 
 
@@ -278,10 +261,10 @@ const renderProjectInMainDisplay = (index) => {
 
 const removeFromTaskContainer = () => {
     const taskContainer = document.getElementById('task-container');
-    console.log('hehe pinf');
     while (taskContainer.lastChild) {
         taskContainer.removeChild(taskContainer.lastChild);
     }
+    console.log('did you do this');
 }
 
 export {

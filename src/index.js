@@ -97,8 +97,9 @@ document.addEventListener('click', function(event) {
 //click on project in sidebar
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains("project-title")) {
-        let project = event.target;
+        let project = event.target.parentNode;
         let projectIndex = Array.from(project.parentNode.children).indexOf(project);
+        console.log(projectIndex);
         renderProjectInMainDisplay(projectIndex);
     }
 })
