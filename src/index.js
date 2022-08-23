@@ -18,13 +18,9 @@ document.addEventListener('click', (e)=> {
 
         let currentForm = returnFormValues();
         if (isFormComplete(currentForm)) {
-            console.log(currentForm);
-            console.log('apparently there is a priority select working');
             const priorityTest = document.getElementById('priority-select');
-            console.log(priorityTest.value);
 
             const newTask = createNewTask(currentForm);
-            console.log(newTask);
             addToTaskList(newTask);
             setUpTasks(getTaskList());
             
