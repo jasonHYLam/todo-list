@@ -1,5 +1,5 @@
 
-import {returnFormValues, formComplete, isFormComplete} from "./taskForm";
+import {returnTaskFormValues, returnProjectFormValue, isFormComplete} from "./forms";
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask} from "./taskListModule";
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
@@ -16,7 +16,7 @@ addTodoButton.addEventListener('click', (e) => {
 document.addEventListener('click', (e)=> {
     if (e.target.id == 'submit-todo-button') {
 
-        let currentForm = returnFormValues();
+        let currentForm = returnTaskFormValues();
         if (isFormComplete(currentForm)) {
 
             const newTask = createNewTask(currentForm);
@@ -51,6 +51,7 @@ document.addEventListener('click', function(event) {
     }
 })
 
+//click on submit edit task
 document.addEventListener('click', function(event) {
     if (event.target.id == 'submit-edit-todo-button') {
         let task = event.target.parentNode.parentNode;
@@ -72,12 +73,29 @@ document.addEventListener('click', function(event) {
     }
 })
 
+//open project form
 document.addEventListener('click', function(event) {
     if (event.target.id == 'add-project-in-sidebar') {
         renderProjectForm();
 
     }
 })
+
+//submit new project
+document.addEventListener('click', function(event) {
+    if (event.target.id == 'submit-new-project-button') {
+
+        let currentProjectValues = returnProjectFormValue();
+        if (isFormComplete(currentProjectValues)) {
+            const newProject = createNewProject(currentProjectValues);
+            addNewProjectToList(newProject);
+            setUpProjects(getProjectsList());
+        }
+    }
+})
+
+
+
 // on page load
 
 

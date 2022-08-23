@@ -1,4 +1,4 @@
-const returnFormValues = () => {
+const returnTaskFormValues = () => {
     const titleValue = document.getElementById('task-title').value;
     const descValue = document.getElementById('task-desc').value;
     const dueDateValue = document.getElementById('task-due-date').value;
@@ -11,6 +11,12 @@ const returnFormValues = () => {
     };
 }
 
+const returnProjectFormValue = () => {
+    const titleValue = document.getElementById('project-title').value;
+    return(titleValue);
+
+}
+
 const isFormComplete = (form) => {
     let formValues = (Object.values(form));
 
@@ -19,4 +25,4 @@ const isFormComplete = (form) => {
     return (formValues.every(isFieldFilled));
 }
 
-export {returnFormValues, isFormComplete};
+export {returnTaskFormValues, isFormComplete, returnProjectFormValue};

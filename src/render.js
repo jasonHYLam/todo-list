@@ -75,7 +75,7 @@ const renderTaskContainer = () => {
 }
 
 const setUpTasks = (taskArray) => {
-    takeDownRenderedTasks();
+    takeDownRenderedTasksOrProjects('tasks');
     renderTasks(taskArray);
 }
 
@@ -83,6 +83,25 @@ const takeDownRenderedTasks = () => {
     const taskContainer = document.getElementById('task-container');
     while (taskContainer.lastChild) {
         taskContainer.removeChild(taskContainer.lastElementChild);
+    }
+}
+
+const takeDownRenderedProjects = () => {
+    const projectContainer = document.getElementById('project-container');
+    while (projectContainer.lastChild) {
+        projectContainer.removeChild(projectContainer.lastElementChild);
+    }
+}
+
+const takeDownRenderedTasksOrProjects = (tasksOrProjects) => {
+    let container;
+    if (tasksOrProjects == 'tasks') {
+        container = document.getElementById('task-container');
+    } else if (tasksOrProjects == 'projects') {
+        container = document.getElementById('project-container');
+    }
+    while (container.lastChild) {
+        container.removeChild(container.lastElementChild);
     }
 }
 
@@ -180,6 +199,8 @@ const renderProjectContainer = () => {
 
 const setUpProjects = (projectArray) => {
 
+    takeDownRenderedTasksOrProjects('projects');
+
     const projectContainer = document.querySelector('#project-container');
     //for each project in a array of projects
     for (const project of projectArray) {
@@ -224,7 +245,7 @@ const renderProjectForm = () => {
     const addButton = document.createElement('button');
     const cancelButton = document.createElement('button');
 
-    addButton.id = 'add-button';
+    addButton.id = 'submit-new-project-button';
     cancelButton.id = 'cancel-button';
 
     addButton.textContent = 'add';
