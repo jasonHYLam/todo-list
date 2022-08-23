@@ -4,7 +4,7 @@ import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, edi
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
 import { createNewProject, addNewProjectToList, deleteProject, getProjectsList } from "./projectList";
-import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm} from "./render";
+import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import "./style.css"
 
 const addTodoButton = document.getElementById('add-todo-button');
@@ -94,17 +94,13 @@ document.addEventListener('click', function(event) {
     }
 })
 
+//click on project in sidebar
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains("project-title")) {
-    let project = event.target;
-        // Array.from(project.parentNode.children).indexOf(project);
-        console.log(
-
-        Array.from(project.parentNode.children).indexOf(project)
-        );
-        
+        let project = event.target;
+        let projectIndex = Array.from(project.parentNode.children).indexOf(project);
+        renderProjectInMainDisplay(projectIndex);
     }
-
 })
 
 

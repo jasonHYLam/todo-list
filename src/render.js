@@ -1,3 +1,5 @@
+import { getProjectsList } from "./projectList";
+
 const wrapper = document.getElementById('wrapper');
 
 const mainDisplay = document.getElementById('main-display');
@@ -262,6 +264,13 @@ const renderProjectForm = () => {
 
 }
 
+const renderProjectInMainDisplay = (index) => {
+
+    let currentProject = getProjectsList()[index];
+    console.log(currentProject);
+
+}
+
 export {
     renderTaskForm,
     renderTaskContainer,
@@ -271,4 +280,5 @@ export {
     setUpProjects,
 
     renderProjectForm,
+    renderProjectInMainDisplay,
 }
