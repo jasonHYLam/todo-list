@@ -18,9 +18,16 @@ document.addEventListener('click', (e)=> {
 
         let currentForm = returnFormValues();
         if (isFormComplete(currentForm)) {
+            console.log(currentForm);
+            console.log('apparently there is a priority select working');
+            const priorityTest = document.getElementById('priority-select');
+            console.log(priorityTest.value);
+
             const newTask = createNewTask(currentForm);
+            console.log(newTask);
             addToTaskList(newTask);
             setUpTasks(getTaskList());
+            
         }
     } 
 })
@@ -44,8 +51,6 @@ document.addEventListener('click', function(event) {
         let indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
         let taskData = getTaskList()[indexOfTaskToBeEdited];
 
-        console.log('skooma');
-        console.log(getTaskList());
 
         renderFormForTaskToBeEdited(task, taskData);
     }
@@ -53,7 +58,6 @@ document.addEventListener('click', function(event) {
 
 document.addEventListener('click', function(event) {
     if (event.target.id == 'submit-edit-todo-button') {
-        console.log('faster than i fall');
         let task = event.target.parentNode.parentNode;
 
         let newTitle = document.querySelector('#edit-task-title').value;

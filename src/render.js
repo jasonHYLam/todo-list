@@ -15,6 +15,25 @@ const renderTaskForm = () => {
     const dueDateInput = document.createElement('input');
     dueDateInput.setAttribute('placeholder', 'due date: ')
     dueDateInput.id = 'task-due-date';
+    
+    //priority select list    
+    const selectList = document.createElement('select')
+    selectList.id = "priority-select";
+
+    
+    const highOption = document.createElement('option');
+    highOption.textContent = 'high';
+
+    const medOption = document.createElement('option');
+    medOption.textContent = 'med';
+    
+    const lowOption = document.createElement('option');
+    lowOption.textContent = 'low';
+
+    selectList.appendChild(highOption);
+    selectList.appendChild(medOption);
+    selectList.appendChild(lowOption);
+
 
     const submitTodoButton = document.createElement('button');
     submitTodoButton.setAttribute('type', 'button');
@@ -28,6 +47,7 @@ const renderTaskForm = () => {
     todoForm.appendChild(titleInput);
     todoForm.appendChild(descInput);
     todoForm.appendChild(dueDateInput);
+    todoForm.appendChild(selectList);
     todoForm.appendChild(submitTodoButton);
     todoForm.appendChild(cancelButton);
 
@@ -66,7 +86,7 @@ const renderTasks = (taskArray) => {
 
 const renderTaskText = (task, taskDiv) => {
     for (const [key, value] of Object.entries(task)) {
-        if (key == 'title' || key == 'description' || key == 'dueDate') {
+        if (key == 'title' || key == 'description' || key == 'dueDate' || key == 'priority') {
             const taskPropdiv = document.createElement('div');
             taskPropdiv.textContent = value;
             taskDiv.appendChild(taskPropdiv);
@@ -79,20 +99,27 @@ const renderTaskClickables = (taskDiv) => {
     const doneCheckBox = document.createElement('input');
     doneCheckBox.setAttribute('type', 'checkbox');
 
+    
+
+
+
+    
+
+
     //buttons
     const editButtonInTask = document.createElement('button');
     editButtonInTask.classList.add('task-button');
     editButtonInTask.classList.add('edit-button-for-task');
     editButtonInTask.textContent = 'edit';
 
-    const deconsteButtonInTask = document.createElement('button');
-    deconsteButtonInTask.classList.add('task-button');
-    deconsteButtonInTask.classList.add('delete-button-for-task');
-    deconsteButtonInTask.textContent = 'delete';
+    const deleteButtonInTask = document.createElement('button');
+    deleteButtonInTask.classList.add('task-button');
+    deleteButtonInTask.classList.add('delete-button-for-task');
+    deleteButtonInTask.textContent = 'delete';
 
     taskDiv.appendChild(doneCheckBox);
     taskDiv.appendChild(editButtonInTask);
-    taskDiv.appendChild(deconsteButtonInTask);
+    taskDiv.appendChild(deleteButtonInTask);
 }
 
 const sendToContainer = (taskDiv) => {

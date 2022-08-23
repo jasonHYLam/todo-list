@@ -16,3 +16,19 @@
     background-color: greenyellow;
 
 }
+
+
+.drop-down {
+    position: relative;
+}
+
+.drop-content {
+   display: none; 
+   position: absolute;
+   background-color: blue;
+}
+
+.drop-down:hover .drop-content {
+    display: block;
+    cursor: pointer;
+}

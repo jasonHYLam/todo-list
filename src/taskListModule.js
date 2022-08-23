@@ -22,7 +22,6 @@ const editTask = (index, newTitle, newDesc, newDueDate) => {
     toEdit.description = newDesc;
     toEdit.dueDate = newDueDate;
 
-    console.log(getTaskList());
 
 }
 
@@ -36,7 +35,12 @@ const deleteTask = (taskIndex) => {
 }
 
 const createNewTask = (formValues) => {
-    return new Task(formValues.titleValue, formValues.descValue, formValues.dueDateValue);
+    return new Task(
+        formValues.titleValue,
+        formValues.descValue, 
+        formValues.dueDateValue,
+        formValues.priorityValue,
+        );
 } 
 
 const checkAvailableProjects = () => {
