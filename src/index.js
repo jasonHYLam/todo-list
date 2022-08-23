@@ -94,6 +94,19 @@ document.addEventListener('click', function(event) {
     }
 })
 
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains("project-title")) {
+    let project = event.target;
+        // Array.from(project.parentNode.children).indexOf(project);
+        console.log(
+
+        Array.from(project.parentNode.children).indexOf(project)
+        );
+        
+    }
+
+})
+
 
 
 // on page load

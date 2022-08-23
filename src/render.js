@@ -213,6 +213,7 @@ const setUpProjects = (projectArray) => {
 
         //project title
         const projectTitle = document.createElement('div');
+        projectTitle.className = 'project-title';
         projectTitle.textContent = project.title;
 
         projectDiv.appendChild(projectTitle);
