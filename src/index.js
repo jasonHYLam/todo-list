@@ -10,6 +10,8 @@ import "./style.css"
 let currentProject;
 let indexOfTaskToBeEdited;
 
+let matchingProject;
+
 const addTodoButton = document.getElementById('add-todo-button');
 addTodoButton.addEventListener('click', (e) => {
     renderTaskForm();
@@ -24,8 +26,12 @@ document.addEventListener('click', (e)=> {
 
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
+
+            console.log('the matching project hopefully');
+            console.log(matchingProject);
+            addToProject(newTask, matchingProject);
+
             setUpTasks(getTaskList());
-            
         }
     } 
 })
@@ -136,13 +142,9 @@ document.addEventListener('click', function(event) {
             return projectTitle == project.title;
         }
 
-        const matchingProject = projectsList.find(titlesMatch)
-
-        console.log(matchingProject);
+        matchingProject = projectsList.find(titlesMatch)
 
         renderTaskForm();
-
-        // addTasktoProject();
     }
 
 })
@@ -169,7 +171,6 @@ addToTaskList(testTodo4);
 
 project1.addTasktoProject(getTaskList()[1]);
 
-addToProject(testTodo1, 0);
 
 setUpTasks(getTaskList());
 

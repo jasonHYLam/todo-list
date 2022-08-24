@@ -47,9 +47,8 @@ const chooseProjectToBeAddedTo = (index) => {
     return getProjectsList()[index];
 }
 
-const addToProject = (task, index) => {
+const addToProject = (task, projectToBeAddedTo) => {
     checkAvailableProjects();
-    const projectToBeAddedTo = chooseProjectToBeAddedTo(index);
     projectToBeAddedTo.tasksList.push(task);
 }
 
