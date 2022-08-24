@@ -14,11 +14,12 @@ const getTaskList = () => {
     return taskList;
 }
 
-const editTask = (index, newTitle, newDesc, newDueDate) => {
+const editTask = (index, newTitle, newDesc, newDueDate, newPriority) => {
     const toEdit = getTaskInListFromIndex(index);
     toEdit.title = newTitle;
     toEdit.description = newDesc;
     toEdit.dueDate = newDueDate;
+    toEdit.priority = newPriority;
 }
 
 const getTaskInListFromIndex = (index) => {

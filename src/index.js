@@ -54,19 +54,10 @@ document.addEventListener('click', function(event) {
         let task = event.target.parentNode;
 
         let indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
-        //getTaskList() is not the one; what do i need?
 
-
-        //this doesn't really work out; how do i get the taskslist
         let currentTasks = currentProject[0].tasksList;
 
-        console.log(currentTasks);
-
-        // let taskData = getTaskList()[indexOfTaskToBeEdited];
         let taskData = currentTasks[indexOfTaskToBeEdited];
-        console.log(taskData);
-
-
 
         renderFormForTaskToBeEdited(task, taskData);
     }
@@ -80,6 +71,8 @@ document.addEventListener('click', function(event) {
         let newTitle = document.querySelector('#edit-task-title').value;
         let newDesc = document.querySelector('#edit-task-desc').value;
         let newDueDate = document.querySelector('#edit-task-due-date').value;
+        let newPriority = document.querySelector('#edit-task-priority').value;
+
 
         
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
@@ -88,9 +81,12 @@ document.addEventListener('click', function(event) {
             indexOfTaskToBeEdited,
             newTitle,
             newDesc,
-            newDueDate
+            newDueDate,
+            newPriority,
             );
         // setUpTasks(getTaskList());
+        console.log('this should change');
+        console.log(currentProject[0].tasksList[indexOfTaskToBeEdited]);
         setUpTasks(currentProject[0].tasksList[indexOfTaskToBeEdited]);
 
     }

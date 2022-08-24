@@ -161,6 +161,24 @@ const renderFormForTaskToBeEdited = (taskElement, taskData) => {
     dueDateInput.id = 'edit-task-due-date';
     dueDateInput.value = taskData.dueDate;
 
+    //priority select list    
+    const selectList = document.createElement('select')
+    selectList.id = "edit-task-priority";
+
+    
+    const highOption = document.createElement('option');
+    highOption.textContent = 'high';
+
+    const medOption = document.createElement('option');
+    medOption.textContent = 'med';
+    
+    const lowOption = document.createElement('option');
+    lowOption.textContent = 'low';
+
+    selectList.appendChild(highOption);
+    selectList.appendChild(medOption);
+    selectList.appendChild(lowOption);
+
     const editTodoButton = document.createElement('button');
     editTodoButton.setAttribute('type', 'button');
     editTodoButton.id = 'submit-edit-todo-button';
@@ -173,6 +191,7 @@ const renderFormForTaskToBeEdited = (taskElement, taskData) => {
     form.appendChild(titleInput);
     form.appendChild(descInput);
     form.appendChild(dueDateInput);
+    form.appendChild(selectList);
     form.appendChild(editTodoButton);
     form.appendChild(cancelButton);
 }
