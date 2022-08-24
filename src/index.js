@@ -7,6 +7,9 @@ import { createNewProject, addNewProjectToList, deleteProject, getProjectsList }
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import "./style.css"
 
+let currentProject;
+let indexOfTaskToBeEdited;
+
 const addTodoButton = document.getElementById('add-todo-button');
 addTodoButton.addEventListener('click', (e) => {
     renderTaskForm();
@@ -41,10 +44,22 @@ document.addEventListener('click', function(event) {
 //click on edit buttons
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('edit-button-for-task')) {
+
         let task = event.target.parentNode;
 
         let indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
-        let taskData = getTaskList()[indexOfTaskToBeEdited];
+        //getTaskList() is not the one; what do i need?
+
+
+        //this doesn't really work out; how do i get the taskslist
+        let currentTasks = currentProject[0].tasksList;
+
+        console.log(currentTasks);
+
+        // let taskData = getTaskList()[indexOfTaskToBeEdited];
+        let taskData = currentTasks[indexOfTaskToBeEdited];
+        console.log(taskData);
+
 
 
         renderFormForTaskToBeEdited(task, taskData);
@@ -61,14 +76,16 @@ document.addEventListener('click', function(event) {
         let newDueDate = document.querySelector('#edit-task-due-date').value;
 
         
-        let indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
+        indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
+
         editTask(
             indexOfTaskToBeEdited,
             newTitle,
             newDesc,
             newDueDate
             );
-        setUpTasks(getTaskList());
+        // setUpTasks(getTaskList());
+        setUpTasks(currentProject[0].tasksList[indexOfTaskToBeEdited]);
 
     }
 })
@@ -101,7 +118,33 @@ document.addEventListener('click', function(event) {
         let projectIndex = Array.from(project.parentNode.children).indexOf(project);
         console.log(projectIndex);
         renderProjectInMainDisplay(projectIndex);
+
+        currentProject = getProjectsList(projectIndex);
+        
     }
+})
+
+//click on add task for project
+document.addEventListener('click', function(event) {
+    if (event.target.id == 'add-task-to-project-button') {
+        let project = event.target.parentNode;
+        let projectTitle = project.querySelector('.project-title').textContent;
+
+        const projectsList = getProjectsList();
+
+        const titlesMatch = (project) => {
+            return projectTitle == project.title;
+        }
+
+        const matchingProject = projectsList.find(titlesMatch)
+
+        console.log(matchingProject);
+
+        renderTaskForm();
+
+        // addTasktoProject();
+    }
+
 })
 
 

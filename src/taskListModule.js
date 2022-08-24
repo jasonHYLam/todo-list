@@ -15,14 +15,10 @@ const getTaskList = () => {
 }
 
 const editTask = (index, newTitle, newDesc, newDueDate) => {
-
-
     const toEdit = getTaskInListFromIndex(index);
     toEdit.title = newTitle;
     toEdit.description = newDesc;
     toEdit.dueDate = newDueDate;
-
-
 }
 
 const getTaskInListFromIndex = (index) => {
@@ -55,7 +51,6 @@ const addToProject = (task, index) => {
     checkAvailableProjects();
     const projectToBeAddedTo = chooseProjectToBeAddedTo(index);
     projectToBeAddedTo.tasksList.push(task);
-    
 }
 
 export {addToTaskList, getTaskList, deleteTask, editTask, createNewTask, addToProject};

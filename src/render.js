@@ -249,13 +249,9 @@ const renderProjectForm = () => {
 }
 
 const renderProjectInMainDisplay = (index) => {
-
     removeFromTaskContainer();
-
     let currentProject = getProjectsList()[index];
-
     renderTasks(currentProject.tasksList);
-
 }
 
 
@@ -264,7 +260,6 @@ const removeFromTaskContainer = () => {
     while (taskContainer.lastChild) {
         taskContainer.removeChild(taskContainer.lastChild);
     }
-    console.log('did you do this');
 }
 
 export {
