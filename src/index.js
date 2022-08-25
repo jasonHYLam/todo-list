@@ -3,7 +3,7 @@ import {returnTaskFormValues, returnProjectFormValue, isFormComplete} from "./fo
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask} from "./taskListModule";
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
-import { createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject } from "./projectList";
+import { createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject } from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import "./style.css"
 
@@ -39,7 +39,9 @@ document.addEventListener('click', function(event) {
         let indexOfTaskToBeRemoved = Array.from(task.parentNode.children).indexOf(task);
 
        deleteTask(indexOfTaskToBeRemoved);
-       setUpTasks(getTaskList());
+       deleteTaskInProject(currentProject, indexOfTaskToBeRemoved);
+    //    setUpTasks(getTaskList());
+       setUpTasks(currentProject[0].tasksList);
     }
 })
 
@@ -172,7 +174,7 @@ addToTaskList(testTodo4);
 project1.addTasktoProject(getTaskList()[0]);
 project1.addTasktoProject(getTaskList()[1]);
 project1.addTasktoProject(getTaskList()[2]);
-project1.addTasktoProject(getTaskList()[3]);
+// project1.addTasktoProject(getTaskList()[3]);
 
 
 setUpTasks(getTaskList());

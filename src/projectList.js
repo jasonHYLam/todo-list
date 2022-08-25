@@ -41,6 +41,10 @@ const editTaskInProject = (project, taskToBeEdited, newTitle, newDesc, newDueDat
     matchingTask.priority = newPriority;
 }
 
+const deleteTaskInProject = (project, taskIndex) => {
+    project[0].tasksList.splice(taskIndex, 1);
+}
+
 const deleteProject = (index) => {
     projectsList.splice(index, 1);
 }
@@ -51,4 +55,5 @@ export {
     deleteProject, 
     getProjectsList,
     editTaskInProject,
+    deleteTaskInProject,
  };
