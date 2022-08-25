@@ -27,7 +27,9 @@ document.addEventListener('click', (e)=> {
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
             addToProject(newTask, matchingProject);
-            setUpTasks(getTaskList());
+            // setUpTasks(getTaskList());
+            setUpTasks(currentProject[0].tasksList);
+            
         }
     } 
 })
@@ -143,12 +145,17 @@ document.addEventListener('click', function(event) {
         const titlesMatch = (project) => {
             return projectTitle == project.title;
         }
-
         matchingProject = projectsList.find(titlesMatch)
-
         renderTaskForm();
     }
 
+})
+
+//click on inbox
+document.addEventListener('click', function(event) {
+    if (event.target.id == 'inbox') {
+        setUpTasks(getTaskList());
+    }
 })
 
 
