@@ -1,6 +1,6 @@
 
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete} from "./forms";
-import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask} from "./taskListModule";
+import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask} from "./taskListModule";
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
 import { createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject } from "./projectList";
@@ -51,8 +51,10 @@ document.addEventListener('click', function(event) {
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('edit-button-for-task')) {
         let task = event.target.parentNode;
-        let indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
-        let currentTasks = currentProject[0].tasksList;
+        
+        indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
+        // let currentTasks = currentProject[0].tasksList;
+        let currentTasks = currentProject.tasksList;
         currentTaskData = currentTasks[indexOfTaskToBeEdited];
 
         renderFormForTaskToBeEdited(task, currentTaskData);
@@ -90,14 +92,7 @@ document.addEventListener('click', function(event) {
             newPriority
             );
 
-        console.log(currentProject[0].tasksList);
-
-        
-        // setUpTasks(getTaskList());
-        console.log(currentProject[0].tasksList[indexOfTaskToBeEdited]);
         setUpTasks(currentProject[0].tasksList);
-        console.log('this not iterable?');
-
     }
 })
 
@@ -129,7 +124,7 @@ document.addEventListener('click', function(event) {
         let projectIndex = Array.from(project.parentNode.children).indexOf(project);
         renderProjectInMainDisplay(projectIndex);
 
-        currentProject = getProjectsList(projectIndex);
+        currentProject = getProjectsList(projectIndex)[0];
         
     }
 })
@@ -151,6 +146,17 @@ document.addEventListener('click', function(event) {
 
 })
 
+//click on done checkbox
+document.addEventListener('click', function(event) {
+    if (event.target.className == 'done-check-box') {
+        let task = event.target.parentNode
+        let indexOfTask = Array.from(task.parentNode.children).indexOf(task);
+        let taskInProject = currentProject[0].tasksList[indexOfTask];
+        checkDoneOnTask(taskInProject);
+
+    }
+})
+
 //click on inbox
 document.addEventListener('click', function(event) {
     if (event.target.id == 'inbox') {
@@ -164,6 +170,11 @@ document.addEventListener('click', function(event) {
 
 
 renderTaskContainer();
+
+const inbox = createNewProject('inbox');
+addNewProjectToList(inbox);
+
+currentProject = inbox;
 
 const project1 = createNewProject('the great reckoning');
 addNewProjectToList(project1);
@@ -181,10 +192,16 @@ addToTaskList(testTodo4);
 project1.addTasktoProject(getTaskList()[0]);
 project1.addTasktoProject(getTaskList()[1]);
 project1.addTasktoProject(getTaskList()[2]);
-// project1.addTasktoProject(getTaskList()[3]);
 
+inbox.addTasktoProject(getTaskList()[0]);
+inbox.addTasktoProject(getTaskList()[1]);
+inbox.addTasktoProject(getTaskList()[2]);
+inbox.addTasktoProject(getTaskList()[3]);
 
-setUpTasks(getTaskList());
+// setUpTasks(getTaskList());
+console.log(inbox);
+console.log(currentProject.tasksList);
+setUpTasks(currentProject.tasksList);
 
 renderProjectContainer();
 

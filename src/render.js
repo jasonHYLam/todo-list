@@ -78,6 +78,7 @@ const renderTaskContainer = () => {
 
 const setUpTasks = (taskArray) => {
     takeDownRenderedTasksOrProjects('tasks');
+    console.log('is this okay');
     renderTasks(taskArray);
 }
 

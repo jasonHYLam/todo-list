@@ -36,6 +36,7 @@ const createNewTask = (formValues) => {
         formValues.descValue, 
         formValues.dueDateValue,
         formValues.priorityValue,
+        formValues.taskDoneValue,
         );
 } 
 
@@ -52,4 +53,19 @@ const addToProject = (task, projectToBeAddedTo) => {
     projectToBeAddedTo.tasksList.push(task);
 }
 
-export {addToTaskList, getTaskList, deleteTask, editTask, createNewTask, addToProject};
+const checkDoneOnTask = (task) => {
+    task.taskDone = 'yes';
+    console.log(task);
+
+}
+
+export {
+    addToTaskList, 
+    getTaskList, 
+    deleteTask, 
+    editTask, 
+    createNewTask, 
+    addToProject,
+    checkDoneOnTask,
+
+};
