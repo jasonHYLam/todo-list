@@ -86,10 +86,12 @@ document.addEventListener('click', function(event) {
             newPriority
             );
 
+        console.log(currentProject[0].tasksList);
+
         
         // setUpTasks(getTaskList());
         console.log(currentProject[0].tasksList[indexOfTaskToBeEdited]);
-        setUpTasks(currentProject[0].tasksList[indexOfTaskToBeEdited]);
+        setUpTasks(currentProject[0].tasksList);
         console.log('this not iterable?');
 
     }
