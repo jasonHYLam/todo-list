@@ -24,7 +24,6 @@ const editTask = (index, newTitle, newDesc, newDueDate, newPriority) => {
 
 const getTaskInListFromIndex = (index) => {
     return getTaskList()[index];
-
 }
 
 const deleteTask = (taskIndex) => {

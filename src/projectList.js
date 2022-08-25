@@ -22,9 +22,33 @@ const addNewProjectToList = (newProject) => {
     projectsList.push(newProject);
 } 
 
+const editProject = () => {
+
+}
+
+const editTaskInProject = (project, taskToBeEdited, newTitle, newDesc, newDueDate, newPriority) => {
+    const projectTasks = project[0].tasksList;
+
+    const isTaskMatching = (taskInProject) => {
+        return taskInProject == taskToBeEdited ;
+    } 
+    const matchingTask = projectTasks.find(isTaskMatching);
+
+    
+    matchingTask.title = newTitle;
+    matchingTask.description = newDesc;
+    matchingTask.dueDate = newDueDate;
+    matchingTask.priority = newPriority;
+}
 
 const deleteProject = (index) => {
     projectsList.splice(index, 1);
 }
 
-export {createNewProject, addNewProjectToList, deleteProject, getProjectsList};
+export {
+    createNewProject, 
+    addNewProjectToList, 
+    deleteProject, 
+    getProjectsList,
+    editTaskInProject,
+ };

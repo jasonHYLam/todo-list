@@ -3,13 +3,14 @@ import {returnTaskFormValues, returnProjectFormValue, isFormComplete} from "./fo
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask} from "./taskListModule";
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
-import { createNewProject, addNewProjectToList, deleteProject, getProjectsList } from "./projectList";
+import { createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject } from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import "./style.css"
 
 let currentProject;
 let indexOfTaskToBeEdited;
 
+let currentTaskData;
 let matchingProject;
 
 const addTodoButton = document.getElementById('add-todo-button');
@@ -23,14 +24,9 @@ document.addEventListener('click', (e)=> {
 
         let currentForm = returnTaskFormValues();
         if (isFormComplete(currentForm)) {
-
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
-
-            console.log('the matching project hopefully');
-            console.log(matchingProject);
             addToProject(newTask, matchingProject);
-
             setUpTasks(getTaskList());
         }
     } 
@@ -50,16 +46,12 @@ document.addEventListener('click', function(event) {
 //click on edit buttons
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('edit-button-for-task')) {
-
         let task = event.target.parentNode;
-
         let indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
-
         let currentTasks = currentProject[0].tasksList;
+        currentTaskData = currentTasks[indexOfTaskToBeEdited];
 
-        let taskData = currentTasks[indexOfTaskToBeEdited];
-
-        renderFormForTaskToBeEdited(task, taskData);
+        renderFormForTaskToBeEdited(task, currentTaskData);
     }
 })
 
@@ -73,9 +65,9 @@ document.addEventListener('click', function(event) {
         let newDueDate = document.querySelector('#edit-task-due-date').value;
         let newPriority = document.querySelector('#edit-task-priority').value;
 
-
         
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
+
 
         editTask(
             indexOfTaskToBeEdited,
@@ -84,10 +76,21 @@ document.addEventListener('click', function(event) {
             newDueDate,
             newPriority,
             );
+
+        editTaskInProject(
+            currentProject, 
+            currentTaskData, 
+            newTitle, 
+            newDesc, 
+            newDueDate, 
+            newPriority
+            );
+
+        
         // setUpTasks(getTaskList());
-        console.log('this should change');
         console.log(currentProject[0].tasksList[indexOfTaskToBeEdited]);
         setUpTasks(currentProject[0].tasksList[indexOfTaskToBeEdited]);
+        console.log('this not iterable?');
 
     }
 })
@@ -118,7 +121,6 @@ document.addEventListener('click', function(event) {
     if (event.target.classList.contains("project-title")) {
         let project = event.target.parentNode;
         let projectIndex = Array.from(project.parentNode.children).indexOf(project);
-        console.log(projectIndex);
         renderProjectInMainDisplay(projectIndex);
 
         currentProject = getProjectsList(projectIndex);
@@ -165,7 +167,10 @@ addToTaskList(testTodo2);
 addToTaskList(testTodo3);
 addToTaskList(testTodo4);
 
+project1.addTasktoProject(getTaskList()[0]);
 project1.addTasktoProject(getTaskList()[1]);
+project1.addTasktoProject(getTaskList()[2]);
+project1.addTasktoProject(getTaskList()[3]);
 
 
 setUpTasks(getTaskList());
