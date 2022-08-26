@@ -26,10 +26,9 @@ document.addEventListener('click', (e)=> {
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
 
-            console.log('what is this doing');
-            findProjectSelectMatch();
+            addToProject(newTask, findProjectSelectMatch());
 
-            addToProject(newTask, matchingProject);
+            // addToProject(newTask, matchingProject);
             setUpTasks(getCurrentProjectTasks());
         }
     } 
@@ -133,25 +132,25 @@ document.addEventListener('click', function(event) {
     }
 })
 
-//click on add task for project
-document.addEventListener('click', function(event) {
-    if (event.target.id == 'add-task-to-project-button') {
-        let project = event.target.parentNode;
-        let projectTitle = project.querySelector('.project-title').textContent;
+// //click on add task for project
+// document.addEventListener('click', function(event) {
+//     if (event.target.id == 'add-task-to-project-button') {
+//         let project = event.target.parentNode;
+//         let projectTitle = project.querySelector('.project-title').textContent;
 
-        const projectsList = getProjectsList();
+//         const projectsList = getProjectsList();
 
-        const titlesMatch = (project) => {
-            return projectTitle == project.title;
-        }
-        // matchingProject = projectsList.find(titlesMatch)
-        matchingProject = projectsList.find(titlesMatch)
+//         const titlesMatch = (project) => {
+//             return projectTitle == project.title;
+//         }
+//         // matchingProject = projectsList.find(titlesMatch)
+//         matchingProject = projectsList.find(titlesMatch)
 
         
-        renderTaskForm();
-    }
+//         renderTaskForm();
+//     }
 
-})
+// })
 
 //click on done checkbox
 document.addEventListener('click', function(event) {
