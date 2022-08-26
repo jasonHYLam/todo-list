@@ -51,7 +51,6 @@ document.addEventListener('click', function(event) {
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
         let currentTasks = getCurrentProjectTasks();
         currentTaskData = currentTasks[indexOfTaskToBeEdited];
-
         renderFormForTaskToBeEdited(task, currentTaskData);
     }
 })

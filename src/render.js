@@ -46,6 +46,13 @@ const renderTaskForm = () => {
     selectList.appendChild(medOption);
     selectList.appendChild(lowOption);
 
+    const projectToSendTo = document.createElement('select');
+    for (const project of getProjectsList()) {
+        const projectTitle = document.createElement('option');
+        projectTitle.textContent = project.title;
+        projectToSendTo.appendChild(projectTitle);
+    }
+
 
     const submitTodoButton = document.createElement('button');
     submitTodoButton.setAttribute('type', 'button');
@@ -60,6 +67,7 @@ const renderTaskForm = () => {
     todoForm.appendChild(descInput);
     todoForm.appendChild(dueDateInput);
     todoForm.appendChild(selectList);
+    todoForm.appendChild(projectToSendTo);
     todoForm.appendChild(submitTodoButton);
     todoForm.appendChild(cancelButton);
 
@@ -78,7 +86,6 @@ const renderTaskContainer = () => {
 
 const setUpTasks = (taskArray) => {
     takeDownRenderedTasksOrProjects('tasks');
-    console.log('is this okay');
     renderTasks(taskArray);
 }
 
