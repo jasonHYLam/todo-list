@@ -27,9 +27,9 @@ document.addEventListener('click', (e)=> {
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
             addToProject(newTask, matchingProject);
-            // setUpTasks(getTaskList());
-            setUpTasks(currentProject[0].tasksList);
+            setUpTasks(currentProject.tasksList);
             
+
         }
     } 
 })
@@ -83,6 +83,7 @@ document.addEventListener('click', function(event) {
             newPriority,
             );
 
+
         editTaskInProject(
             currentProject, 
             currentTaskData, 
@@ -92,7 +93,14 @@ document.addEventListener('click', function(event) {
             newPriority
             );
 
-        setUpTasks(currentProject[0].tasksList);
+        setUpTasks(currentProject.tasksList);
+
+        console.log(currentProject);
+            //testing if project tasks update
+            for (const project of getProjectsList()) {
+                console.log(project.tasksList);
+
+            }
     }
 })
 
@@ -124,7 +132,8 @@ document.addEventListener('click', function(event) {
         let projectIndex = Array.from(project.parentNode.children).indexOf(project);
         renderProjectInMainDisplay(projectIndex);
 
-        currentProject = getProjectsList(projectIndex)[0];
+        currentProject = getProjectsList()[projectIndex];
+        console.log(currentProject);
         
     }
 })
@@ -175,6 +184,7 @@ const inbox = createNewProject('inbox');
 addNewProjectToList(inbox);
 
 currentProject = inbox;
+matchingProject = inbox;
 
 const project1 = createNewProject('the great reckoning');
 addNewProjectToList(project1);

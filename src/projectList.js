@@ -27,7 +27,7 @@ const editProject = () => {
 }
 
 const editTaskInProject = (project, taskToBeEdited, newTitle, newDesc, newDueDate, newPriority) => {
-    const projectTasks = project[0].tasksList;
+    const projectTasks = project.tasksList;
 
     const isTaskMatching = (taskInProject) => {
         return taskInProject == taskToBeEdited ;
