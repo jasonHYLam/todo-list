@@ -3,11 +3,10 @@ import {returnTaskFormValues, returnProjectFormValue, isFormComplete} from "./fo
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask} from "./taskListModule";
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
-import { createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject } from "./projectList";
+import { getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject } from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import "./style.css"
 
-let currentProject;
 let indexOfTaskToBeEdited;
 
 let currentTaskData;
@@ -27,9 +26,7 @@ document.addEventListener('click', (e)=> {
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
             addToProject(newTask, matchingProject);
-            setUpTasks(currentProject.tasksList);
-            
-
+            setUpTasks(getCurrentProjectTasks());
         }
     } 
 })
@@ -41,9 +38,8 @@ document.addEventListener('click', function(event) {
         let indexOfTaskToBeRemoved = Array.from(task.parentNode.children).indexOf(task);
 
        deleteTask(indexOfTaskToBeRemoved);
-       deleteTaskInProject(currentProject, indexOfTaskToBeRemoved);
-    //    setUpTasks(getTaskList());
-       setUpTasks(currentProject[0].tasksList);
+       deleteTaskInProject(getCurrentProject(), indexOfTaskToBeRemoved);
+       setUpTasks(getCurrentProjectTasks());
     }
 })
 
@@ -53,8 +49,7 @@ document.addEventListener('click', function(event) {
         let task = event.target.parentNode;
         
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
-        // let currentTasks = currentProject[0].tasksList;
-        let currentTasks = currentProject.tasksList;
+        let currentTasks = getCurrentProjectTasks();
         currentTaskData = currentTasks[indexOfTaskToBeEdited];
 
         renderFormForTaskToBeEdited(task, currentTaskData);
@@ -85,7 +80,7 @@ document.addEventListener('click', function(event) {
 
 
         editTaskInProject(
-            currentProject, 
+            getCurrentProject(), 
             currentTaskData, 
             newTitle, 
             newDesc, 
@@ -93,9 +88,8 @@ document.addEventListener('click', function(event) {
             newPriority
             );
 
-        setUpTasks(currentProject.tasksList);
+        setUpTasks(getCurrentProjectTasks());
 
-        console.log(currentProject);
             //testing if project tasks update
             for (const project of getProjectsList()) {
                 console.log(project.tasksList);
@@ -132,9 +126,7 @@ document.addEventListener('click', function(event) {
         let projectIndex = Array.from(project.parentNode.children).indexOf(project);
         renderProjectInMainDisplay(projectIndex);
 
-        currentProject = getProjectsList()[projectIndex];
-        console.log(currentProject);
-        
+        setCurrentProject(getProjectsList()[projectIndex]);
     }
 })
 
@@ -160,7 +152,7 @@ document.addEventListener('click', function(event) {
     if (event.target.className == 'done-check-box') {
         let task = event.target.parentNode
         let indexOfTask = Array.from(task.parentNode.children).indexOf(task);
-        let taskInProject = currentProject[0].tasksList[indexOfTask];
+        let taskInProject = getCurrentProject().tasksList[indexOfTask];
         checkDoneOnTask(taskInProject);
 
     }
@@ -183,7 +175,7 @@ renderTaskContainer();
 const inbox = createNewProject('inbox');
 addNewProjectToList(inbox);
 
-currentProject = inbox;
+setCurrentProject(inbox);
 matchingProject = inbox;
 
 const project1 = createNewProject('the great reckoning');
@@ -210,8 +202,7 @@ inbox.addTasktoProject(getTaskList()[3]);
 
 // setUpTasks(getTaskList());
 console.log(inbox);
-console.log(currentProject.tasksList);
-setUpTasks(currentProject.tasksList);
+setUpTasks(getCurrentProject().tasksList);
 
 renderProjectContainer();
 

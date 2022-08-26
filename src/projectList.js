@@ -10,6 +10,20 @@ import {Project} from "./projectClass";
 
 let projectsList = [];
 
+let currentProject;
+
+const getCurrentProject = () => {
+    return currentProject;
+}
+
+const getCurrentProjectTasks = () => {
+    return currentProject.tasksList;
+}
+
+const setCurrentProject = (project) => {
+    currentProject = project;
+}
+
 const getProjectsList = () => {
     return projectsList;
 }
@@ -50,6 +64,10 @@ const deleteProject = (index) => {
 }
 
 export {
+    getCurrentProject,
+    getCurrentProjectTasks,
+    setCurrentProject,
+
     createNewProject, 
     addNewProjectToList, 
     deleteProject, 
