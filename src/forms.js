@@ -13,6 +13,11 @@ const returnTaskFormValues = () => {
     };
 }
 
+const returnProjectSelectValue = () => {
+    const projectSelectValue = document.getElementById('project-select').value;
+    return projectSelectValue;
+}
+
 const returnProjectFormValue = () => {
     const titleValue = document.getElementById('project-title').value;
     return(titleValue);
@@ -27,4 +32,10 @@ const isFormComplete = (form) => {
     return (formValues.every(isFieldFilled));
 }
 
-export {returnTaskFormValues, isFormComplete, returnProjectFormValue};
+export {
+    returnTaskFormValues, 
+    isFormComplete, 
+    returnProjectFormValue,
+    returnProjectSelectValue,
+
+};

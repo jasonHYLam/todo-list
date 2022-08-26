@@ -3,7 +3,7 @@ import {returnTaskFormValues, returnProjectFormValue, isFormComplete} from "./fo
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask} from "./taskListModule";
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
-import { getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject } from "./projectList";
+import { getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch } from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import "./style.css"
 
@@ -25,6 +25,10 @@ document.addEventListener('click', (e)=> {
         if (isFormComplete(currentForm)) {
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
+
+            console.log('what is this doing');
+            findProjectSelectMatch();
+
             addToProject(newTask, matchingProject);
             setUpTasks(getCurrentProjectTasks());
         }
@@ -140,7 +144,10 @@ document.addEventListener('click', function(event) {
         const titlesMatch = (project) => {
             return projectTitle == project.title;
         }
+        // matchingProject = projectsList.find(titlesMatch)
         matchingProject = projectsList.find(titlesMatch)
+
+        
         renderTaskForm();
     }
 

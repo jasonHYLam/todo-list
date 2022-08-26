@@ -7,6 +7,7 @@ delete project
 edit project
 */
 import {Project} from "./projectClass";
+import {returnProjectSelectValue} from "./forms.js";
 
 let projectsList = [];
 
@@ -63,6 +64,16 @@ const deleteProject = (index) => {
     projectsList.splice(index, 1);
 }
 
+const findProjectSelectMatch = () => {
+
+    const doesProjectMatch = (projectInList) => {
+        return projectInList.title == returnProjectSelectValue();
+    }
+
+    return getProjectsList().find(doesProjectMatch);
+
+}
+
 export {
     getCurrentProject,
     getCurrentProjectTasks,
@@ -74,4 +85,6 @@ export {
     getProjectsList,
     editTaskInProject,
     deleteTaskInProject,
+
+    findProjectSelectMatch,
  };

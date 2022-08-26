@@ -47,6 +47,7 @@ const renderTaskForm = () => {
     selectList.appendChild(lowOption);
 
     const projectToSendTo = document.createElement('select');
+    projectToSendTo.id = 'project-select';
     for (const project of getProjectsList()) {
         const projectTitle = document.createElement('option');
         projectTitle.textContent = project.title;
@@ -187,6 +188,14 @@ const renderFormForTaskToBeEdited = (taskElement, taskData) => {
     selectList.appendChild(medOption);
     selectList.appendChild(lowOption);
 
+    const projectToMoveTo = document.createElement('select');
+    projectToMoveTo.id = 'project-select';
+    for (const project of getProjectsList()) {
+        const projectTitle = document.createElement('option');
+        projectTitle.textContent = project.title;
+        projectToMoveTo.appendChild(projectTitle);
+    }
+
     const editTodoButton = document.createElement('button');
     editTodoButton.setAttribute('type', 'button');
     editTodoButton.id = 'submit-edit-todo-button';
@@ -200,6 +209,7 @@ const renderFormForTaskToBeEdited = (taskElement, taskData) => {
     form.appendChild(descInput);
     form.appendChild(dueDateInput);
     form.appendChild(selectList);
+    form.appendChild(projectToMoveTo);
     form.appendChild(editTodoButton);
     form.appendChild(cancelButton);
 }
