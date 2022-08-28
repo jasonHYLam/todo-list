@@ -1,11 +1,3 @@
-/* 
-add tasks to projects
-
-
-delete project
-
-edit project
-*/
 import {Project} from "./projectClass";
 import {returnProjectSelectValue} from "./forms.js";
 
@@ -44,11 +36,13 @@ const editProject = () => {
 const editTaskInProject = (project, taskToBeEdited, newTitle, newDesc, newDueDate, newPriority) => {
     const projectTasks = project.tasksList;
 
+    console.log('just gonna check this')
+    console.log(taskToBeEdited);
+
     const isTaskMatching = (taskInProject) => {
         return taskInProject == taskToBeEdited ;
     } 
     const matchingTask = projectTasks.find(isTaskMatching);
-
     
     matchingTask.title = newTitle;
     matchingTask.description = newDesc;
@@ -57,7 +51,7 @@ const editTaskInProject = (project, taskToBeEdited, newTitle, newDesc, newDueDat
 }
 
 const deleteTaskInProject = (project, taskIndex) => {
-    project[0].tasksList.splice(taskIndex, 1);
+    project.tasksList.splice(taskIndex, 1);
 }
 
 const deleteProject = (index) => {
@@ -73,13 +67,20 @@ const findProjectSelectMatch = () => {
     return getProjectsList().find(doesProjectMatch);
 }
 
-const checkCurrentProjectAgainstProjectSelectValue = () => {
+const checkIfCurrentProjectMatchesProjectSelectValue = () => {
 
-
-    console.log(currentProject);
-    returnProjectSelectValue();
+    if (currentProject.title == returnProjectSelectValue()) {
+        return true;
+    } else {
+        return false;
+    }
 
 }
+
+const changeCurrentProject = (project) => {
+    setCurrentProject(project);
+}
+
 
 export {
     getCurrentProject,
@@ -94,6 +95,6 @@ export {
     deleteTaskInProject,
 
     findProjectSelectMatch,
- checkCurrentProjectAgainstProjectSelectValue,
+    checkIfCurrentProjectMatchesProjectSelectValue,
  }
  ;

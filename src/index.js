@@ -3,7 +3,7 @@ import {returnTaskFormValues, returnProjectFormValue, isFormComplete} from "./fo
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask} from "./taskListModule";
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
-import { getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch } from "./projectList";
+import { getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import "./style.css"
 
@@ -69,6 +69,7 @@ document.addEventListener('click', function(event) {
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
 
 
+
         editTask(
             indexOfTaskToBeEdited,
             newTitle,
@@ -87,13 +88,14 @@ document.addEventListener('click', function(event) {
             newPriority
             );
 
+        if (checkIfCurrentProjectMatchesProjectSelectValue()) {
+            return
+        } else {
+            deleteTaskInProject(getCurrentProject(), indexOfTaskToBeEdited);
+            setCurrentProject(findProjectSelectMatch());
+        }; 
+
         setUpTasks(getCurrentProjectTasks());
-
-            //testing if project tasks update
-            for (const project of getProjectsList()) {
-                console.log(project.tasksList);
-
-            }
     }
 })
 
