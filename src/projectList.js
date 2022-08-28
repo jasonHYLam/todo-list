@@ -71,6 +71,13 @@ const findProjectSelectMatch = () => {
     }
 
     return getProjectsList().find(doesProjectMatch);
+}
+
+const checkCurrentProjectAgainstProjectSelectValue = () => {
+
+
+    console.log(currentProject);
+    returnProjectSelectValue();
 
 }
 
@@ -87,4 +94,6 @@ export {
     deleteTaskInProject,
 
     findProjectSelectMatch,
- };
+ checkCurrentProjectAgainstProjectSelectValue,
+ }
+ ;

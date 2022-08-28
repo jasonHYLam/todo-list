@@ -244,14 +244,6 @@ const setUpProjects = (projectArray) => {
 
         const taskList = document.createElement('div');
 
-
-
-        // //add buttons
-        // const addTasktoProject = document.createElement('button');
-        // addTasktoProject.id = 'add-task-to-project-button';
-        // addTasktoProject.textContent = 'Add task';
-        // projectDiv.appendChild(addTasktoProject);
-
         //add project to project container
         projectContainer.appendChild(projectDiv);
         

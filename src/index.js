@@ -10,7 +10,6 @@ import "./style.css"
 let indexOfTaskToBeEdited;
 
 let currentTaskData;
-let matchingProject;
 
 const addTodoButton = document.getElementById('add-todo-button');
 addTodoButton.addEventListener('click', (e) => {
@@ -28,7 +27,6 @@ document.addEventListener('click', (e)=> {
 
             addToProject(newTask, findProjectSelectMatch());
 
-            // addToProject(newTask, matchingProject);
             setUpTasks(getCurrentProjectTasks());
         }
     } 
@@ -68,7 +66,6 @@ document.addEventListener('click', function(event) {
         let newDueDate = document.querySelector('#edit-task-due-date').value;
         let newPriority = document.querySelector('#edit-task-priority').value;
 
-        
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
 
 
@@ -132,26 +129,6 @@ document.addEventListener('click', function(event) {
     }
 })
 
-// //click on add task for project
-// document.addEventListener('click', function(event) {
-//     if (event.target.id == 'add-task-to-project-button') {
-//         let project = event.target.parentNode;
-//         let projectTitle = project.querySelector('.project-title').textContent;
-
-//         const projectsList = getProjectsList();
-
-//         const titlesMatch = (project) => {
-//             return projectTitle == project.title;
-//         }
-//         // matchingProject = projectsList.find(titlesMatch)
-//         matchingProject = projectsList.find(titlesMatch)
-
-        
-//         renderTaskForm();
-//     }
-
-// })
-
 //click on done checkbox
 document.addEventListener('click', function(event) {
     if (event.target.className == 'done-check-box') {
@@ -181,7 +158,6 @@ const inbox = createNewProject('inbox');
 addNewProjectToList(inbox);
 
 setCurrentProject(inbox);
-matchingProject = inbox;
 
 const project1 = createNewProject('the great reckoning');
 addNewProjectToList(project1);
