@@ -93,6 +93,7 @@ document.addEventListener('click', function(event) {
         } else {
             deleteTaskInProject(getCurrentProject(), indexOfTaskToBeEdited);
             setCurrentProject(findProjectSelectMatch());
+            addToProject(currentTaskData, getCurrentProject());
         }; 
 
         setUpTasks(getCurrentProjectTasks());
@@ -103,7 +104,6 @@ document.addEventListener('click', function(event) {
 document.addEventListener('click', function(event) {
     if (event.target.id == 'add-project-in-sidebar') {
         renderProjectForm();
-
     }
 })
 
