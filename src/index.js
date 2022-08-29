@@ -6,6 +6,8 @@ import { Project } from "./projectClass";
 import { getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import "./style.css"
+import {format, compareAsc} from "date-fns"
+
 
 let indexOfTaskToBeEdited;
 
@@ -190,3 +192,8 @@ setUpTasks(getCurrentProject().tasksList);
 renderProjectContainer();
 
 setUpProjects(getProjectsList());
+
+console.log(
+format(new Date(2022, 9, 9), 'MM/dd//yyyy')
+
+);
