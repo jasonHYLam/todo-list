@@ -26,6 +26,10 @@ document.addEventListener('click', (e)=> {
         console.log('this is the date value ha ha ha');
         const dateValue = document.getElementById('due-date').value;
         console.log(dateValue);
+        console.log('hopefully should see a new format');
+        console.log(
+        format(new Date(dateValue), 'dd/MM/yyyy')
+        )
 
         let currentForm = returnTaskFormValues();
         if (isFormComplete(currentForm)) {
