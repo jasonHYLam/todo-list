@@ -1,4 +1,6 @@
 import { getProjectsList } from "./projectList";
+import {format} from "date-fns"
+
 
 const wrapper = document.getElementById('wrapper');
 
@@ -166,7 +168,8 @@ const renderFormForTaskToBeEdited = (taskElement, taskData) => {
     descInput.value = taskData.description;
 
     const dueDateInput = document.createElement('input');
-    dueDateInput.setAttribute('placeholder', 'due date: ')
+    // dueDateInput.setAttribute('placeholder', 'due date: ')
+    dueDateInput.setAttribute('type','date');
     dueDateInput.id = 'edit-task-due-date';
     dueDateInput.value = taskData.dueDate;
 

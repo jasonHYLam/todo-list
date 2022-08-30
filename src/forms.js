@@ -1,9 +1,8 @@
-import {format, compareAsc} from "date-fns"
+import {format} from "date-fns"
 
 const returnTaskFormValues = () => {
     const titleValue = document.getElementById('task-title').value;
     const descValue = document.getElementById('task-desc').value;
-    // const dueDateValue = document.getElementById('task-due-date').value;
     const priorityValue = document.getElementById('priority-select').value;
     const taskDoneValue = 'no';
     
@@ -12,7 +11,6 @@ const returnTaskFormValues = () => {
     return {
         titleValue,
         descValue, 
-        // dueDateValue, 
         dateValue,
         priorityValue,
         taskDoneValue,

@@ -65,7 +65,12 @@ document.addEventListener('click', function(event) {
 
         let newTitle = document.querySelector('#edit-task-title').value;
         let newDesc = document.querySelector('#edit-task-desc').value;
-        let newDueDate = document.querySelector('#edit-task-due-date').value;
+
+        const formatDate = (date) => {
+                return format(new Date(date), 'dd/MM/yyyy')
+        }
+        let newDueDate = formatDate(document.querySelector('#edit-task-due-date').value);
+
         let newPriority = document.querySelector('#edit-task-priority').value;
 
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
@@ -91,7 +96,7 @@ document.addEventListener('click', function(event) {
             );
 
         if (checkIfCurrentProjectMatchesProjectSelectValue()) {
-            return
+
         } else {
             deleteTaskInProject(getCurrentProject(), indexOfTaskToBeEdited);
             setCurrentProject(findProjectSelectMatch());
