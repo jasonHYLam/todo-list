@@ -4,6 +4,7 @@ import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, edi
 import {Task} from "./taskClass";
 import { getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
+import { storageAvailable, populateStorage, setArray, checkStorage } from "./storage";
 import "./style.css"
 
 let indexOfTaskToBeEdited;
@@ -25,6 +26,9 @@ document.addEventListener('click', (e)=> {
             addToTaskList(newTask);
             addToProject(newTask, findProjectSelectMatch());
             setUpTasks(getCurrentProjectTasks());
+
+            populateStorage();
+            checkStorage();
         }
     } 
 })
@@ -164,31 +168,3 @@ renderProjectContainer();
 setUpProjects(getProjectsList());
 
 //storage testing yeey
-const storageAvailable = () => {
-    let storage;
-    try {
-        storage = window[type];
-        const x = '__storage_test__';
-        storage.setItem(x, x);
-        storage.removeItem(x);
-        return true;
-    }
-    catch (e) {
-        return e instanceof DOMException && (
-            //everything except firefox
-            e.code === 22 ||
-            //firefox
-            e.code === 1014 ||
-            //check name field as well
-            e.name === "QuotaExceededError" ||
-            //firefox
-            e.name === "NS_ERROR_DOM_QUOTA_REACHED") && 
-            (storage  && storage.length !== 0);
-    }
-}
-
-if (storageAvailable) {
-    console.log('what a triumph')
-} else {
-    console.log('terrible earth')
-}
