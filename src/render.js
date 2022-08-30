@@ -24,13 +24,8 @@ const renderTaskForm = () => {
     descInput.setAttribute('placeholder', 'description: ')
     descInput.id = 'task-desc';
 
-    const dueDateInput = document.createElement('input');
-    dueDateInput.setAttribute('placeholder', 'due date: ')
-    dueDateInput.id = 'task-due-date';
-
     const dateInput = document.createElement('input');
     dateInput.setAttribute('type','date');
-    console.log('is this the issue');
     dateInput.id = 'due-date';
     
     //priority select list    
@@ -71,7 +66,6 @@ const renderTaskForm = () => {
 
     todoForm.appendChild(titleInput);
     todoForm.appendChild(descInput);
-    todoForm.appendChild(dueDateInput);
     todoForm.appendChild(dateInput);
     todoForm.appendChild(selectList);
     todoForm.appendChild(projectToSendTo);

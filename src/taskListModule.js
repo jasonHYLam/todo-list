@@ -34,7 +34,7 @@ const createNewTask = (formValues) => {
     return new Task(
         formValues.titleValue,
         formValues.descValue, 
-        formValues.dueDateValue,
+        formValues.dateValue,
         formValues.priorityValue,
         formValues.taskDoneValue,
         );
