@@ -1,12 +1,12 @@
 
-import {returnTaskFormValues, returnProjectFormValue, isFormComplete} from "./forms";
+import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues} from "./forms";
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask} from "./taskListModule";
 import {Task} from "./taskClass";
 import { Project } from "./projectClass";
 import { getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import "./style.css"
-import {format, compareAsc} from "date-fns"
+import {format} from "date-fns"
 
 
 let indexOfTaskToBeEdited;
@@ -26,9 +26,7 @@ document.addEventListener('click', (e)=> {
         if (isFormComplete(currentForm)) {
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
-
             addToProject(newTask, findProjectSelectMatch());
-
             setUpTasks(getCurrentProjectTasks());
         }
     } 
@@ -63,36 +61,20 @@ document.addEventListener('click', function(event) {
     if (event.target.id == 'submit-edit-todo-button') {
         let task = event.target.parentNode.parentNode;
 
-        let newTitle = document.querySelector('#edit-task-title').value;
-        let newDesc = document.querySelector('#edit-task-desc').value;
-
-        const formatDate = (date) => {
-                return format(new Date(date), 'dd/MM/yyyy')
-        }
-        let newDueDate = formatDate(document.querySelector('#edit-task-due-date').value);
-
-        let newPriority = document.querySelector('#edit-task-priority').value;
-
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
 
-
-
-        editTask(
-            indexOfTaskToBeEdited,
-            newTitle,
-            newDesc,
-            newDueDate,
-            newPriority,
-            );
-
+        // editTask(
+        //     indexOfTaskToBeEdited,
+        //     newTitle,
+        //     newDesc,
+        //     newDueDate,
+        //     newPriority,
+        //     );
 
         editTaskInProject(
             getCurrentProject(), 
             currentTaskData, 
-            newTitle, 
-            newDesc, 
-            newDueDate, 
-            newPriority
+            returnEditTaskFormValues(),
             );
 
         if (checkIfCurrentProjectMatchesProjectSelectValue()) {

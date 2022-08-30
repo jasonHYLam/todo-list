@@ -17,6 +17,22 @@ const returnTaskFormValues = () => {
     };
 }
 
+const returnEditTaskFormValues = () => {
+        const newTitle = document.querySelector('#edit-task-title').value;
+        const newDesc = document.querySelector('#edit-task-desc').value;
+        const newDueDate = formatDate(document.querySelector('#edit-task-due-date').value);
+        const newPriority = document.querySelector('#edit-task-priority').value;
+
+        return {
+            newTitle,
+            newDesc,
+            newDueDate,
+            newPriority,
+        }
+
+
+}
+
 const formatDate = (date) => {
         return format(new Date(date), 'dd/MM/yyyy')
 }
@@ -46,4 +62,5 @@ export {
     returnProjectFormValue,
     returnProjectSelectValue,
 
+    returnEditTaskFormValues,
 };

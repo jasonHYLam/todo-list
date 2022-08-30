@@ -33,21 +33,25 @@ const editProject = () => {
 
 }
 
-const editTaskInProject = (project, taskToBeEdited, newTitle, newDesc, newDueDate, newPriority) => {
-    const projectTasks = project.tasksList;
+// const editTaskInProject = (project, taskToBeEdited, newTitle, newDesc, newDueDate, newPriority) => {
+const editTaskInProject = (project, taskToBeEdited, newValues,
+    newTitle, newDesc, newDueDate, newPriority) => {
 
-    console.log('just gonna check this')
-    console.log(taskToBeEdited);
+    const projectTasks = project.tasksList;
 
     const isTaskMatching = (taskInProject) => {
         return taskInProject == taskToBeEdited ;
     } 
     const matchingTask = projectTasks.find(isTaskMatching);
     
-    matchingTask.title = newTitle;
-    matchingTask.description = newDesc;
-    matchingTask.dueDate = newDueDate;
-    matchingTask.priority = newPriority;
+    // matchingTask.title = newTitle;
+    // matchingTask.description = newDesc;
+    // matchingTask.dueDate = newDueDate;
+    // matchingTask.priority = newPriority;
+    matchingTask.title = newValues.newTitle;
+    matchingTask.description = newValues.newDesc;
+    matchingTask.dueDate = newValues.newDueDate;
+    matchingTask.priority = newValues.newPriority;
 }
 
 const deleteTaskInProject = (project, taskIndex) => {
