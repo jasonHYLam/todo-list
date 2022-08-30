@@ -2,12 +2,9 @@
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues} from "./forms";
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask} from "./taskListModule";
 import {Task} from "./taskClass";
-import { Project } from "./projectClass";
 import { getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import "./style.css"
-import {format} from "date-fns"
-
 
 let indexOfTaskToBeEdited;
 
@@ -116,7 +113,6 @@ document.addEventListener('click', function(event) {
         let indexOfTask = Array.from(task.parentNode.children).indexOf(task);
         let taskInProject = getCurrentProject().tasksList[indexOfTask];
         checkDoneOnTask(taskInProject);
-
     }
 })
 
@@ -161,15 +157,38 @@ inbox.addTasktoProject(getTaskList()[1]);
 inbox.addTasktoProject(getTaskList()[2]);
 inbox.addTasktoProject(getTaskList()[3]);
 
-// setUpTasks(getTaskList());
-console.log(inbox);
 setUpTasks(getCurrentProject().tasksList);
 
 renderProjectContainer();
 
 setUpProjects(getProjectsList());
 
-console.log(
-format(new Date(2022, 9, 9), 'MM/dd//yyyy')
+//storage testing yeey
+const storageAvailable = () => {
+    let storage;
+    try {
+        storage = window[type];
+        const x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch (e) {
+        return e instanceof DOMException && (
+            //everything except firefox
+            e.code === 22 ||
+            //firefox
+            e.code === 1014 ||
+            //check name field as well
+            e.name === "QuotaExceededError" ||
+            //firefox
+            e.name === "NS_ERROR_DOM_QUOTA_REACHED") && 
+            (storage  && storage.length !== 0);
+    }
+}
 
-);
+if (storageAvailable) {
+    console.log('what a triumph')
+} else {
+    console.log('terrible earth')
+}
