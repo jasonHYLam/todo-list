@@ -22,6 +22,11 @@ addTodoButton.addEventListener('click', (e) => {
 document.addEventListener('click', (e)=> {
     if (e.target.id == 'submit-todo-button') {
 
+
+        console.log('this is the date value ha ha ha');
+        const dateValue = document.getElementById('due-date').value;
+        console.log(dateValue);
+
         let currentForm = returnTaskFormValues();
         if (isFormComplete(currentForm)) {
             const newTask = createNewTask(currentForm);

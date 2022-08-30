@@ -4,6 +4,8 @@ const returnTaskFormValues = () => {
     const dueDateValue = document.getElementById('task-due-date').value;
     const priorityValue = document.getElementById('priority-select').value;
     const taskDoneValue = 'no';
+
+    const dateValue = document.getElementById('due-date').value;
     return {
         titleValue,
         descValue, 
