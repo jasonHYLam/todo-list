@@ -2,7 +2,7 @@
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues} from "./forms";
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask} from "./taskListModule";
 import {Task} from "./taskClass";
-import { getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue} from "./projectList";
+import { setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import { storageAvailable, populateStorage, setArray, checkStorage } from "./storage";
 import "./style.css"
@@ -27,8 +27,10 @@ document.addEventListener('click', (e)=> {
             addToProject(newTask, findProjectSelectMatch());
             setUpTasks(getCurrentProjectTasks());
 
+            console.log('oh what the heck')
             populateStorage();
             checkStorage();
+            setProjectList(getProjectsList);
         }
     } 
 })
@@ -167,4 +169,8 @@ renderProjectContainer();
 
 setUpProjects(getProjectsList());
 
-//storage testing yeey
+if (storageAvailable) {
+    console.log('what a triumph')
+} else {
+    console.log('terrible earth')
+}

@@ -17,6 +17,10 @@ const setCurrentProject = (project) => {
     currentProject = project;
 }
 
+const setProjectList = (value) => {
+    projectsList = value;
+}
+
 const getProjectsList = () => {
     return projectsList;
 }
@@ -100,5 +104,7 @@ export {
 
     findProjectSelectMatch,
     checkIfCurrentProjectMatchesProjectSelectValue,
+
+    setProjectList,
  }
  ;
