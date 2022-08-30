@@ -63,19 +63,8 @@ document.addEventListener('click', function(event) {
 
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
 
-        // editTask(
-        //     indexOfTaskToBeEdited,
-        //     newTitle,
-        //     newDesc,
-        //     newDueDate,
-        //     newPriority,
-        //     );
-
-        editTaskInProject(
-            getCurrentProject(), 
-            currentTaskData, 
-            returnEditTaskFormValues(),
-            );
+        editTask(indexOfTaskToBeEdited,returnEditTaskFormValues());
+        editTaskInProject(getCurrentProject(), currentTaskData, returnEditTaskFormValues());
 
         if (checkIfCurrentProjectMatchesProjectSelectValue()) {
 
