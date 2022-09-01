@@ -70,7 +70,7 @@ document.addEventListener('click', function(event) {
 
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
 
-        editTask(indexOfTaskToBeEdited,returnEditTaskFormValues());
+        // editTask(indexOfTaskToBeEdited, returnEditTaskFormValues());
         editTaskInProject(getCurrentProject(), currentTaskData, returnEditTaskFormValues());
 
         if (checkIfCurrentProjectMatchesProjectSelectValue()) {

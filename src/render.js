@@ -104,7 +104,6 @@ const takeDownRenderedTasksOrProjects = (tasksOrProjects) => {
 }
 
 const renderTasks = (taskArray) => {
-    console.log('is this okay');
     for (const task of taskArray) {
         const taskDiv = document.createElement('div');
 

@@ -25,21 +25,14 @@ const storageAvailable = () => {
 
 
 const populateStorage = () => {
-    console.log(getProjectsList());
     const projectsList = getProjectsList();
-
     localStorage.setItem('projectArray', JSON.stringify(projectsList));
-
-    console.log('the project array to be assigned to project List');
-    console.log(JSON.parse(localStorage.getItem('projectArray')));
-    
     setProjectListFromLocalStorage();
 }
 
 const setProjectListFromLocalStorage = () => {
     setProjectList(JSON.parse(localStorage.getItem('projectArray')));
 }
-
 
 const projectsExistInStorage = () => {
     console.log(localStorage.getItem('projectArray'))
