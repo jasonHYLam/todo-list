@@ -33,19 +33,22 @@ const populateStorage = () => {
     console.log('the project array to be assigned to project List');
     console.log(JSON.parse(localStorage.getItem('projectArray')));
     
+    setProjectListFromLocalStorage();
+}
+
+const setProjectListFromLocalStorage = () => {
     setProjectList(JSON.parse(localStorage.getItem('projectArray')));
 }
 
 
-
-const checkIfProjectsExistInStorage = () => {
+const projectsExistInStorage = () => {
     console.log(localStorage.getItem('projectArray'))
     return (localStorage.getItem('projectArray'))
-
 }
 
 export {
     storageAvailable,
     populateStorage,
-    checkIfProjectsExistInStorage,
+    projectsExistInStorage,
+    setProjectListFromLocalStorage,
 }

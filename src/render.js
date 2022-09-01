@@ -1,5 +1,4 @@
 import { getProjectsList } from "./projectList";
-import {format} from "date-fns"
 
 
 const wrapper = document.getElementById('wrapper');
@@ -105,6 +104,7 @@ const takeDownRenderedTasksOrProjects = (tasksOrProjects) => {
 }
 
 const renderTasks = (taskArray) => {
+    console.log('is this okay');
     for (const task of taskArray) {
         const taskDiv = document.createElement('div');
 

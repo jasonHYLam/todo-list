@@ -4,7 +4,7 @@ import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, edi
 import {Task} from "./taskClass";
 import {checkInProjectArray,  setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
-import { storageAvailable, populateStorage, checkIfProjectsExistInStorage } from "./storage";
+import { storageAvailable, populateStorage, projectsExistInStorage, setProjectListFromLocalStorage } from "./storage";
 import "./style.css"
 
 let indexOfTaskToBeEdited;
@@ -143,12 +143,15 @@ document.addEventListener('click', function(event) {
 
 renderTaskContainer();
 
-checkIfProjectsExistInStorage();
+if (!projectsExistInStorage()) {
+    const inbox = createNewProject('inbox');
+    addNewProjectToList(inbox);
+    setCurrentProject(inbox);
+} else {
+   setProjectListFromLocalStorage();
+   setCurrentProject(getProjectsList()[0]);
+}
 
-const inbox = createNewProject('inbox');
-addNewProjectToList(inbox);
-
-setCurrentProject(inbox);
 
 setUpTasks(getCurrentProject().tasksList);
 
