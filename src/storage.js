@@ -37,13 +37,15 @@ const populateStorage = () => {
 }
 
 
-const checkStorage = () => {
-    console.log('oh what the heck')
-    console.log(localStorage)
+
+const checkIfProjectsExistInStorage = () => {
+    console.log(localStorage.getItem('projectArray'))
+    return (localStorage.getItem('projectArray'))
+
 }
 
 export {
     storageAvailable,
     populateStorage,
-    checkStorage,
+    checkIfProjectsExistInStorage,
 }

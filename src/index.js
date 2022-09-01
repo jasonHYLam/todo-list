@@ -4,7 +4,7 @@ import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, edi
 import {Task} from "./taskClass";
 import {checkInProjectArray,  setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
-import { storageAvailable, populateStorage, checkStorage } from "./storage";
+import { storageAvailable, populateStorage, checkIfProjectsExistInStorage } from "./storage";
 import "./style.css"
 
 let indexOfTaskToBeEdited;
@@ -31,7 +31,6 @@ document.addEventListener('click', (e)=> {
             setUpTasks(getCurrentProjectTasks());
 
             populateStorage();
-            checkStorage();
         }
     } 
 })
@@ -49,7 +48,6 @@ document.addEventListener('click', function(event) {
        setUpTasks(getCurrentProjectTasks());
 
         populateStorage();
-        checkStorage();
     }
 })
 
@@ -85,7 +83,6 @@ document.addEventListener('click', function(event) {
 
         checkInProjectArray();
         populateStorage();
-        checkStorage();
 
         setUpTasks(getCurrentProjectTasks());
     }
@@ -146,32 +143,12 @@ document.addEventListener('click', function(event) {
 
 renderTaskContainer();
 
+checkIfProjectsExistInStorage();
+
 const inbox = createNewProject('inbox');
 addNewProjectToList(inbox);
 
 setCurrentProject(inbox);
-
-const project1 = createNewProject('the great reckoning');
-addNewProjectToList(project1);
-
-const testTodo1 = new Task("walk", "til me feet hurt", "tomorrow", "high");
-const testTodo2 = new Task("fish", "catch 50", "tomorrow", "low");
-const testTodo3 = new Task("sing", "for the queen", "tomorrow","chicalo");
-const testTodo4 = new Task("play", "the donkey game", "tomorrow","mcdonalds");
-
-addToTaskList(testTodo1);
-addToTaskList(testTodo2);
-addToTaskList(testTodo3);
-addToTaskList(testTodo4);
-
-project1.addTasktoProject(getTaskList()[0]);
-project1.addTasktoProject(getTaskList()[1]);
-project1.addTasktoProject(getTaskList()[2]);
-
-inbox.addTasktoProject(getTaskList()[0]);
-inbox.addTasktoProject(getTaskList()[1]);
-inbox.addTasktoProject(getTaskList()[2]);
-inbox.addTasktoProject(getTaskList()[3]);
 
 setUpTasks(getCurrentProject().tasksList);
 
