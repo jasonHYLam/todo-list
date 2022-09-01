@@ -1,4 +1,4 @@
-import { getProjectsList } from "./projectList";
+import { getProjectsList, setProjectList } from "./projectList";
 
 const storageAvailable = () => {
     let storage;
@@ -23,27 +23,27 @@ const storageAvailable = () => {
     }
 }
 
-if (storageAvailable) {
-    console.log('what a triumph')
-} else {
-    console.log('terrible earth')
-}
 
 const populateStorage = () => {
-    localStorage.setItem('projectArray', getProjectsList())
+    console.log(getProjectsList());
+    const projectsList = getProjectsList();
+
+    localStorage.setItem('projectArray', JSON.stringify(projectsList));
+
+    console.log('the project array to be assigned to project List');
+    console.log(JSON.parse(localStorage.getItem('projectArray')));
+    
+    setProjectList(JSON.parse(localStorage.getItem('projectArray')));
 }
 
-const setArray = () => {
-    
-}
 
 const checkStorage = () => {
-    console.log(localStorage);
+    console.log('oh what the heck')
+    console.log(localStorage)
 }
 
 export {
     storageAvailable,
     populateStorage,
-    setArray,
-    checkStorage
+    checkStorage,
 }

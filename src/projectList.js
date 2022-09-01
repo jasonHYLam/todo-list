@@ -89,6 +89,15 @@ const changeCurrentProject = (project) => {
     setCurrentProject(project);
 }
 
+const checkInProjectArray = () => {
+    console.log('checking projects');
+    for (const project of getProjectsList()) {
+        console.log(project.title);
+        for (const task of project.tasksList) {
+            console.log(task);
+        }
+    }
+}
 
 export {
     getCurrentProject,
@@ -106,5 +115,7 @@ export {
     checkIfCurrentProjectMatchesProjectSelectValue,
 
     setProjectList,
+
+    checkInProjectArray,
  }
  ;

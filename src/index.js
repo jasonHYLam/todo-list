@@ -2,9 +2,9 @@
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues} from "./forms";
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask} from "./taskListModule";
 import {Task} from "./taskClass";
-import { setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue} from "./projectList";
+import {checkInProjectArray,  setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
-import { storageAvailable, populateStorage, setArray, checkStorage } from "./storage";
+import { storageAvailable, populateStorage, checkStorage } from "./storage";
 import "./style.css"
 
 let indexOfTaskToBeEdited;
@@ -25,12 +25,13 @@ document.addEventListener('click', (e)=> {
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
             addToProject(newTask, findProjectSelectMatch());
+
+            checkInProjectArray();
+
             setUpTasks(getCurrentProjectTasks());
 
-            console.log('oh what the heck')
             populateStorage();
             checkStorage();
-            setProjectList(getProjectsList);
         }
     } 
 })
@@ -41,9 +42,14 @@ document.addEventListener('click', function(event) {
         let task = event.target.parentNode;
         let indexOfTaskToBeRemoved = Array.from(task.parentNode.children).indexOf(task);
 
+        checkInProjectArray();
+
        deleteTask(indexOfTaskToBeRemoved);
        deleteTaskInProject(getCurrentProject(), indexOfTaskToBeRemoved);
        setUpTasks(getCurrentProjectTasks());
+
+        populateStorage();
+        checkStorage();
     }
 })
 
@@ -76,6 +82,10 @@ document.addEventListener('click', function(event) {
             setCurrentProject(findProjectSelectMatch());
             addToProject(currentTaskData, getCurrentProject());
         }; 
+
+        checkInProjectArray();
+        populateStorage();
+        checkStorage();
 
         setUpTasks(getCurrentProjectTasks());
     }
@@ -169,7 +179,7 @@ renderProjectContainer();
 
 setUpProjects(getProjectsList());
 
-if (storageAvailable) {
+if (storageAvailable()) {
     console.log('what a triumph')
 } else {
     console.log('terrible earth')
