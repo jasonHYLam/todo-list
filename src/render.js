@@ -245,7 +245,7 @@ const setUpProjects = (projectArray) => {
 
         projectDiv.appendChild(projectTitle);
 
-        const deleteProject = document.createElement('span');
+        const deleteProject = document.createElement('div');
         deleteProject.className = 'delete-project-button';
         deleteProject.textContent = 'x';
 

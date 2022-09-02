@@ -33,10 +33,6 @@ const addNewProjectToList = (newProject) => {
     projectsList.push(newProject);
 } 
 
-const editProject = () => {
-
-}
-
 // const editTaskInProject = (project, taskToBeEdited, newTitle, newDesc, newDueDate, newPriority) => {
 const editTaskInProject = (project, taskToBeEdited, newValues,
     newTitle, newDesc, newDueDate, newPriority) => {

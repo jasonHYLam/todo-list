@@ -144,6 +144,17 @@ document.addEventListener('click', function(event) {
     }
 })
 
+//click on x next to projects
+document.addEventListener('click', function(event) {
+    if (event.target.className == 'delete-project-button') {
+        const task = event.target.previousElementSibling;
+        console.log(task);
+        const taskName = task.textContent;
+        console.log(taskName);
+        deleteProject();
+    }
+
+})
 
 
 // on page load
