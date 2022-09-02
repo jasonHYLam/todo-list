@@ -70,7 +70,8 @@ document.addEventListener('click', function(event) {
 
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
 
-        // editTask(indexOfTaskToBeEdited, returnEditTaskFormValues());
+        editTask(indexOfTaskToBeEdited, returnEditTaskFormValues());
+
         editTaskInProject(getCurrentProject(), currentTaskData, returnEditTaskFormValues());
 
         if (checkIfCurrentProjectMatchesProjectSelectValue()) {
@@ -105,6 +106,13 @@ document.addEventListener('click', function(event) {
             addNewProjectToList(newProject);
             setUpProjects(getProjectsList());
         }
+    }
+})
+
+//click on inbox 
+document.addEventListener('click', (e) => {
+    if (e.target.id === 'inbox') {
+        console.log('hehe pinf');
     }
 })
 

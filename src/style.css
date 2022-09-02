@@ -18,37 +18,10 @@
     display: absolute;
 }
 
-/* #task-container {
-    width: 60vw;
-    height: 30vh;
-    background-color: beige;
+.project-div {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
 }
+.project-title {
 
-.form-for-task-to-be-edited {
-    width: 400px;
-    height: 200px;
-    background-color: aqua;
-}
-
-#project-container {
-    width: 60vw;
-    height: 30vh;
-    background-color: greenyellow;
-
-} */
-
-
-.drop-down {
-    position: relative;
-}
-
-.drop-content {
-   display: none; 
-   position: absolute;
-   background-color: blue;
-}
-
-.drop-down:hover .drop-content {
-    display: block;
-    cursor: pointer;
 }

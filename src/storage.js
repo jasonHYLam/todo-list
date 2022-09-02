@@ -35,7 +35,7 @@ const setProjectListFromLocalStorage = () => {
 }
 
 const projectsExistInStorage = () => {
-    console.log(localStorage.getItem('projectArray'))
+    // console.log(localStorage.getItem('projectArray'))
     return (localStorage.getItem('projectArray'))
 }
 

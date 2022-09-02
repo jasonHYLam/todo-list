@@ -25,7 +25,6 @@ const editTask = (index, newValues) => {
 
 const getTaskInListFromIndex = (index) => {
 
-    console.log(getTaskList());
     return getTaskList()[index];
 }
 

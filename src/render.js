@@ -234,15 +234,22 @@ const setUpProjects = (projectArray) => {
 
         //create a container
         const projectDiv = document.createElement('div');
+        projectDiv.className = 'project-div';
 
         //populate with the project's data
 
         //project title
-        const projectTitle = document.createElement('div');
+        const projectTitle = document.createElement('p');
         projectTitle.className = 'project-title';
         projectTitle.textContent = project.title;
 
         projectDiv.appendChild(projectTitle);
+
+        const deleteProject = document.createElement('span');
+        deleteProject.className = 'delete-project-button';
+        deleteProject.textContent = 'x';
+
+        projectDiv.appendChild(deleteProject);
 
         const taskList = document.createElement('div');
 
