@@ -21,8 +21,15 @@
 
 .project-div {
     display: grid;
-    grid-template-columns: 5fr 1fr;
+    grid-template-columns: 4fr 1fr;
 }
-.project-title {
+
+.delete-project-button {
+    display: none;
+
+}
+
+.project-div:hover .delete-project-button {
+    display: block;
 
 }
