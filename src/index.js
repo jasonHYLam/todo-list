@@ -1,8 +1,8 @@
 
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues} from "./forms";
-import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask} from "./taskListModule";
+import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getProjectsInAllTasksThatMatchProjectTaskList} from "./taskListModule";
 import {Task} from "./taskClass";
-import {checkInProjectArray,  setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue} from "./projectList";
+import {checkInProjectArray,  setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import { storageAvailable, populateStorage, projectsExistInStorage, setProjectListFromLocalStorage } from "./storage";
 import "./style.css"
@@ -109,12 +109,6 @@ document.addEventListener('click', function(event) {
     }
 })
 
-//click on inbox 
-document.addEventListener('click', (e) => {
-    if (e.target.id === 'inbox') {
-        console.log('hehe pinf');
-    }
-})
 
 //click on project in sidebar
 document.addEventListener('click', function(event) {
@@ -148,9 +142,17 @@ document.addEventListener('click', function(event) {
 document.addEventListener('click', function(event) {
     if (event.target.className == 'delete-project-button') {
         const task = event.target.previousElementSibling;
-        console.log(task);
         const taskName = task.textContent;
         console.log(taskName);
+        console.log(
+        getProjectInProjectListFromDOM(taskName)
+        );
+
+        const projectToDeleteTasks = getProjectInProjectListFromDOM(taskName);
+
+        console.log('this should be it...')
+        getProjectsInAllTasksThatMatchProjectTaskList(projectToDeleteTasks);
+
         deleteProject();
     }
 

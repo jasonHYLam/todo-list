@@ -1,4 +1,5 @@
 import { getProjectsList, setProjectList } from "./projectList";
+import { getTaskList, setTaskList } from "./taskListModule";
 
 const storageAvailable = () => {
     let storage;
@@ -26,12 +27,19 @@ const storageAvailable = () => {
 
 const populateStorage = () => {
     const projectsList = getProjectsList();
+    const tasksList = getTaskList();
     localStorage.setItem('projectArray', JSON.stringify(projectsList));
+    localStorage.setItem('taskArray', JSON.stringify(tasksList));
     setProjectListFromLocalStorage();
+    setTaskListFromLocalStorage();
 }
 
 const setProjectListFromLocalStorage = () => {
     setProjectList(JSON.parse(localStorage.getItem('projectArray')));
+}
+
+const setTaskListFromLocalStorage = () => {
+    setTaskList(JSON.parse(localStorage.setItem('taskArray')));
 }
 
 const projectsExistInStorage = () => {

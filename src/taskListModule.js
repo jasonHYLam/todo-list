@@ -14,6 +14,10 @@ const getTaskList = () => {
     return taskList;
 }
 
+const setTaskList = (newTaskList) => {
+    taskList = newTaskList;
+}
+
 // const editTask = (index, newTitle, newDesc, newDueDate, newPriority) => {
 const editTask = (index, newValues) => {
     const toEdit = getTaskInListFromIndex(index);
@@ -61,6 +65,24 @@ const checkDoneOnTask = (task) => {
 
 }
 
+const getProjectsInAllTasksThatMatchProjectTaskList = (project) => {
+
+    console.log(getTaskList());
+    
+    console.log(
+        getTaskList().filter((element) => {
+            !project.tasksList.includes(element)
+        })
+    )
+
+    
+
+
+    // setTaskList(getTaskList().filter((element) => {
+    //     !project.includes(element)
+    // }))
+
+}
 export {
     addToTaskList, 
     getTaskList, 
@@ -69,5 +91,7 @@ export {
     createNewTask, 
     addToProject,
     checkDoneOnTask,
+
+    getProjectsInAllTasksThatMatchProjectTaskList,
 
 };

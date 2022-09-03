@@ -1,5 +1,6 @@
 import {Project} from "./projectClass";
 import {returnProjectSelectValue} from "./forms.js";
+import { getTaskList } from "./taskListModule";
 
 let projectsList = [];
 
@@ -81,6 +82,15 @@ const checkIfCurrentProjectMatchesProjectSelectValue = () => {
 
 }
 
+const getProjectInProjectListFromDOM = (domValue) => {
+    const doesProjectMatch = (projectInList) => {
+        return projectInList.title == domValue;
+    }
+
+    return getProjectsList().find(doesProjectMatch)
+}
+
+
 const changeCurrentProject = (project) => {
     setCurrentProject(project);
 }
@@ -94,6 +104,7 @@ const checkInProjectArray = () => {
         }
     }
 }
+
 
 export {
     getCurrentProject,
@@ -113,5 +124,7 @@ export {
     setProjectList,
 
     checkInProjectArray,
+
+    getProjectInProjectListFromDOM,
  }
  ;
