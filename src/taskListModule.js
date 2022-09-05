@@ -68,15 +68,13 @@ const checkDoneOnTask = (task) => {
 const getProjectsInAllTasksThatMatchProjectTaskList = (project) => {
 
     console.log(getTaskList());
+    console.log('hehe pinf');
     
     console.log(
         getTaskList().filter((element) => {
             !project.tasksList.includes(element)
         })
     )
-
-    
-
 
     // setTaskList(getTaskList().filter((element) => {
     //     !project.includes(element)
@@ -93,5 +91,6 @@ export {
     checkDoneOnTask,
 
     getProjectsInAllTasksThatMatchProjectTaskList,
+    setTaskList,
 
 };

@@ -4,7 +4,7 @@ import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, edi
 import {Task} from "./taskClass";
 import {checkInProjectArray,  setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
-import { storageAvailable, populateStorage, projectsExistInStorage, setProjectListFromLocalStorage } from "./storage";
+import { storageAvailable, populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, tasksExistInStorage, setListsFromLocalStorage } from "./storage";
 import "./style.css"
 
 let indexOfTaskToBeEdited;
@@ -22,11 +22,12 @@ document.addEventListener('click', (e)=> {
 
         let currentForm = returnTaskFormValues();
         if (isFormComplete(currentForm)) {
+            setListsFromLocalStorage();
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
             addToProject(newTask, findProjectSelectMatch());
 
-            checkInProjectArray();
+            // checkInProjectArray();
 
             setUpTasks(getCurrentProjectTasks());
 
@@ -105,6 +106,7 @@ document.addEventListener('click', function(event) {
             const newProject = createNewProject(currentProjectValues);
             addNewProjectToList(newProject);
             setUpProjects(getProjectsList());
+            populateStorage();
         }
     }
 })
@@ -143,10 +145,6 @@ document.addEventListener('click', function(event) {
     if (event.target.className == 'delete-project-button') {
         const task = event.target.previousElementSibling;
         const taskName = task.textContent;
-        console.log(taskName);
-        console.log(
-        getProjectInProjectListFromDOM(taskName)
-        );
 
         const projectToDeleteTasks = getProjectInProjectListFromDOM(taskName);
 
@@ -164,6 +162,11 @@ document.addEventListener('click', function(event) {
 
 renderTaskContainer();
 
+console.log(tasksExistInStorage());
+
+setListsFromLocalStorage();
+console.log(getProjectsList());
+
 if (!projectsExistInStorage()) {
     const inbox = createNewProject('inbox');
     addNewProjectToList(inbox);
@@ -180,8 +183,8 @@ renderProjectContainer();
 
 setUpProjects(getProjectsList());
 
-if (storageAvailable()) {
-    console.log('what a triumph')
-} else {
-    console.log('terrible earth')
-}
+// if (storageAvailable()) {
+//     console.log('what a triumph')
+// } else {
+//     console.log('terrible earth')
+// }

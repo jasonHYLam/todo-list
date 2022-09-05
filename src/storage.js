@@ -30,6 +30,13 @@ const populateStorage = () => {
     const tasksList = getTaskList();
     localStorage.setItem('projectArray', JSON.stringify(projectsList));
     localStorage.setItem('taskArray', JSON.stringify(tasksList));
+    setListsFromLocalStorage();
+
+    console.log(getTaskList());
+}
+
+
+const setListsFromLocalStorage = () => {
     setProjectListFromLocalStorage();
     setTaskListFromLocalStorage();
 }
@@ -39,7 +46,11 @@ const setProjectListFromLocalStorage = () => {
 }
 
 const setTaskListFromLocalStorage = () => {
-    setTaskList(JSON.parse(localStorage.setItem('taskArray')));
+    setTaskList(JSON.parse(localStorage.getItem('taskArray')));
+}
+
+const tasksExistInStorage = () => {
+    return (localStorage.getItem('taskArray'));
 }
 
 const projectsExistInStorage = () => {
@@ -52,4 +63,6 @@ export {
     populateStorage,
     projectsExistInStorage,
     setProjectListFromLocalStorage,
+    tasksExistInStorage,
+    setListsFromLocalStorage,
 }
