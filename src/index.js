@@ -2,7 +2,7 @@
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues} from "./forms";
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getProjectsInAllTasksThatMatchProjectTaskList} from "./taskListModule";
 import {Task} from "./taskClass";
-import {checkInProjectArray,  setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM} from "./projectList";
+import {checkInProjectArray,  setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import { storageAvailable, populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, tasksExistInStorage, setListsFromLocalStorage } from "./storage";
 import "./style.css"
@@ -22,6 +22,7 @@ document.addEventListener('click', (e)=> {
 
         let currentForm = returnTaskFormValues();
         if (isFormComplete(currentForm)) {
+
             setListsFromLocalStorage();
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
@@ -42,12 +43,15 @@ document.addEventListener('click', function(event) {
         let task = event.target.parentNode;
         let indexOfTaskToBeRemoved = Array.from(task.parentNode.children).indexOf(task);
 
-        checkInProjectArray();
+        // checkInProjectArray();
 
+        setListsFromLocalStorage();
        deleteTask(indexOfTaskToBeRemoved);
        deleteTaskInProject(getCurrentProject(), indexOfTaskToBeRemoved);
        setUpTasks(getCurrentProjectTasks());
 
+       console.log(getProjectsList());
+       checkTasksInCurrentProject(getCurrentProject());
         populateStorage();
     }
 })
@@ -162,10 +166,9 @@ document.addEventListener('click', function(event) {
 
 renderTaskContainer();
 
-console.log(tasksExistInStorage());
 
 setListsFromLocalStorage();
-console.log(getProjectsList());
+
 
 if (!projectsExistInStorage()) {
     const inbox = createNewProject('inbox');

@@ -34,6 +34,15 @@ const addNewProjectToList = (newProject) => {
     projectsList.push(newProject);
 } 
 
+const getCurrentProjectInProjectArray = () => {
+
+    const getProjectInArrayThatMatchesCurrentProject = (projectFromArray) => {
+        return projectFromArray == getCurrentProject();
+    }
+
+    return getProjectsList().find(getProjectInArrayThatMatchesCurrentProject);
+}
+
 // const editTaskInProject = (project, taskToBeEdited, newTitle, newDesc, newDueDate, newPriority) => {
 const editTaskInProject = (project, taskToBeEdited, newValues,
     newTitle, newDesc, newDueDate, newPriority) => {
@@ -105,6 +114,11 @@ const checkInProjectArray = () => {
     }
 }
 
+const checkTasksInCurrentProject = (project) => {
+    for (const task of project.tasksList) {
+        console.log(task);
+    }
+}
 
 export {
     getCurrentProject,
@@ -124,7 +138,9 @@ export {
     setProjectList,
 
     checkInProjectArray,
+    checkTasksInCurrentProject,
 
     getProjectInProjectListFromDOM,
+    getCurrentProjectInProjectArray,
  }
  ;
