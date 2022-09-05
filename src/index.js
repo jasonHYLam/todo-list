@@ -27,13 +27,9 @@ document.addEventListener('click', (e)=> {
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
             addToProject(newTask, findProjectSelectMatch());
-            console.log('project to add to, IN array');
-            console.log(findProjectSelectMatch());
 
             // checkInProjectArray();
 
-            console.log('get current project tasks');
-            console.log(getCurrentProjectTasks());
             setUpTasks(getCurrentProjectTasks());
 
             populateStorage();
@@ -58,7 +54,7 @@ document.addEventListener('click', function(event) {
        console.log('owo WhATS THIS');
        (getCurrentProjectInProjectArray());
     //    setUpTasks(getCurrentProjectTasks());
-    setUpTasks(getCurrentProjectInProjectArray());
+    setUpTasks(getCurrentProjectTasks());
 
        checkTasksInCurrentProject(getCurrentProject());
         populateStorage();
@@ -84,9 +80,13 @@ document.addEventListener('click', function(event) {
 
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
 
-        editTask(indexOfTaskToBeEdited, returnEditTaskFormValues());
+        console.log(indexOfTaskToBeEdited);
 
-        editTaskInProject(getCurrentProject(), currentTaskData, returnEditTaskFormValues());
+        console.log(getTaskList());
+        editTask(indexOfTaskToBeEdited, returnEditTaskFormValues());
+        console.log('what seems to be the problem officer');
+
+        editTaskInProject(getCurrentProjectInProjectArray(), currentTaskData, returnEditTaskFormValues());
 
         if (checkIfCurrentProjectMatchesProjectSelectValue()) {
 
@@ -96,7 +96,7 @@ document.addEventListener('click', function(event) {
             addToProject(currentTaskData, getCurrentProject());
         }; 
 
-        checkInProjectArray();
+        // checkInProjectArray();
         populateStorage();
 
         setUpTasks(getCurrentProjectTasks());
