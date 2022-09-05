@@ -11,7 +11,9 @@ const getCurrentProject = () => {
 }
 
 const getCurrentProjectTasks = () => {
-    return currentProject.tasksList;
+    // return currentProject.tasksList;
+    return getCurrentProjectInProjectArray().tasksList;
+
 }
 
 const setCurrentProject = (project) => {
@@ -34,18 +36,9 @@ const addNewProjectToList = (newProject) => {
     projectsList.push(newProject);
 } 
 
-const getCurrentProjectInProjectArray = () => {
-
-    const getProjectInArrayThatMatchesCurrentProject = (projectFromArray) => {
-        return projectFromArray == getCurrentProject();
-    }
-
-    return getProjectsList().find(getProjectInArrayThatMatchesCurrentProject);
-}
 
 // const editTaskInProject = (project, taskToBeEdited, newTitle, newDesc, newDueDate, newPriority) => {
-const editTaskInProject = (project, taskToBeEdited, newValues,
-    newTitle, newDesc, newDueDate, newPriority) => {
+const editTaskInProject = (project, taskToBeEdited, newValues) => {
 
     const projectTasks = project.tasksList;
 
@@ -54,10 +47,6 @@ const editTaskInProject = (project, taskToBeEdited, newValues,
     } 
     const matchingTask = projectTasks.find(isTaskMatching);
     
-    // matchingTask.title = newTitle;
-    // matchingTask.description = newDesc;
-    // matchingTask.dueDate = newDueDate;
-    // matchingTask.priority = newPriority;
     matchingTask.title = newValues.newTitle;
     matchingTask.description = newValues.newDesc;
     matchingTask.dueDate = newValues.newDueDate;
@@ -72,12 +61,20 @@ const deleteProject = (index) => {
     projectsList.splice(index, 1);
 }
 
+const getCurrentProjectInProjectArray = () => {
+
+    const getProjectInArrayThatMatchesCurrentProject = (projectFromArray) => {
+        return projectFromArray.title == getCurrentProject().title;
+    }
+    console.log(getProjectsList().find(getProjectInArrayThatMatchesCurrentProject));
+    return getProjectsList().find(getProjectInArrayThatMatchesCurrentProject);
+}
+
 const findProjectSelectMatch = () => {
 
     const doesProjectMatch = (projectInList) => {
         return projectInList.title == returnProjectSelectValue();
     }
-
     return getProjectsList().find(doesProjectMatch);
 }
 
