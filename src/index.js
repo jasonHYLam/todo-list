@@ -28,11 +28,12 @@ document.addEventListener('click', (e)=> {
             addToTaskList(newTask);
             addToProject(newTask, findProjectSelectMatch());
 
-            // checkInProjectArray();
-
             setUpTasks(getCurrentProjectTasks());
 
             populateStorage();
+
+            console.log('oh okay add?');
+            console.log(getTaskList());
         }
     } 
 })
@@ -46,18 +47,18 @@ document.addEventListener('click', function(event) {
         // checkInProjectArray();
 
         setListsFromLocalStorage();
-       deleteTask(indexOfTaskToBeRemoved);
+        deleteTask(indexOfTaskToBeRemoved);
 
 
-       deleteTaskInProject(getCurrentProjectInProjectArray(), indexOfTaskToBeRemoved);
+        deleteTaskInProject(getCurrentProjectInProjectArray(), indexOfTaskToBeRemoved);
 
-       console.log('owo WhATS THIS');
-       (getCurrentProjectInProjectArray());
-    //    setUpTasks(getCurrentProjectTasks());
-    setUpTasks(getCurrentProjectTasks());
+        setUpTasks(getCurrentProjectTasks());
 
-       checkTasksInCurrentProject(getCurrentProject());
+        checkTasksInCurrentProject(getCurrentProject());
         populateStorage();
+
+        console.log('oh okay remove?');
+        console.log(getTaskList());
     }
 })
 
@@ -100,6 +101,8 @@ document.addEventListener('click', function(event) {
         populateStorage();
 
         setUpTasks(getCurrentProjectTasks());
+        console.log('oh okay an edit?');
+        console.log(getTaskList());
     }
 })
 

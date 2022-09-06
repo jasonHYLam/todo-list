@@ -66,7 +66,6 @@ const getCurrentProjectInProjectArray = () => {
     const getProjectInArrayThatMatchesCurrentProject = (projectFromArray) => {
         return projectFromArray.title == getCurrentProject().title;
     }
-    console.log(getProjectsList().find(getProjectInArrayThatMatchesCurrentProject));
     return getProjectsList().find(getProjectInArrayThatMatchesCurrentProject);
 }
 
@@ -85,7 +84,6 @@ const checkIfCurrentProjectMatchesProjectSelectValue = () => {
     } else {
         return false;
     }
-
 }
 
 const getProjectInProjectListFromDOM = (domValue) => {

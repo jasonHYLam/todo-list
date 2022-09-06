@@ -1,3 +1,4 @@
+import { formattedDate } from "./date";
 import { getProjectsList } from "./projectList";
 
 
@@ -27,6 +28,7 @@ const renderTaskForm = () => {
 
     const dateInput = document.createElement('input');
     dateInput.setAttribute('type','date');
+    // dateInput.value = formattedDate;
     dateInput.id = 'due-date';
     
     //priority select list    
@@ -118,6 +120,19 @@ const renderTaskText = (task, taskDiv) => {
         if (key == 'title' || key == 'description' || key == 'dueDate' || key == 'priority') {
             const taskPropdiv = document.createElement('div');
             taskPropdiv.textContent = value;
+
+            if (key == 'title') {
+                taskPropdiv.className = 'task-title';
+            }
+            else if (key == 'description') {
+                taskPropdiv.className = 'task-description';
+            }
+            else if (key == 'dueDate') {
+                taskPropdiv.className = 'task-dueDate';
+            }
+            else if (key == 'priority') {
+                taskPropdiv.className = 'task-priority';
+            }
             taskDiv.appendChild(taskPropdiv);
         }
     }
@@ -311,3 +326,5 @@ export {
     renderProjectForm,
     renderProjectInMainDisplay,
 }
+
+console.log(formattedDate);

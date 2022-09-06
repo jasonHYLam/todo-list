@@ -18,6 +18,17 @@ const setTaskList = (newTaskList) => {
     taskList = newTaskList;
 }
 
+
+const getTaskInTaskList = (titleOfTask) => {
+
+    const matchTaskTitle = (taskInTaskList) => {
+        return taskInTaskList.title == titleOfTask; 
+    }
+
+    getTaskList().find(matchTaskTitle);
+
+}
+
 // const editTask = (index, newTitle, newDesc, newDueDate, newPriority) => {
 const editTask = (index, newValues) => {
     const toEdit = getTaskInListFromIndex(index);
@@ -55,7 +66,6 @@ const chooseProjectToBeAddedTo = (index) => {
 }
 
 const addToProject = (task, projectToBeAddedTo) => {
-    checkAvailableProjects();
     projectToBeAddedTo.tasksList.push(task);
 }
 
