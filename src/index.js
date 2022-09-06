@@ -1,6 +1,6 @@
 
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues} from "./forms";
-import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getProjectsInAllTasksThatMatchProjectTaskList} from "./taskListModule";
+import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getProjectsInAllTasksThatMatchProjectTaskList, getTaskInTaskList} from "./taskListModule";
 import {Task} from "./taskClass";
 import {checkInProjectArray,  setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
@@ -81,6 +81,8 @@ document.addEventListener('click', function(event) {
 
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
 
+        console.log('woo floor it brother');
+        getTaskInTaskList(task);
         console.log(indexOfTaskToBeEdited);
 
         console.log(getTaskList());

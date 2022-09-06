@@ -19,14 +19,16 @@ const setTaskList = (newTaskList) => {
 }
 
 
-const getTaskInTaskList = (titleOfTask) => {
+const getTaskInTaskList = (task) => {
+
+    const titleOfTask = (task.querySelector('.task-title').textContent);
 
     const matchTaskTitle = (taskInTaskList) => {
-        return taskInTaskList.title == titleOfTask; 
+        return taskInTaskList.title == titleOfTask;
     }
 
-    getTaskList().find(matchTaskTitle);
-
+    console.log(getTaskList().find(matchTaskTitle));
+    return getTaskList().find(matchTaskTitle);
 }
 
 // const editTask = (index, newTitle, newDesc, newDueDate, newPriority) => {
@@ -102,5 +104,6 @@ export {
 
     getProjectsInAllTasksThatMatchProjectTaskList,
     setTaskList,
+    getTaskInTaskList,
 
 };
