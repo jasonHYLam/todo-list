@@ -31,9 +31,9 @@ const getTaskInTaskList = (task) => {
     return getTaskList().find(matchTaskTitle);
 }
 
-// const editTask = (index, newTitle, newDesc, newDueDate, newPriority) => {
-const editTask = (index, newValues) => {
-    const toEdit = getTaskInListFromIndex(index);
+// const editTask = (index, newValues) => {
+const editTask = (taskInTaskList, newValues) => {
+    const toEdit = taskInTaskList;
     toEdit.title = newValues.newTitle;
     toEdit.description = newValues.newDesc;
     toEdit.dueDate = newValues.newDueDate;

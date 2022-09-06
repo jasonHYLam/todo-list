@@ -82,11 +82,11 @@ document.addEventListener('click', function(event) {
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
 
         console.log('woo floor it brother');
-        getTaskInTaskList(task);
-        console.log(indexOfTaskToBeEdited);
 
-        console.log(getTaskList());
-        editTask(indexOfTaskToBeEdited, returnEditTaskFormValues());
+        console.log(getTaskList().indexOf(getTaskInTaskList(task)));
+        getTaskInTaskList(task);
+
+        editTask(getTaskInTaskList(task), returnEditTaskFormValues());
         console.log('what seems to be the problem officer');
 
         editTaskInProject(getCurrentProjectInProjectArray(), currentTaskData, returnEditTaskFormValues());
