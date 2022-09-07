@@ -102,10 +102,10 @@ const getDailyTasks = () => {
 }
 
 const getWeeklyTasks = () => {
-    const testDate = getTaskList()[0].dueDate;
-    console.log(testDate);
-    console.log(checkIfWithinWeek(testDate))
-    // console.log(getTaskList().filter(checkIfWithinWeek));
+    console.log(checkIfWithinWeek(getTaskList()[0]));
+    console.log(
+    getTaskList().filter(checkIfWithinWeek)
+    )
 }
 
 export {
