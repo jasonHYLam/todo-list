@@ -1,5 +1,10 @@
 import { format } from "date-fns";
+
 const formattedDate = format(new Date(), "dd/MM/yyyy");
 
-export {formattedDate}
+const returnCurrentDate = () => {
+    return new Date();
+}
+export {formattedDate, returnCurrentDate}
+
 

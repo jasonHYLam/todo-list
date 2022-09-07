@@ -1,5 +1,7 @@
 // import { createTodoModule } from "./TodoModule"
 
+import { format } from "date-fns";
+import { formattedDate, returnCurrentDate } from "./date";
 import {getProjectsList} from "./projectList";
 import { Task } from "./taskClass";
 
@@ -77,7 +79,7 @@ const checkDoneOnTask = (task) => {
 
 }
 
-const getProjectsInAllTasksThatMatchProjectTaskList = (project) => {
+const getTasksInAllTasksThatMatchProjectTaskList = (project) => {
 
     console.log(getTaskList());
     console.log('hehe pinf');
@@ -93,8 +95,11 @@ const getProjectsInAllTasksThatMatchProjectTaskList = (project) => {
 
 const getDailyTasks = () => {
 
-    console.log(getTaskList()[0])
+    const isTaskDaily = (task) => {
+        return task.dueDate == formattedDate;
+    }
 
+    return getTaskList().filter(isTaskDaily)
 }
 
 export {
@@ -106,7 +111,7 @@ export {
     addToProject,
     checkDoneOnTask,
 
-    getProjectsInAllTasksThatMatchProjectTaskList,
+    getTasksInAllTasksThatMatchProjectTaskList,
     setTaskList,
     getTaskInTaskList,
 
