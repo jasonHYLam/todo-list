@@ -3,6 +3,7 @@
 import { format } from "date-fns";
 import { checkIfWithinWeek, formattedDate, returnCurrentDate } from "./date";
 import {getProjectsList} from "./projectList";
+import { setUpTasks } from "./render";
 import { Task } from "./taskClass";
 
 
@@ -102,11 +103,8 @@ const getDailyTasks = () => {
 }
 
 const getWeeklyTasks = () => {
-    console.log(checkIfWithinWeek(getTaskList()[0]));
-    console.log(
-    getTaskList().filter(checkIfWithinWeek)
-    )
-}
+    setUpTasks(getTaskList().filter(checkIfWithinWeek))
+    }
 
 export {
     addToTaskList, 
