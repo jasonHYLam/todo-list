@@ -76,21 +76,17 @@ document.addEventListener('click', function(event) {
     if (event.target.id == 'submit-edit-todo-button') {
         let task = event.target.parentNode.parentNode;
 
-        // indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
-
-        // indexOfTaskToBeEdited = getCurrentProject().tasksList.find(getIndexOfTaskInProject);
-        // indexOfTaskToBeEdited = getIndexOfTaskInProject(task);
-        getIndexOfTaskInProject(task);
-        console.log('ok');
+        indexOfTaskToBeEdited = getIndexOfTaskInProject(task);
 
         editTask(getTaskInTaskList(task), returnEditTaskFormValues());
-        editTaskInProject(getCurrentProjectInProjectArray(), returnEditTaskFormValues());
+        editTaskInProject(getCurrentProjectInProjectArray(), returnEditTaskFormValues(), getCurrentTask());
+
         if (checkIfCurrentProjectMatchesProjectSelectValue()) {
 
         } else {
             deleteTaskInProject(getCurrentProject(), indexOfTaskToBeEdited);
             setCurrentProject(findProjectSelectMatch());
-            addToProject(currentTaskData, getCurrentProject());
+            addToProject(getCurrentTask(), getCurrentProject());
         }; 
 
         populateStorage();

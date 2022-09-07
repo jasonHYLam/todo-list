@@ -36,15 +36,21 @@ const addNewProjectToList = (newProject) => {
     projectsList.push(newProject);
 } 
 
-const editTaskInProject = (project, newValues) => {
+const editTaskInProject = (project, newValues, taskToBeEdited) => {
 
-    const taskToBeEdited = getCurrentTask();
+    console.log('below is task');
+    console.log(taskToBeEdited)
+    
     const projectTasks = project.tasksList;
+    console.log('below is project');
+    console.log(projectTasks);
 
     const isTaskMatching = (taskInProject) => {
-        return taskInProject == taskToBeEdited ;
+        return taskInProject.title == taskToBeEdited.title;
     } 
     const matchingTask = projectTasks.find(isTaskMatching);
+    console.log('below is matching task');
+    console.log(matchingTask);
     
     matchingTask.title = newValues.newTitle;
     matchingTask.description = newValues.newDesc;
