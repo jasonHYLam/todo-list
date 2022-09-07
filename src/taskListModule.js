@@ -81,18 +81,22 @@ const getProjectsInAllTasksThatMatchProjectTaskList = (project) => {
 
     console.log(getTaskList());
     console.log('hehe pinf');
+
+    console.log(project.tasksList);
     
     console.log(
-        getTaskList().filter((element) => {
-            !project.tasksList.includes(element)
-        })
+        getTaskList().filter((task) => {
+            return !project.tasksList.includes(task)
+    })
     )
+}
 
-    // setTaskList(getTaskList().filter((element) => {
-    //     !project.includes(element)
-    // }))
+const getDailyTasks = () => {
+
+    console.log(getTaskList()[0])
 
 }
+
 export {
     addToTaskList, 
     getTaskList, 
@@ -106,4 +110,5 @@ export {
     setTaskList,
     getTaskInTaskList,
 
+    getDailyTasks,
 };
