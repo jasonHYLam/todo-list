@@ -1,8 +1,8 @@
 
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues} from "./forms";
-import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTasksInAllTasksThatMatchProjectTaskList, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getTaskInProject, getProjectThatContainsTask} from "./taskListModule";
+import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTasksInAllTasksThatMatchProjectTaskList, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getTaskInProject, getProjectThatContainsTask, setCurrentTask, getCurrentTask} from "./taskListModule";
 import {Task} from "./taskClass";
-import {checkInProjectArray,  setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray} from "./projectList";
+import {checkInProjectArray,  setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray, getIndexOfTaskInProject} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import { storageAvailable, populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, tasksExistInStorage, setListsFromLocalStorage } from "./storage";
 import "./style.css"
@@ -66,9 +66,8 @@ document.addEventListener('click', function(event) {
         let task = event.target.parentNode;
         
         setCurrentProject(getProjectThatContainsTask(task));
-        currentTaskData = getTaskInTaskList(task);
-        renderFormForTaskToBeEdited(task, currentTaskData);
-
+        setCurrentTask(getTaskInTaskList(task));
+        renderFormForTaskToBeEdited(task, getCurrentTask());
     }
 })
 
@@ -77,10 +76,15 @@ document.addEventListener('click', function(event) {
     if (event.target.id == 'submit-edit-todo-button') {
         let task = event.target.parentNode.parentNode;
 
-        indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
+        // indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
+
+        // indexOfTaskToBeEdited = getCurrentProject().tasksList.find(getIndexOfTaskInProject);
+        // indexOfTaskToBeEdited = getIndexOfTaskInProject(task);
+        getIndexOfTaskInProject(task);
+        console.log('ok');
 
         editTask(getTaskInTaskList(task), returnEditTaskFormValues());
-        editTaskInProject(getCurrentProjectInProjectArray(), currentTaskData, returnEditTaskFormValues());
+        editTaskInProject(getCurrentProjectInProjectArray(), returnEditTaskFormValues());
         if (checkIfCurrentProjectMatchesProjectSelectValue()) {
 
         } else {

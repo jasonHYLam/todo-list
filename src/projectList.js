@@ -1,6 +1,6 @@
 import {Project} from "./projectClass";
 import {returnProjectSelectValue} from "./forms.js";
-import { getTaskList } from "./taskListModule";
+import { getCurrentTask, getTaskList } from "./taskListModule";
 
 let projectsList = [];
 
@@ -36,10 +36,9 @@ const addNewProjectToList = (newProject) => {
     projectsList.push(newProject);
 } 
 
+const editTaskInProject = (project, newValues) => {
 
-// const editTaskInProject = (project, taskToBeEdited, newTitle, newDesc, newDueDate, newPriority) => {
-const editTaskInProject = (project, taskToBeEdited, newValues) => {
-
+    const taskToBeEdited = getCurrentTask();
     const projectTasks = project.tasksList;
 
     const isTaskMatching = (taskInProject) => {
@@ -51,6 +50,19 @@ const editTaskInProject = (project, taskToBeEdited, newValues) => {
     matchingTask.description = newValues.newDesc;
     matchingTask.dueDate = newValues.newDueDate;
     matchingTask.priority = newValues.newPriority;
+}
+
+const getIndexOfTaskInProject = (task) => {
+
+    const taskTitle = task.querySelector('.task-title').textContent;
+
+    const matchTask = (taskInProject) => {
+        return taskInProject.title == taskTitle;
+    }
+
+    const currentTask = (getCurrentProject().tasksList.find(matchTask))
+
+    return getCurrentProject().tasksList.indexOf(currentTask);
 }
 
 const deleteTaskInProject = (project, taskIndex) => {
@@ -137,5 +149,7 @@ export {
 
     getProjectInProjectListFromDOM,
     getCurrentProjectInProjectArray,
+
+    getIndexOfTaskInProject,
  }
  ;

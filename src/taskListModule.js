@@ -9,6 +9,17 @@ import { Task } from "./taskClass";
 
 let taskList = [];
 
+let currentTask;
+
+const getCurrentTask = () => {
+    return currentTask;
+}
+
+const setCurrentTask = (value) => {
+    currentTask = value;
+
+}
+
 const addToTaskList = (task) => {
     taskList.push(task);
 }
@@ -36,21 +47,8 @@ const getTaskInTaskList = (task) => {
 
 const  getProjectThatContainsTask = (taskInDOM) => {
     const titleOfTask = taskInDOM.querySelector('.task-title').textContent;
-
     const findTaskInProjectThatMatches = task => task.title == titleOfTask;
-    
-
-    console.log(
-    getProjectsList().find(project => project.tasksList.find(findTaskInProjectThatMatches))
-    )
-
-    getProjectsList().find(project => project.tasksList.find(task => task.title == titleOfTask));
-
-    // console.log(
-    // getProjectsList()[0].tasksList.find((task) => {
-    //     return task.title == titleOfTask;
-    // })
-    // )
+    return getProjectsList().find(project => project.tasksList.find(findTaskInProjectThatMatches));
 }
 
 // const editTask = (index, newValues) => {
@@ -127,6 +125,10 @@ const getWeeklyTasks = () => {
 
 
 export {
+
+    getCurrentTask,
+    setCurrentTask,
+
     addToTaskList, 
     getTaskList, 
     deleteTask, 
