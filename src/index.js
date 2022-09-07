@@ -1,6 +1,6 @@
 
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues} from "./forms";
-import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTasksInAllTasksThatMatchProjectTaskList, getTaskInTaskList, getDailyTasks, getWeeklyTasks} from "./taskListModule";
+import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTasksInAllTasksThatMatchProjectTaskList, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getTaskInProject, getProjectThatContainsTask} from "./taskListModule";
 import {Task} from "./taskClass";
 import {checkInProjectArray,  setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
@@ -33,9 +33,6 @@ document.addEventListener('click', (e)=> {
             setUpTasks(getCurrentProjectTasks());
 
             populateStorage();
-
-            console.log('oh okay add?');
-            console.log(getTaskList());
         }
     } 
 })
@@ -50,7 +47,6 @@ document.addEventListener('click', function(event) {
 
         setListsFromLocalStorage();
         deleteTask(indexOfTaskToBeRemoved);
-
 
         deleteTaskInProject(getCurrentProjectInProjectArray(), indexOfTaskToBeRemoved);
 
@@ -69,10 +65,13 @@ document.addEventListener('click', function(event) {
     if (event.target.classList.contains('edit-button-for-task')) {
         let task = event.target.parentNode;
         
+        setCurrentProject(getProjectThatContainsTask(task));
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
         let currentTasks = getCurrentProjectTasks();
         currentTaskData = currentTasks[indexOfTaskToBeEdited];
+        console.log('OWO');
         renderFormForTaskToBeEdited(task, currentTaskData);
+
     }
 })
 

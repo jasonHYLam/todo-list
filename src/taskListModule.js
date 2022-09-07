@@ -34,6 +34,25 @@ const getTaskInTaskList = (task) => {
     return getTaskList().find(matchTaskTitle);
 }
 
+const  getProjectThatContainsTask = (taskInDOM) => {
+    const titleOfTask = taskInDOM.querySelector('.task-title').textContent;
+
+    const findTaskInProjectThatMatches = task => task.title == titleOfTask;
+    
+
+    console.log(
+    getProjectsList().find(project => project.tasksList.find(findTaskInProjectThatMatches))
+    )
+
+    getProjectsList().find(project => project.tasksList.find(task => task.title == titleOfTask));
+
+    // console.log(
+    // getProjectsList()[0].tasksList.find((task) => {
+    //     return task.title == titleOfTask;
+    // })
+    // )
+}
+
 // const editTask = (index, newValues) => {
 const editTask = (taskInTaskList, newValues) => {
     const toEdit = taskInTaskList;
@@ -106,6 +125,7 @@ const getWeeklyTasks = () => {
     setUpTasks(getTaskList().filter(checkIfWithinWeek))
     }
 
+
 export {
     addToTaskList, 
     getTaskList, 
@@ -117,7 +137,9 @@ export {
 
     getTasksInAllTasksThatMatchProjectTaskList,
     setTaskList,
+
     getTaskInTaskList,
+    getProjectThatContainsTask,
 
     getDailyTasks,
     getWeeklyTasks,
