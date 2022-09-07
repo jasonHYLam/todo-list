@@ -326,5 +326,3 @@ export {
     renderProjectForm,
     renderProjectInMainDisplay,
 }
-
-console.log(formattedDate);

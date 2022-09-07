@@ -1,11 +1,13 @@
 
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues} from "./forms";
-import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTasksInAllTasksThatMatchProjectTaskList, getTaskInTaskList, getDailyTasks} from "./taskListModule";
+import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTasksInAllTasksThatMatchProjectTaskList, getTaskInTaskList, getDailyTasks, getWeeklyTasks} from "./taskListModule";
 import {Task} from "./taskClass";
 import {checkInProjectArray,  setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import { storageAvailable, populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, tasksExistInStorage, setListsFromLocalStorage } from "./storage";
 import "./style.css"
+import { checkIfWithinWeek, isDateValid } from "./date";
+import { isDate } from "date-fns";
 
 let indexOfTaskToBeEdited;
 
@@ -81,16 +83,8 @@ document.addEventListener('click', function(event) {
 
         indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
 
-        console.log('woo floor it brother');
-
-        console.log(getTaskList().indexOf(getTaskInTaskList(task)));
-        getTaskInTaskList(task);
-
         editTask(getTaskInTaskList(task), returnEditTaskFormValues());
-        console.log('what seems to be the problem officer');
-
         editTaskInProject(getCurrentProjectInProjectArray(), currentTaskData, returnEditTaskFormValues());
-
         if (checkIfCurrentProjectMatchesProjectSelectValue()) {
 
         } else {
@@ -99,12 +93,8 @@ document.addEventListener('click', function(event) {
             addToProject(currentTaskData, getCurrentProject());
         }; 
 
-        // checkInProjectArray();
         populateStorage();
-
         setUpTasks(getCurrentProjectTasks());
-        console.log('oh okay an edit?');
-        console.log(getTaskList());
     }
 })
 
@@ -158,11 +148,22 @@ document.addEventListener('click', function(event) {
     }
 })
 
+//click on daily
 document.addEventListener('click', function(event) {
     if (event.target.id == 'daily') {
-        getDailyTasks();
+        setUpTasks(getDailyTasks());
     }
 })
+
+//click on weekly
+document.addEventListener('click', function(event) {
+    if (event.target.id == 'weekly') {
+
+        // isDateValid(getTaskList()[0].dueDate);
+        getWeeklyTasks();
+    }
+})
+
 //click on x next to projects
 document.addEventListener('click', function(event) {
     if (event.target.className == 'delete-project-button') {
