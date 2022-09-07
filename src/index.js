@@ -66,10 +66,7 @@ document.addEventListener('click', function(event) {
         let task = event.target.parentNode;
         
         setCurrentProject(getProjectThatContainsTask(task));
-        indexOfTaskToBeEdited = Array.from(task.parentNode.children).indexOf(task);
-        let currentTasks = getCurrentProjectTasks();
-        currentTaskData = currentTasks[indexOfTaskToBeEdited];
-        console.log('OWO');
+        currentTaskData = getTaskInTaskList(task);
         renderFormForTaskToBeEdited(task, currentTaskData);
 
     }
