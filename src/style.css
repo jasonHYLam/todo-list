@@ -15,6 +15,10 @@
 
 }
 
+#task-container {
+    display: grid;
+    row-gap: 10px;
+}
 #task-form-container {
     display: absolute;
 }
@@ -40,7 +44,7 @@
 }
 
 .task-div-right{
-    background-color: #08140b ;
+    background-color: #0f0e24;
 }
 
 .task-div-right div {

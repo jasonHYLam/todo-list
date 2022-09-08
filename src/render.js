@@ -112,11 +112,15 @@ const renderTasks = (taskArray) => {
 
         const taskDivLeft = document.createElement('div');
         const taskDivRight = document.createElement('div');
-        taskDivRight.className = 'task-div-right'
+        taskDivLeft.className = 'task-div-left';
+        taskDivRight.className = 'task-div-right';
+
+        taskDiv.appendChild(taskDivLeft);
+        taskDiv.appendChild(taskDivRight);
 
         renderTaskText(task, taskDivRight);
         renderTaskClickables(taskDivRight);
-        sendToContainer(taskDivRight);
+        sendToContainer(taskDiv);
     }
 }
 
