@@ -49,9 +49,11 @@ document.addEventListener('click', function(event) {
     if (event.target.classList.contains('delete-button-for-task')) {
         let task = event.target.parentNode;
 
+        console.log('okay peko');
         setCurrentProject(getProjectThatContainsTask(task));
         deleteTask(getIndexOfTaskInList(task));
         deleteTaskInProject(getCurrentProjectInProjectArray(), getIndexOfTaskInProject(task));
+        console.log(getCurrentProject());
 
         switch(isInboxOrDailyOrWeeklyOrProject) {
             case 'inbox':

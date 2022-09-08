@@ -27,7 +27,14 @@
 
 .delete-project-button {
     display: none;
+}
 
+.task-div{
+    background-color: #08140b ;
+}
+
+.task-div div {
+    color: white;
 }
 
 .project-div:hover .delete-project-button {
