@@ -13,6 +13,7 @@ let indexOfTaskToBeEdited;
 
 let currentTaskData;
 
+let isInboxOrDailyOrWeekly;
 const addTodoButton = document.getElementById('add-todo-button');
 addTodoButton.addEventListener('click', (e) => {
     renderTaskForm();
@@ -30,7 +31,10 @@ document.addEventListener('click', (e)=> {
             addToTaskList(newTask);
             addToProject(newTask, findProjectSelectMatch());
 
+            setCurrentProject(findProjectSelectMatch());
+
             setUpTasks(getCurrentProjectTasks());
+            console.log(getCurrentProjectTasks());
 
             populateStorage();
         }
@@ -52,9 +56,7 @@ document.addEventListener('click', function(event) {
 
         checkTasksInCurrentProject(getCurrentProject());
         populateStorage();
-
-        console.log('oh okay remove?');
-        console.log(getTaskList());
+        // console.log(getTaskList());
     }
 })
 
@@ -117,6 +119,7 @@ document.addEventListener('click', function(event) {
 //click on project in sidebar
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains("project-title")) {
+        isInboxOrDailyOrWeekly = false;
         let project = event.target.parentNode;
         let projectIndex = Array.from(project.parentNode.children).indexOf(project);
         renderProjectInMainDisplay(projectIndex);
@@ -138,6 +141,7 @@ document.addEventListener('click', function(event) {
 //click on inbox
 document.addEventListener('click', function(event) {
     if (event.target.id == 'inbox') {
+        isInboxOrDailyOrWeekly = true;
         setUpTasks(getTaskList());
     }
 })
@@ -145,6 +149,7 @@ document.addEventListener('click', function(event) {
 //click on daily
 document.addEventListener('click', function(event) {
     if (event.target.id == 'daily') {
+        isInboxOrDailyOrWeekly = true;
         setUpTasks(getDailyTasks());
     }
 })
@@ -152,6 +157,7 @@ document.addEventListener('click', function(event) {
 //click on weekly
 document.addEventListener('click', function(event) {
     if (event.target.id == 'weekly') {
+        isInboxOrDailyOrWeekly = true;
 
         // isDateValid(getTaskList()[0].dueDate);
         getWeeklyTasks();
@@ -168,7 +174,7 @@ document.addEventListener('click', function(event) {
 
         findTaskAndDelete(projectToDeleteTasks);
 
-        setUpTasks(getCurrentProject());
+        setUpTasks(getCurrentProjectTasks());
 
     }
 
