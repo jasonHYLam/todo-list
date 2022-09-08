@@ -3,6 +3,10 @@
     grid-template-rows: 1fr 8fr;
 }
 
+#header {
+    background-color: #0f0e24;
+}
+
 #below-header {
     display: grid;
     grid-template-columns: 2fr 5fr;
@@ -22,13 +26,15 @@
 #task-form-container {
     display: absolute;
 }
-
+#project-container {
+    display: grid;
+    row-gap: 5px;
+}
 .project-div {
     display: grid;
     grid-template-columns: 4fr 1fr;
     position: relative;
     background-color: #0f0e24;
-    row-gap: 5px;
 }
 
 .delete-project-button {
@@ -56,5 +62,4 @@
 
 .project-div:hover .delete-project-button {
     display: block;
-
 }
