@@ -27,6 +27,8 @@
     display: grid;
     grid-template-columns: 4fr 1fr;
     position: relative;
+    background-color: #0f0e24;
+    row-gap: 5px;
 }
 
 .delete-project-button {
@@ -36,6 +38,7 @@
 .task-div {
     display: grid;
     grid-template-columns: 1fr 8fr;
+    width: 50vw;
 }
 
 .task-div-left {

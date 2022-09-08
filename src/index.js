@@ -5,6 +5,7 @@ import {getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewP
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
 import {populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, setListsFromLocalStorage } from "./storage";
 import "./style.css"
+import { setPriorityColor } from "./changingHTMLElement";
 
 let isInboxOrDailyOrWeeklyOrProject;
 
@@ -23,6 +24,8 @@ document.addEventListener('click', (e)=> {
             const newTask = createNewTask(currentForm);
             addToTaskList(newTask);
             addToProject(newTask, findProjectSelectMatch());
+
+            setPriorityColor(newTask);
 
             setCurrentProject(findProjectSelectMatch());
 
@@ -78,6 +81,7 @@ document.addEventListener('click', function(event) {
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('edit-button-for-task')) {
         let task = event.target.parentNode;
+        setPriorityColor(getTaskInTaskList(task));
         
         setCurrentProject(getProjectThatContainsTask(task));
         setCurrentTask(getTaskInTaskList(task));
@@ -89,6 +93,7 @@ document.addEventListener('click', function(event) {
 document.addEventListener('click', function(event) {
     if (event.target.id == 'submit-edit-todo-button') {
         let task = event.target.parentNode.parentNode;
+        
 
         editTask(getTaskInTaskList(task), returnEditTaskFormValues());
         editTaskInProject(getCurrentProjectInProjectArray(), returnEditTaskFormValues(), getCurrentTask());
