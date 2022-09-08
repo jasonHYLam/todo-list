@@ -99,16 +99,28 @@ const checkDoneOnTask = (task) => {
 
 const getTasksInAllTasksThatMatchProjectTaskList = (project) => {
 
-    console.log(getTaskList());
-    console.log('hehe pinf');
+    const findTaskInTaskList = (taskInProject) => {
+        getTaskList().find((taskInTaskList) => taskInTaskList.title == taskInProject.title);
+    }
 
-    console.log(project.tasksList);
-    
-    console.log(
-        getTaskList().filter((task) => {
-            return !project.tasksList.includes(task)
-    })
-    )
+    //for each task in a project's task list
+    return project.tasksList.forEach(findTaskInTaskList);
+
+    //get the corresponding task in the task list, by matching 
+    //by finding the first task that matches in taskList
+}
+
+const getIndexOfTaskInList = (task) => {
+
+
+}
+
+const findTaskAndDelete = (project) => {
+    for (const task of project.tasksList) {
+        const taskToDelete = getTaskList().find((taskInTaskList) => taskInTaskList.title == task.title)
+        const indexOfTaskToDelete = getTaskList().indexOf(taskToDelete);
+        deleteTask(indexOfTaskToDelete);
+    }
 }
 
 const getDailyTasks = () => {
@@ -145,4 +157,6 @@ export {
 
     getDailyTasks,
     getWeeklyTasks,
+
+    findTaskAndDelete
 };

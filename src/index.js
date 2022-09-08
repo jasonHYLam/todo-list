@@ -1,6 +1,6 @@
 
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues} from "./forms";
-import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTasksInAllTasksThatMatchProjectTaskList, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getTaskInProject, getProjectThatContainsTask, setCurrentTask, getCurrentTask} from "./taskListModule";
+import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTasksInAllTasksThatMatchProjectTaskList, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getTaskInProject, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete} from "./taskListModule";
 import {Task} from "./taskClass";
 import {checkInProjectArray,  setProjectList, getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray, getIndexOfTaskInProject} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay} from "./render";
@@ -168,10 +168,10 @@ document.addEventListener('click', function(event) {
 
         const projectToDeleteTasks = getProjectInProjectListFromDOM(taskName);
 
-        console.log('this should be it...')
-        getTasksInAllTasksThatMatchProjectTaskList(projectToDeleteTasks);
+        findTaskAndDelete(projectToDeleteTasks);
 
-        deleteProject();
+        setUpTasks(getCurrentProject());
+
     }
 
 })
