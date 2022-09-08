@@ -29,11 +29,21 @@
     display: none;
 }
 
-.task-div{
+.task-div {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+}
+
+.task-div-left {
+    background-color: red;
+
+}
+
+.task-div-right{
     background-color: #08140b ;
 }
 
-.task-div div {
+.task-div-right div {
     color: white;
 }
 
