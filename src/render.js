@@ -108,6 +108,7 @@ const takeDownRenderedTasksOrProjects = (tasksOrProjects) => {
 const renderTasks = (taskArray) => {
     for (const task of taskArray) {
         const taskDiv = document.createElement('div');
+        taskDiv.class = 'task-container';
 
         renderTaskText(task, taskDiv);
         renderTaskClickables(taskDiv);

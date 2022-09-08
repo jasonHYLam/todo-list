@@ -57,7 +57,7 @@ const tasksExistInStorage = () => {
 
 const projectsExistInStorage = () => {
     // console.log(localStorage.getItem('projectArray'))
-    return (localStorage.getItem('projectArray'))
+    return (localStorage.getItem('projectArray') != '[]')
 }
 
 export {

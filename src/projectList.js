@@ -1,6 +1,5 @@
 import {Project} from "./projectClass";
 import {returnProjectSelectValue} from "./forms.js";
-import { getCurrentTask, getTaskList } from "./taskListModule";
 
 let projectsList = [];
 
@@ -11,7 +10,6 @@ const getCurrentProject = () => {
 }
 
 const getCurrentProjectTasks = () => {
-    // return currentProject.tasksList;
     return getCurrentProjectInProjectArray().tasksList;
 
 }
@@ -68,6 +66,7 @@ const deleteProject = (index) => {
     projectsList.splice(index, 1);
 }
 
+
 const getCurrentProjectInProjectArray = () => {
 
     const getProjectInArrayThatMatchesCurrentProject = (projectFromArray) => {
@@ -99,11 +98,6 @@ const getProjectInProjectListFromDOM = (domValue) => {
     }
 
     return getProjectsList().find(doesProjectMatch)
-}
-
-
-const changeCurrentProject = (project) => {
-    setCurrentProject(project);
 }
 
 const checkInProjectArray = () => {
