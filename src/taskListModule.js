@@ -111,8 +111,12 @@ const getTasksInAllTasksThatMatchProjectTaskList = (project) => {
 }
 
 const getIndexOfTaskInList = (task) => {
-
-
+    const taskTitle = task.querySelector('.task-title').textContent;
+    const matchTask = (taskInList) => {
+        return taskInList.title == taskTitle;
+    }
+    const currentTask = getTaskList().find(matchTask);
+    return getTaskList().indexOf(currentTask);
 }
 
 const findTaskAndDelete = (project) => {
@@ -158,5 +162,6 @@ export {
     getDailyTasks,
     getWeeklyTasks,
 
-    findTaskAndDelete
+    findTaskAndDelete,
+    getIndexOfTaskInList,
 };

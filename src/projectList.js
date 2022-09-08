@@ -52,15 +52,11 @@ const editTaskInProject = (project, newValues, taskToBeEdited) => {
 }
 
 const getIndexOfTaskInProject = (task) => {
-
     const taskTitle = task.querySelector('.task-title').textContent;
-
     const matchTask = (taskInProject) => {
         return taskInProject.title == taskTitle;
     }
-
     const currentTask = (getCurrentProject().tasksList.find(matchTask))
-
     return getCurrentProject().tasksList.indexOf(currentTask);
 }
 
