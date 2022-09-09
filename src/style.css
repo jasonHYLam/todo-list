@@ -78,5 +78,6 @@ body {
 #task-details-container {
     width: 50vw;
     height: 40px;
-    /* background-color: red; */
+    background-color: red;
+    display: none;
 }

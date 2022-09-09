@@ -2,7 +2,7 @@
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues} from "./forms";
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList} from "./taskListModule";
 import {getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray, getIndexOfTaskInProject} from "./projectList";
-import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer} from "./render";
+import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay} from "./render";
 import {populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, setListsFromLocalStorage } from "./storage";
 import "./style.css"
 import { setPriorityColor } from "./changingHTMLElement";
@@ -197,8 +197,8 @@ document.addEventListener('click', function(event) {
 document.addEventListener('click', (e) => {
     const taskDiv = e.target.closest('.task-div')
     if (taskDiv) {
+        toggleTaskDetailsDisplay();
 
-        renderTaskDetailsContainer(taskDiv);
     }
 })
 

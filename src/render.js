@@ -121,6 +121,7 @@ const renderTasks = (taskArray) => {
         renderTaskText(task, taskDivRight);
         renderTaskClickables(taskDivRight);
         sendToContainer(taskDiv);
+        renderTaskDetailsContainer(taskDiv);
     }
 }
 
@@ -167,6 +168,14 @@ const renderTaskClickables = (taskDiv) => {
     taskDiv.appendChild(doneCheckBox);
     taskDiv.appendChild(editButtonInTask);
     taskDiv.appendChild(deleteButtonInTask);
+}
+
+const renderTaskDetailsContainer = (task) => {
+    const taskDetailsContainer = document.createElement('div');
+    taskDetailsContainer.className = 'task-details-container';
+    taskDetailsContainer.textContent = 'a';
+    task.after(taskDetailsContainer);
+    console.log('a')
 }
 
 const sendToContainer = (taskDiv) => {
@@ -324,12 +333,16 @@ const removeFromTaskContainer = () => {
     }
 }
 
-const renderTaskDetailsContainer = (task) => {
 
-    const taskDetailsContainer = document.createElement('div');
-    taskDetailsContainer.id = 'task-details-container'
-    taskDetailsContainer.textContent = 'a';
-    task.after(taskDetailsContainer);
+const toggleTaskDetailsDisplay = () => {
+
+    const taskDetailsContainer = document.querySelector('#task-details-container');
+    if (taskDetailsContainer.style.display === 'none') {
+        taskDetailsContainer.style.display = 'block';
+    } else {
+        taskDetailsContainer.style.display = 'none';
+    }
+
 }
 
 
@@ -345,4 +358,5 @@ export {
     renderProjectForm,
     renderProjectInMainDisplay,
     renderTaskDetailsContainer,
+    toggleTaskDetailsDisplay
 }
