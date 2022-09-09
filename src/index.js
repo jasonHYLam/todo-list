@@ -1,6 +1,6 @@
 
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues} from "./forms";
-import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList} from "./taskListModule";
+import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList, repeatedTaskTitleExists} from "./taskListModule";
 import {getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray, getIndexOfTaskInProject} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay} from "./render";
 import {populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, setListsFromLocalStorage } from "./storage";
@@ -21,28 +21,32 @@ document.addEventListener('click', (e)=> {
         let currentForm = returnTaskFormValues();
         if (isFormComplete(currentForm)) {
 
-            const newTask = createNewTask(currentForm);
-            addToTaskList(newTask);
-            addToProject(newTask, findProjectSelectMatch());
+            if (repeatedTaskTitleExists()) {
+                console.log('you utter dolt');
+            } else {
+                const newTask = createNewTask(currentForm);
+                addToTaskList(newTask);
+                addToProject(newTask, findProjectSelectMatch());
 
-            setPriorityColor(newTask);
+                setPriorityColor(newTask);
 
-            setCurrentProject(findProjectSelectMatch());
+                setCurrentProject(findProjectSelectMatch());
 
-            switch(isInboxOrDailyOrWeeklyOrProject) {
-                case 'inbox':
-                    setUpTasks(getTaskList());
-                    break;
-                case 'daily':
-                    setUpTasks(getDailyTasks());
-                    break;
-                case 'weekly':
-                    setUpTasks(getWeeklyTasks());
-                    break;
-                case 'project':
-                    setUpTasks(getCurrentProjectTasks());
-            }
-            populateStorage();
+                switch(isInboxOrDailyOrWeeklyOrProject) {
+                    case 'inbox':
+                        setUpTasks(getTaskList());
+                        break;
+                    case 'daily':
+                        setUpTasks(getDailyTasks());
+                        break;
+                    case 'weekly':
+                        setUpTasks(getWeeklyTasks());
+                        break;
+                    case 'project':
+                        setUpTasks(getCurrentProjectTasks());
+                }
+                populateStorage();
+                }
         }
     } 
 })
@@ -196,10 +200,8 @@ document.addEventListener('click', function(event) {
 
 document.addEventListener('click', (e) => {
     const taskDiv = e.target.closest('.outer-task-div')
-    console.log(taskDiv)
     if (taskDiv) {
         toggleTaskDetailsDisplay(taskDiv);
-
     }
 })
 

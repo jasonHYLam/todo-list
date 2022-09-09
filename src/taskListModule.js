@@ -69,6 +69,13 @@ const deleteTask = (taskIndex) => {
     taskList.splice(taskIndex, 1)
 }
 
+const repeatedTaskTitleExists = () => {
+    const titleFromForm = document.querySelector('#task-title').value;
+    return getTaskList().find((task) => {
+        return task.title == titleFromForm;
+    })
+}
+
 const createNewTask = (formValues) => {
     return new Task(
         formValues.titleValue,
@@ -164,4 +171,6 @@ export {
 
     findTaskAndDelete,
     getIndexOfTaskInList,
+
+    repeatedTaskTitleExists,
 };

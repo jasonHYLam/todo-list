@@ -179,8 +179,13 @@ const renderTaskDetailsContainer = (outerTaskDiv) => {
     const taskDetailsContainer = document.createElement('div');
     taskDetailsContainer.className = 'task-details-container';
     taskDetailsContainer.textContent = 'a';
+    taskDetailsContainer.style.display = 'none';
     outerTaskDiv.appendChild(taskDetailsContainer);
     console.log('a')
+}
+
+const populateTaskDetailsContainerWithTask = () => {
+
 }
 
 const sendToContainer = (taskDiv) => {
