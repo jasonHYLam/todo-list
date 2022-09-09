@@ -74,3 +74,9 @@ body {
 .project-div:hover .delete-project-button {
     display: block;
 }
+
+#task-details-container {
+    width: 50vw;
+    height: 40px;
+    /* background-color: red; */
+}

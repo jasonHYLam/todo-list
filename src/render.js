@@ -329,11 +329,10 @@ const renderTaskDetailsContainer = (task) => {
     const taskDetailsContainer = document.createElement('div');
     taskDetailsContainer.id = 'task-details-container'
     taskDetailsContainer.textContent = 'a';
-    task.appendChild(taskDetailsContainer);
-
-
-    
+    task.after(taskDetailsContainer);
 }
+
+
 
 export {
     renderTaskForm,
