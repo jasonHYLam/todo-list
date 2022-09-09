@@ -195,9 +195,10 @@ document.addEventListener('click', function(event) {
 })
 
 document.addEventListener('click', (e) => {
-    const taskDiv = e.target.closest('.task-div')
+    const taskDiv = e.target.closest('.outer-task-div')
+    console.log(taskDiv)
     if (taskDiv) {
-        toggleTaskDetailsDisplay();
+        toggleTaskDetailsDisplay(taskDiv);
 
     }
 })

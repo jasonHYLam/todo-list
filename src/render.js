@@ -107,8 +107,13 @@ const takeDownRenderedTasksOrProjects = (tasksOrProjects) => {
 
 const renderTasks = (taskArray) => {
     for (const task of taskArray) {
+        const outerTaskDiv = document.createElement('div');
+        outerTaskDiv.className = 'outer-task-div';
+
         const taskDiv = document.createElement('div');
         taskDiv.className = 'task-div';
+
+        outerTaskDiv.appendChild(taskDiv);
 
         const taskDivLeft = document.createElement('div');
         const taskDivRight = document.createElement('div');
@@ -120,8 +125,8 @@ const renderTasks = (taskArray) => {
 
         renderTaskText(task, taskDivRight);
         renderTaskClickables(taskDivRight);
-        sendToContainer(taskDiv);
-        renderTaskDetailsContainer(taskDiv);
+        sendToContainer(outerTaskDiv);
+        renderTaskDetailsContainer(outerTaskDiv);
     }
 }
 
@@ -170,11 +175,11 @@ const renderTaskClickables = (taskDiv) => {
     taskDiv.appendChild(deleteButtonInTask);
 }
 
-const renderTaskDetailsContainer = (task) => {
+const renderTaskDetailsContainer = (outerTaskDiv) => {
     const taskDetailsContainer = document.createElement('div');
     taskDetailsContainer.className = 'task-details-container';
     taskDetailsContainer.textContent = 'a';
-    task.after(taskDetailsContainer);
+    outerTaskDiv.appendChild(taskDetailsContainer);
     console.log('a')
 }
 
@@ -334,9 +339,13 @@ const removeFromTaskContainer = () => {
 }
 
 
-const toggleTaskDetailsDisplay = () => {
+const toggleTaskDetailsDisplay = (taskDiv) => {
 
-    const taskDetailsContainer = document.querySelector('#task-details-container');
+    console.log(taskDiv)
+    const taskDetailsContainer = taskDiv.querySelector('.task-details-container');
+    console.log(taskDiv)
+    console.log(taskDetailsContainer);
+
     if (taskDetailsContainer.style.display === 'none') {
         taskDetailsContainer.style.display = 'block';
     } else {
