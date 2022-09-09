@@ -324,6 +324,17 @@ const removeFromTaskContainer = () => {
     }
 }
 
+const renderTaskDetailsContainer = (task) => {
+
+    const taskDetailsContainer = document.createElement('div');
+    taskDetailsContainer.id = 'task-details-container'
+    taskDetailsContainer.textContent = 'a';
+    task.appendChild(taskDetailsContainer);
+
+
+    
+}
+
 export {
     renderTaskForm,
     renderTaskContainer,
@@ -334,4 +345,5 @@ export {
 
     renderProjectForm,
     renderProjectInMainDisplay,
+    renderTaskDetailsContainer,
 }

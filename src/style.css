@@ -1,3 +1,6 @@
+body {
+    margin: 0;
+}
 #wrapper {
     display: grid;
     grid-template-rows: 1fr 8fr;
@@ -45,6 +48,14 @@
     display: grid;
     grid-template-columns: 1fr 8fr;
     width: 50vw;
+}
+
+.task-div:hover .task-div-right {
+    background-color: blue;
+}
+
+.task-div:hover {
+    cursor: pointer;
 }
 
 .task-div-left {
