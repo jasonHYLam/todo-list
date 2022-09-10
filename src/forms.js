@@ -56,6 +56,13 @@ const isFormComplete = (form) => {
     return (formValues.every(isFieldFilled));
 }
 
+const repeatedTaskTitleExists = () => {
+    const titleFromForm = document.querySelector('#task-title').value;
+    return getTaskList().find((task) => {
+        return task.title == titleFromForm;
+    })
+}
+
 export {
     returnTaskFormValues, 
     isFormComplete, 
@@ -63,4 +70,6 @@ export {
     returnProjectSelectValue,
 
     returnEditTaskFormValues,
+
+    repeatedTaskTitleExists,
 };

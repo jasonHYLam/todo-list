@@ -1,5 +1,6 @@
 import { formattedDate } from "./date";
 import { getProjectsList } from "./projectList";
+import { getTaskInTaskList } from "./taskListModule";
 
 
 const wrapper = document.getElementById('wrapper');
@@ -184,8 +185,19 @@ const renderTaskDetailsContainer = (outerTaskDiv) => {
     console.log('a')
 }
 
-const populateTaskDetailsContainerWithTask = () => {
+const populateTaskDetailsContainerWithTask = (task) => {
 
+    //get task in tasklist that matches the current html element's title
+    getTaskInTaskList()
+    //populate the expanded task with task details
+    //ensure that editing and removing still happens correctly
+
+}
+
+const showPopup = () => {
+    const popup = document.getElementById('myPopup');
+    popup.classList.toggle('show');
+    console.log('is this okay');
 }
 
 const sendToContainer = (taskDiv) => {
@@ -372,5 +384,7 @@ export {
     renderProjectForm,
     renderProjectInMainDisplay,
     renderTaskDetailsContainer,
-    toggleTaskDetailsDisplay
+    toggleTaskDetailsDisplay,
+
+    showPopup,
 }
