@@ -63,6 +63,11 @@ const repeatedTaskTitleExists = () => {
     })
 }
 
+const formNotExist = () => {
+    const newTaskFormContainer = document.querySelector('#task-form-container');
+    
+    return newTaskFormContainer == null;
+}
 
 export {
     returnTaskFormValues, 
@@ -73,4 +78,6 @@ export {
     returnEditTaskFormValues,
 
     repeatedTaskTitleExists,
+
+    formNotExist,
 };

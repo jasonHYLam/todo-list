@@ -1,5 +1,5 @@
 
-import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues} from "./forms";
+import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues, formNotExist} from "./forms";
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList, repeatedTaskTitleExists} from "./taskListModule";
 import {getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray, getIndexOfTaskInProject} from "./projectList";
 import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay, showPopup} from "./render";
@@ -11,8 +11,11 @@ import { setPriorityColor } from "./changingHTMLElement";
 let isInboxOrDailyOrWeeklyOrProject;
 
 const addTodoButton = document.getElementById('add-todo-button');
+
 addTodoButton.addEventListener('click', (e) => {
-    renderTaskForm();
+    if (formNotExist()) {
+        renderTaskForm();
+    }
 })
 
 //click on submit todo button
@@ -92,9 +95,9 @@ document.addEventListener('click', function(event) {
         // setPriorityColor(getTaskInTaskList(task));
         
         setCurrentProject(getProjectThatContainsTask(task));
-        console.log('is this okay');
         setCurrentTask(getTaskInTaskList(task));
         renderFormForTaskToBeEdited(task, getCurrentTask());
+        console.log('is this okay');
     }
 })
 
@@ -209,6 +212,7 @@ document.addEventListener('click', (e) => {
     const outerTaskDiv = taskDiv.parentNode;
     if (taskDiv) {
         toggleTaskDetailsDisplay(outerTaskDiv);
+    } else {
     }
 })
 
