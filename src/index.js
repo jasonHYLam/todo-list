@@ -200,10 +200,12 @@ document.addEventListener('click', function(event) {
     }
 })
 
+//click on task
 document.addEventListener('click', (e) => {
-    const taskDiv = e.target.closest('.outer-task-div')
+    const taskDiv = e.target.closest('.task-div')
+    const outerTaskDiv = taskDiv.parentNode;
     if (taskDiv) {
-        toggleTaskDetailsDisplay(taskDiv);
+        toggleTaskDetailsDisplay(outerTaskDiv);
     }
 })
 
