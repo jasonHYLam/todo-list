@@ -127,7 +127,7 @@ const renderTasks = (taskArray) => {
         renderTaskText(task, taskDivRight);
         renderTaskClickables(taskDivRight);
         sendToContainer(outerTaskDiv);
-        renderTaskDetailsContainer(outerTaskDiv);
+        renderTaskDetailsContainer(task, outerTaskDiv);
     }
 }
 
@@ -176,10 +176,25 @@ const renderTaskClickables = (taskDiv) => {
     taskDiv.appendChild(deleteButtonInTask);
 }
 
-const renderTaskDetailsContainer = (outerTaskDiv) => {
+const renderTaskDetailsContainer = (task, outerTaskDiv) => {
     const taskDetailsContainer = document.createElement('div');
     taskDetailsContainer.className = 'task-details-container';
-    taskDetailsContainer.textContent = 'a';
+
+    const title = document.createElement('div');
+    const description = document.createElement('div');
+    const dueDate = document.createElement('div');
+    const priority = document.createElement('div');
+
+    title.textContent = task.title;
+    description.textContent = task.description;
+    dueDate.textContent = task.dueDate;
+    priority.textContent = task.priority;
+
+    taskDetailsContainer.appendChild(title);
+    taskDetailsContainer.appendChild(description);
+    taskDetailsContainer.appendChild(dueDate);
+    taskDetailsContainer.appendChild(priority);
+
     taskDetailsContainer.style.display = 'none';
     outerTaskDiv.appendChild(taskDetailsContainer);
     console.log('a')
