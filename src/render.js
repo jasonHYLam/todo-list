@@ -125,7 +125,6 @@ const renderTasks = (taskArray) => {
         taskDiv.appendChild(taskDivRight);
 
         renderTaskText(task, taskDivRight);
-        renderTaskClickables(taskDivRight);
         sendToContainer(outerTaskDiv);
         renderTaskDetailsContainer(task, outerTaskDiv);
     }
@@ -194,6 +193,8 @@ const renderTaskDetailsContainer = (task, outerTaskDiv) => {
     taskDetailsContainer.appendChild(description);
     taskDetailsContainer.appendChild(dueDate);
     taskDetailsContainer.appendChild(priority);
+    
+    renderTaskClickables(taskDetailsContainer);
 
     taskDetailsContainer.style.display = 'none';
     outerTaskDiv.appendChild(taskDetailsContainer);
