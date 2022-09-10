@@ -132,22 +132,14 @@ const renderTasks = (taskArray) => {
 
 const renderTaskText = (task, taskDiv) => {
     for (const [key, value] of Object.entries(task)) {
-        if (key == 'title' || key == 'description' || key == 'dueDate' || key == 'priority') {
+        if (key == 'title') {
             const taskPropdiv = document.createElement('div');
             taskPropdiv.textContent = value;
 
             if (key == 'title') {
                 taskPropdiv.className = 'task-title';
             }
-            else if (key == 'description') {
-                taskPropdiv.className = 'task-description';
-            }
-            else if (key == 'dueDate') {
-                taskPropdiv.className = 'task-dueDate';
-            }
-            else if (key == 'priority') {
-                taskPropdiv.className = 'task-priority';
-            }
+
             taskDiv.appendChild(taskPropdiv);
         }
     }
@@ -183,6 +175,11 @@ const renderTaskDetailsContainer = (task, outerTaskDiv) => {
     const description = document.createElement('div');
     const dueDate = document.createElement('div');
     const priority = document.createElement('div');
+
+    title.className = 'task-title';
+    description.className = 'task-description';
+    dueDate.className = 'task-dueDate';
+    priority.className = 'task-priority';
 
     title.textContent = task.title;
     description.textContent = task.description;

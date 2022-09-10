@@ -87,9 +87,12 @@ document.addEventListener('click', function(event) {
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('edit-button-for-task')) {
         let task = event.target.parentNode;
-        setPriorityColor(getTaskInTaskList(task));
+        console.log('what the devil');
+        console.log(task);
+        // setPriorityColor(getTaskInTaskList(task));
         
         setCurrentProject(getProjectThatContainsTask(task));
+        console.log('is this okay');
         setCurrentTask(getTaskInTaskList(task));
         renderFormForTaskToBeEdited(task, getCurrentTask());
     }
