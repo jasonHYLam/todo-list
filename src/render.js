@@ -121,8 +121,15 @@ const renderTaskForm = () => {
 
     todoForm.appendChild(submitTodoButton);
     todoForm.appendChild(cancelButton);
+}
 
-
+const hideTaskFormContainer = () => {
+    
+    const outerTaskFormContainer = document.querySelector('#outer-task-form-container');
+    if (outerTaskFormContainer) {
+        console.log('HAHA');
+        wrapper.removeChild(outerTaskFormContainer);
+    }
 }
 
 const renderTaskContainer = () => {
@@ -443,4 +450,5 @@ export {
     toggleTaskDetailsDisplay,
 
     showPopup,
+    hideTaskFormContainer,
 }
