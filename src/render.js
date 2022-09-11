@@ -39,6 +39,14 @@ const renderTaskForm = () => {
     belowHeader.appendChild(todoForm);
 
 
+    const todoFormLeft = document.createElement('div');
+    const todoFormRight = document.createElement('div');
+    todoForm.appendChild(todoFormLeft);
+    todoForm.appendChild(todoFormRight);
+
+    todoFormLeft.id = 'todoFormLeft';
+    todoFormRight.id = 'todoFormRight';
+
     const titleInput = document.createElement('input');
     titleInput.setAttribute('placeholder', 'task: ')
     titleInput.id = 'task-title';
@@ -47,16 +55,17 @@ const renderTaskForm = () => {
     descInput.setAttribute('placeholder', 'description: ')
     descInput.id = 'task-desc';
 
+    todoFormLeft.appendChild(titleInput);
+    todoFormLeft.appendChild(descInput);
+
     const dateInput = document.createElement('input');
     dateInput.setAttribute('type','date');
-    // dateInput.value = formattedDate;
     dateInput.id = 'due-date';
     
     //priority select list    
     const selectList = document.createElement('select')
     selectList.id = "priority-select";
 
-    
     const highOption = document.createElement('option');
     highOption.textContent = 'high';
 
@@ -78,6 +87,10 @@ const renderTaskForm = () => {
         projectToSendTo.appendChild(projectTitle);
     }
 
+    todoFormRight.appendChild(dateInput);
+    todoFormRight.appendChild(selectList);
+    todoFormRight.appendChild(projectToSendTo);
+
 
     const submitTodoButton = document.createElement('button');
     submitTodoButton.setAttribute('type', 'button');
@@ -88,11 +101,6 @@ const renderTaskForm = () => {
     cancelButton.textContent = 'x';
 
 
-    todoForm.appendChild(titleInput);
-    todoForm.appendChild(descInput);
-    todoForm.appendChild(dateInput);
-    todoForm.appendChild(selectList);
-    todoForm.appendChild(projectToSendTo);
     todoForm.appendChild(submitTodoButton);
     todoForm.appendChild(cancelButton);
 
