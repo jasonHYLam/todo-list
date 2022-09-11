@@ -1,0 +1,8 @@
+
+#task-container {
+    display: grid;
+    row-gap: 10px;
+}
+#task-form-container {
+    display: absolute;
+}

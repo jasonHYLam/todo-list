@@ -6,6 +6,7 @@ import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEd
 import {populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, setListsFromLocalStorage } from "./storage";
 import "./style.css"
 import "./popup.css"
+import "./form.css"
 import { setPriorityColor } from "./changingHTMLElement";
 
 let isInboxOrDailyOrWeeklyOrProject;
