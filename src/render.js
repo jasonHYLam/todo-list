@@ -15,6 +15,7 @@ const renderTaskForm = () => {
     const mainDisplay = document.getElementById('main-display');
 
     const outerTaskFormContainer = document.createElement('div');
+    outerTaskFormContainer.id = 'outer-task-form-container';
 
     wrapper.appendChild(outerTaskFormContainer);
 

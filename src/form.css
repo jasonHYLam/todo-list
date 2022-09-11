@@ -6,7 +6,7 @@
 
 #outer-task-form-container {
 
-    display: absolute;
+    position: absolute;
 }
 
 #task-form-container {
