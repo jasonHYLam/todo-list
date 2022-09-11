@@ -1,5 +1,5 @@
 
-import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues, formNotExist} from "./forms";
+import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues, formNotExist, populateFormForTaskToBeEdited} from "./forms";
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList, repeatedTaskTitleExists} from "./taskListModule";
 import {getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray, getIndexOfTaskInProject} from "./projectList";
 import {renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay, showPopup, hideTaskFormContainer, renderGeneralTaskForm} from "./render";
@@ -94,15 +94,12 @@ document.addEventListener('click', function(event) {
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('edit-button-for-task')) {
         let task = event.target.parentNode;
-        console.log('what the devil');
-        console.log(task);
         // setPriorityColor(getTaskInTaskList(task));
-        
         setCurrentProject(getProjectThatContainsTask(task));
         setCurrentTask(getTaskInTaskList(task));
         console.log('lets kneecap this pussy');
         renderGeneralTaskForm('edit');
-        renderFormForTaskToBeEdited(task, getCurrentTask());
+        populateFormForTaskToBeEdited(task, getCurrentTask());
         console.log('is this okay');
     }
 })

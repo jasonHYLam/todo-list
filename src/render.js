@@ -120,17 +120,14 @@ const renderGeneralTaskForm = (newOrEdit) => {
     const cancelButton = document.createElement('button');
     cancelButton.textContent = 'x';
 
-
     todoForm.appendChild(submitTodoButton);
     todoForm.appendChild(cancelButton);
-
 }
 
 const hideTaskFormContainer = () => {
     
     const outerTaskFormContainer = document.querySelector('#outer-task-form-container');
     if (outerTaskFormContainer) {
-        console.log('HAHA');
         wrapper.removeChild(outerTaskFormContainer);
     }
 }

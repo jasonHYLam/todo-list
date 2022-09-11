@@ -1,4 +1,6 @@
 import {format} from "date-fns"
+import { getProjectsList } from "./projectList";
+import { getProjectThatContainsTask } from "./taskListModule";
 
 const returnTaskFormValues = () => {
     const titleValue = document.getElementById('task-title').value;
@@ -103,8 +105,8 @@ const populateFormForTaskToBeEdited = (taskElement, taskData) => {
     dueDateInput.value = taskData.dueDate;
 
     //priority select list    
-    const selectList = document.createElement('select')
-    selectList.id = "edit-task-priority";
+    const selectList = document.querySelector('#priority-select')
+    selectList.value = taskData.priority;
 
     
     const highOption = document.createElement('option');
@@ -120,13 +122,13 @@ const populateFormForTaskToBeEdited = (taskElement, taskData) => {
     selectList.appendChild(medOption);
     selectList.appendChild(lowOption);
 
-    const projectToMoveTo = document.createElement('select');
-    projectToMoveTo.id = 'project-select';
-    for (const project of getProjectsList()) {
-        const projectTitle = document.createElement('option');
-        projectTitle.textContent = project.title;
-        projectToMoveTo.appendChild(projectTitle);
-    }
+    const projectToMoveTo = document.querySelector('#project-select');
+    projectToMoveTo.value = getProjectThatContainsTask(taskElement).title;
+    // for (const project of getProjectsList()) {
+    //     const projectTitle = document.createElement('option');
+    //     projectTitle.textContent = project.title;
+    //     projectToMoveTo.appendChild(projectTitle);
+    // }
 
     // const editTodoButton = document.createElement('button');
     // editTodoButton.setAttribute('type', 'button');
