@@ -3,6 +3,29 @@
     display: grid;
     row-gap: 10px;
 }
-#task-form-container {
+
+#outer-task-form-container {
+
     display: absolute;
+}
+
+#task-form-container {
+    display:grid;
+    grid-template-rows: 1fr 5fr;
+    position: fixed;
+    height: 300px;
+    width: 700px;
+    background-color: antiquewhite;
+
+
+}
+
+#form-below-header {
+
+}
+
+#task-form {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+
 }

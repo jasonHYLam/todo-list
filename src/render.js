@@ -14,10 +14,29 @@ const renderTaskForm = () => {
 
     const mainDisplay = document.getElementById('main-display');
 
+    const outerTaskFormContainer = document.createElement('div');
+
+    wrapper.appendChild(outerTaskFormContainer);
+
+
     const taskFormContainer = document.createElement('div');
+    outerTaskFormContainer.appendChild(taskFormContainer);
     taskFormContainer.id = 'task-form-container';
 
+    const formHeader = document.createElement('h1');
+    formHeader.textContent = 'add new task';
+
+    const belowHeader = document.createElement('div');
+    belowHeader.id = 'form-below-header';
+
+    taskFormContainer.appendChild(formHeader);
+    taskFormContainer.appendChild(belowHeader);
+
     const todoForm = document.createElement('form');
+    todoForm.id = 'task-form';
+
+    belowHeader.appendChild(todoForm);
+
 
     const titleInput = document.createElement('input');
     titleInput.setAttribute('placeholder', 'task: ')
@@ -76,9 +95,6 @@ const renderTaskForm = () => {
     todoForm.appendChild(submitTodoButton);
     todoForm.appendChild(cancelButton);
 
-    // wrapper.appendChild(todoForm);
-    taskFormContainer.appendChild(todoForm);
-    wrapper.appendChild(taskFormContainer);
 
 }
 
