@@ -1,4 +1,5 @@
 import { formattedDate } from "./date";
+import { populateFormForNewTask } from "./forms";
 import { getProjectsList } from "./projectList";
 import { getTaskInTaskList } from "./taskListModule";
 
@@ -10,22 +11,19 @@ const mainDisplay = document.getElementById('main-display');
 const sidebar = document.getElementById('sidebar');
 
 
-const renderTaskForm = () => {
-
-    const mainDisplay = document.getElementById('main-display');
-
+const renderGeneralTaskForm = (newOrEdit) => {
     const outerTaskFormContainer = document.createElement('div');
     outerTaskFormContainer.id = 'outer-task-form-container';
 
     wrapper.appendChild(outerTaskFormContainer);
-
 
     const taskFormContainer = document.createElement('div');
     outerTaskFormContainer.appendChild(taskFormContainer);
     taskFormContainer.id = 'task-form-container';
 
     const formHeader = document.createElement('h1');
-    formHeader.textContent = 'add new task';
+    formHeader.id = 'form-header';
+    // formHeader.textContent = 'add new task';
 
     const belowHeader = document.createElement('div');
     belowHeader.id = 'form-below-header';
@@ -51,13 +49,11 @@ const renderTaskForm = () => {
     const titleTitle = document.createElement('p');
     titleTitle.textContent = 'title';
     const titleInput = document.createElement('input');
-    titleInput.setAttribute('placeholder', 'task: ')
     titleInput.id = 'task-title';
 
     const descTitle = document.createElement('p');
     descTitle.textContent = 'description';
     const descInput = document.createElement('input');
-    descInput.setAttribute('placeholder', 'description: ')
     descInput.id = 'task-desc';
 
     todoFormLeft.appendChild(titleTitle);
@@ -102,6 +98,12 @@ const renderTaskForm = () => {
         projectToSendTo.appendChild(projectTitle);
     }
 
+    if (newOrEdit == 'new') {
+        populateFormForNewTask();
+    } else if (newOrEdit == 'edit') {
+        // renderFormForTaskToBeEdited();
+    }
+
     todoFormRight.appendChild(dateTitle);
     todoFormRight.appendChild(dateInput);
     todoFormRight.appendChild(priorityTitle);
@@ -121,6 +123,7 @@ const renderTaskForm = () => {
 
     todoForm.appendChild(submitTodoButton);
     todoForm.appendChild(cancelButton);
+
 }
 
 const hideTaskFormContainer = () => {
@@ -248,15 +251,6 @@ const renderTaskDetailsContainer = (task, outerTaskDiv) => {
     console.log('a')
 }
 
-const populateTaskDetailsContainerWithTask = (task) => {
-
-    //get task in tasklist that matches the current html element's title
-    getTaskInTaskList()
-    //populate the expanded task with task details
-    //ensure that editing and removing still happens correctly
-
-}
-
 const showPopup = () => {
     const popup = document.getElementById('myPopup');
     popup.classList.toggle('show');
@@ -268,71 +262,6 @@ const sendToContainer = (taskDiv) => {
     taskContainer.appendChild(taskDiv);
 }
 
-const renderFormForTaskToBeEdited = (taskElement, taskData) => {
-
-    const form = document.createElement('div');
-    form.classList.add('form-for-task-to-be-edited');
-    taskElement.appendChild(form);
-
-    const titleInput = document.createElement('input');
-    titleInput.setAttribute('placeholder', 'task: ')
-    titleInput.id = 'edit-task-title';
-    titleInput.value = taskData.title;
-
-    const descInput = document.createElement('input');
-    descInput.setAttribute('placeholder', 'description: ')
-    descInput.id = 'edit-task-desc';
-    descInput.value = taskData.description;
-
-    const dueDateInput = document.createElement('input');
-    // dueDateInput.setAttribute('placeholder', 'due date: ')
-    dueDateInput.setAttribute('type','date');
-    dueDateInput.id = 'edit-task-due-date';
-    dueDateInput.value = taskData.dueDate;
-
-    //priority select list    
-    const selectList = document.createElement('select')
-    selectList.id = "edit-task-priority";
-
-    
-    const highOption = document.createElement('option');
-    highOption.textContent = 'high';
-
-    const medOption = document.createElement('option');
-    medOption.textContent = 'med';
-    
-    const lowOption = document.createElement('option');
-    lowOption.textContent = 'low';
-
-    selectList.appendChild(highOption);
-    selectList.appendChild(medOption);
-    selectList.appendChild(lowOption);
-
-    const projectToMoveTo = document.createElement('select');
-    projectToMoveTo.id = 'project-select';
-    for (const project of getProjectsList()) {
-        const projectTitle = document.createElement('option');
-        projectTitle.textContent = project.title;
-        projectToMoveTo.appendChild(projectTitle);
-    }
-
-    const editTodoButton = document.createElement('button');
-    editTodoButton.setAttribute('type', 'button');
-    editTodoButton.id = 'submit-edit-todo-button';
-    editTodoButton.textContent = 'change';
-
-    const cancelButton = document.createElement('button');
-    cancelButton.textContent = 'x';
-
-
-    form.appendChild(titleInput);
-    form.appendChild(descInput);
-    form.appendChild(dueDateInput);
-    form.appendChild(selectList);
-    form.appendChild(projectToMoveTo);
-    form.appendChild(editTodoButton);
-    form.appendChild(cancelButton);
-}
 
 
 const renderProjectContainer = () => {
@@ -437,10 +366,8 @@ const toggleTaskDetailsDisplay = (taskDiv) => {
 
 
 export {
-    renderTaskForm,
     renderTaskContainer,
     setUpTasks,
-    renderFormForTaskToBeEdited,
     renderProjectContainer,
     setUpProjects,
 
@@ -451,4 +378,6 @@ export {
 
     showPopup,
     hideTaskFormContainer,
+
+    renderGeneralTaskForm,
 }

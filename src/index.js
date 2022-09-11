@@ -2,7 +2,7 @@
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues, formNotExist} from "./forms";
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList, repeatedTaskTitleExists} from "./taskListModule";
 import {getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray, getIndexOfTaskInProject} from "./projectList";
-import {renderTaskForm, renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay, showPopup, hideTaskFormContainer} from "./render";
+import {renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay, showPopup, hideTaskFormContainer, renderGeneralTaskForm} from "./render";
 import {populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, setListsFromLocalStorage } from "./storage";
 import "./style.css"
 import "./popup.css"
@@ -15,7 +15,8 @@ const addTodoButton = document.getElementById('add-todo-button');
 
 addTodoButton.addEventListener('click', (e) => {
     if (formNotExist()) {
-        renderTaskForm();
+        // renderTaskForm();
+        renderGeneralTaskForm('new');
     }
 })
 
@@ -99,6 +100,8 @@ document.addEventListener('click', function(event) {
         
         setCurrentProject(getProjectThatContainsTask(task));
         setCurrentTask(getTaskInTaskList(task));
+        console.log('lets kneecap this pussy');
+        renderGeneralTaskForm('edit');
         renderFormForTaskToBeEdited(task, getCurrentTask());
         console.log('is this okay');
     }
@@ -110,8 +113,10 @@ document.addEventListener('click', function(event) {
         let task = event.target.parentNode.parentNode;
         
 
-        editTask(getTaskInTaskList(task), returnEditTaskFormValues());
-        editTaskInProject(getCurrentProjectInProjectArray(), returnEditTaskFormValues(), getCurrentTask());
+        // editTask(getTaskInTaskList(task), returnEditTaskFormValues());
+        // editTaskInProject(getCurrentProjectInProjectArray(), returnEditTaskFormValues(), getCurrentTask());
+        editTask(getTaskInTaskList(task),returnTaskFormValues());
+        editTaskInProject(getCurrentProjectInProjectArray(),returnTaskFormValues(), getCurrentTask());
 
         if (checkIfCurrentProjectMatchesProjectSelectValue()) {
 
