@@ -47,22 +47,35 @@ const renderTaskForm = () => {
     todoFormLeft.id = 'todoFormLeft';
     todoFormRight.id = 'todoFormRight';
 
+
+    const titleTitle = document.createElement('p');
+    titleTitle.textContent = 'title';
     const titleInput = document.createElement('input');
     titleInput.setAttribute('placeholder', 'task: ')
     titleInput.id = 'task-title';
 
+    const descTitle = document.createElement('p');
+    descTitle.textContent = 'description';
     const descInput = document.createElement('input');
     descInput.setAttribute('placeholder', 'description: ')
     descInput.id = 'task-desc';
 
+    todoFormLeft.appendChild(titleTitle);
     todoFormLeft.appendChild(titleInput);
+
+    todoFormLeft.appendChild(descTitle);
     todoFormLeft.appendChild(descInput);
 
+
+    const dateTitle = document.createElement('p');
+    dateTitle.textContent = 'date';
     const dateInput = document.createElement('input');
     dateInput.setAttribute('type','date');
     dateInput.id = 'due-date';
     
     //priority select list    
+    const priorityTitle = document.createElement('p');
+    priorityTitle.textContent = 'priority';
     const selectList = document.createElement('select')
     selectList.id = "priority-select";
 
@@ -79,6 +92,8 @@ const renderTaskForm = () => {
     selectList.appendChild(medOption);
     selectList.appendChild(lowOption);
 
+    const projectTitle = document.createElement('p');
+    projectTitle.textContent = 'project';
     const projectToSendTo = document.createElement('select');
     projectToSendTo.id = 'project-select';
     for (const project of getProjectsList()) {
@@ -87,8 +102,11 @@ const renderTaskForm = () => {
         projectToSendTo.appendChild(projectTitle);
     }
 
+    todoFormRight.appendChild(dateTitle);
     todoFormRight.appendChild(dateInput);
+    todoFormRight.appendChild(priorityTitle);
     todoFormRight.appendChild(selectList);
+    todoFormRight.appendChild(projectTitle);
     todoFormRight.appendChild(projectToSendTo);
 
 
