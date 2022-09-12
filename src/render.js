@@ -245,20 +245,17 @@ const renderTaskDetailsContainer = (task, outerTaskDiv) => {
 
     taskDetailsContainer.style.display = 'none';
     outerTaskDiv.appendChild(taskDetailsContainer);
-    console.log('a')
 }
 
 const showPopup = () => {
     const popup = document.getElementById('myPopup');
     popup.classList.toggle('show');
-    console.log('is this okay');
 }
 
 const sendToContainer = (taskDiv) => {
     const taskContainer = document.getElementById('task-container');
     taskContainer.appendChild(taskDiv);
 }
-
 
 
 const renderProjectContainer = () => {

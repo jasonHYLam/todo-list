@@ -10,11 +10,13 @@ import "./form.css"
 import { setPriorityColor } from "./changingHTMLElement";
 
 let isInboxOrDailyOrWeeklyOrProject;
+let editOrAdd;
 
 const addTodoButton = document.getElementById('add-todo-button');
 
 addTodoButton.addEventListener('click', (e) => {
     if (formNotExist()) {
+        editOrAdd = 'add';
         // renderTaskForm();
         renderGeneralTaskForm('new');
     }
@@ -24,7 +26,6 @@ addTodoButton.addEventListener('click', (e) => {
 document.addEventListener('click', (e)=> {
     if (e.target.id == 'submit-todo-button') {
 
-        console.log('where is the error');
         let currentForm = returnTaskFormValues();
         if (isFormComplete(currentForm)) {
 
@@ -32,6 +33,9 @@ document.addEventListener('click', (e)=> {
                 console.log('you utter dolt');
                 showPopup();
             } else {
+
+
+                console.log('was this okay');
                 const newTask = createNewTask(currentForm);
                 addToTaskList(newTask);
                 addToProject(newTask, findProjectSelectMatch());
@@ -95,12 +99,11 @@ document.addEventListener('click', function(event) {
     if (event.target.classList.contains('edit-button-for-task')) {
         let task = event.target.parentNode;
         // setPriorityColor(getTaskInTaskList(task));
+        editOrAdd = 'edit';
         setCurrentProject(getProjectThatContainsTask(task));
         setCurrentTask(getTaskInTaskList(task));
-        console.log('lets kneecap this pussy');
         renderGeneralTaskForm('edit');
         populateFormForTaskToBeEdited(task, getCurrentTask());
-        console.log('is this okay');
     }
 })
 
@@ -110,8 +113,6 @@ document.addEventListener('click', function(event) {
         let task = event.target.parentNode.parentNode;
         
 
-        // editTask(getTaskInTaskList(task), returnEditTaskFormValues());
-        // editTaskInProject(getCurrentProjectInProjectArray(), returnEditTaskFormValues(), getCurrentTask());
         editTask(getTaskInTaskList(task),returnTaskFormValues());
         editTaskInProject(getCurrentProjectInProjectArray(),returnTaskFormValues(), getCurrentTask());
 
