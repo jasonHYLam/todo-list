@@ -26,6 +26,7 @@ addTodoButton.addEventListener('click', (e) => {
 document.addEventListener('click', (e)=> {
     if (e.target.id == 'submit-todo-button') {
 
+        console.log(editOrAdd);
         let currentForm = returnTaskFormValues();
         if (isFormComplete(currentForm)) {
 
@@ -38,8 +39,7 @@ document.addEventListener('click', (e)=> {
                     const newTask = createNewTask(currentForm);
                     addToTaskList(newTask);
                     addToProject(newTask, findProjectSelectMatch());
-
-                    setPriorityColor(newTask);
+                    // setPriorityColor(newTask);
 
                 } else if (editOrAdd == 'edit') {
                     let task = getCurrentTaskAsDOM();
@@ -61,7 +61,7 @@ document.addEventListener('click', (e)=> {
                     }; 
                 }
                 populateStorage();
-                setUpTasks(getCurrentProjectTasks());
+                console.log('omggg hi hi hi hi')
 
 
                 setCurrentProject(findProjectSelectMatch());
@@ -251,7 +251,6 @@ document.addEventListener('click', (e) => {
 // on page load
 renderTaskContainer();
 isInboxOrDailyOrWeeklyOrProject = 'inbox';
-console.log(taskArrayInStorage());
 if (!projectsExistInStorage()) {
     const defaultProject = createNewProject('default');
     addNewProjectToList(defaultProject);
@@ -260,9 +259,8 @@ if (!projectsExistInStorage()) {
 
 } else {
     setListsFromLocalStorage();
-   setUpTasks(getTaskList());
 }
-console.log(getTaskList());
+setUpTasks(getTaskList());
 renderProjectContainer();
 setUpProjects(getProjectsList());
 

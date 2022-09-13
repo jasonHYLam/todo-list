@@ -31,6 +31,7 @@ const populateStorage = () => {
     localStorage.setItem('projectArray', JSON.stringify(projectsList));
     localStorage.setItem('taskArray', JSON.stringify(tasksList));
     setListsFromLocalStorage();
+    console.log('this working dog');
     
 
     // console.log(getTaskList());

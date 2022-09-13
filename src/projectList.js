@@ -10,10 +10,6 @@ const getCurrentProject = () => {
     return currentProject;
 }
 
-const getCurrentProjectTasks = () => {
-    return getCurrentProjectInProjectArray().tasksList;
-
-}
 
 const setCurrentProject = (project) => {
     currentProject = project;
@@ -69,8 +65,15 @@ const deleteProject = (index) => {
     projectsList.splice(index, 1);
 }
 
+const getCurrentProjectTasks = () => {
+    return getCurrentProjectInProjectArray().tasksList;
+
+}
 
 const getCurrentProjectInProjectArray = () => {
+    console.log('lets investigate this');
+    console.log(getCurrentProject());
+    console.log(getCurrentProject().title);
 
     const getProjectInArrayThatMatchesCurrentProject = (projectFromArray) => {
         return projectFromArray.title == getCurrentProject().title;
