@@ -62,10 +62,10 @@ const  getProjectThatContainsTask = (taskInDOM) => {
 // const editTask = (index, newValues) => {
 const editTask = (taskInTaskList, newValues) => {
     const toEdit = taskInTaskList;
-    toEdit.title = newValues.newTitle;
-    toEdit.description = newValues.newDesc;
-    toEdit.dueDate = newValues.newDueDate;
-    toEdit.priority = newValues.newPriority;
+    toEdit.title = newValues.titleValue;
+    toEdit.description = newValues.descValue;
+    toEdit.dueDate = newValues.dateValue;
+    toEdit.priority = newValues.priorityValue;
 }
 
 const getTaskInListFromIndex = (index) => {

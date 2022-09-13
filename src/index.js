@@ -26,7 +26,6 @@ addTodoButton.addEventListener('click', (e) => {
 document.addEventListener('click', (e)=> {
     if (e.target.id == 'submit-todo-button') {
 
-        console.log(editOrAdd);
         let currentForm = returnTaskFormValues();
         if (isFormComplete(currentForm)) {
 
@@ -44,7 +43,6 @@ document.addEventListener('click', (e)=> {
                 } else if (editOrAdd == 'edit') {
                     let task = getCurrentTaskAsDOM();
                     const clonedTask = {...getTaskInTaskList(task)};
-                    console.log(clonedTask);
                     editTask(getTaskInTaskList(task),returnTaskFormValues());
                     editTaskInProject(getCurrentProjectInProjectArray(),returnTaskFormValues(), clonedTask);
 
@@ -52,7 +50,7 @@ document.addEventListener('click', (e)=> {
                     console.log(checkIfCurrentProjectMatchesProjectSelectValue());
 
                     if (checkIfCurrentProjectMatchesProjectSelectValue()) {
-
+                        console.log('shouldnt be deleted dog');
                     } else {
                         console.log('does this happen');
                         deleteTaskInProject(getCurrentProject(), getIndexOfTaskInProject(task));
@@ -65,6 +63,9 @@ document.addEventListener('click', (e)=> {
 
 
                 setCurrentProject(findProjectSelectMatch());
+                console.log(getTaskList());
+                console.log(getCurrentProject());
+                console.log(isInboxOrDailyOrWeeklyOrProject);
 
                 switch(isInboxOrDailyOrWeeklyOrProject) {
                     case 'inbox':

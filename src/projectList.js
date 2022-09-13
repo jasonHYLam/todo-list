@@ -33,19 +33,21 @@ const addNewProjectToList = (newProject) => {
 
 const editTaskInProject = (project, newValues, taskToBeEdited) => {
 
-    console.log('hhhhhh');
-    console.log(taskToBeEdited);
     const projectTasks = project.tasksList;
     const isTaskMatching = (taskInProject) => {
         return taskInProject.title == taskToBeEdited.title;
     } 
     const matchingTask = projectTasks.find(isTaskMatching);
-    console.log(matchingTask);
     
-    matchingTask.title = newValues.newTitle;
-    matchingTask.description = newValues.newDesc;
-    matchingTask.dueDate = newValues.newDueDate;
-    matchingTask.priority = newValues.newPriority;
+    console.log('new values denko');
+    console.log(newValues)
+    matchingTask.title = newValues.titleValue;
+    matchingTask.description = newValues.descValue;
+    matchingTask.dueDate = newValues.dateValue;
+    matchingTask.priority = newValues.priorityValue;
+    console.log('this should be the new title');
+    console.log(matchingTask.title);
+
 }
 
 const getIndexOfTaskInProject = (task) => {
@@ -71,10 +73,6 @@ const getCurrentProjectTasks = () => {
 }
 
 const getCurrentProjectInProjectArray = () => {
-    console.log('lets investigate this');
-    console.log(getCurrentProject());
-    console.log(getCurrentProject().title);
-
     const getProjectInArrayThatMatchesCurrentProject = (projectFromArray) => {
         return projectFromArray.title == getCurrentProject().title;
     }
