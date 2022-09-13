@@ -11,6 +11,17 @@ let taskList = [];
 
 let currentTask;
 
+let currentTaskAsDOM;
+
+const getCurrentTaskAsDOM = () => {
+    return currentTaskAsDOM;
+}
+
+const setCurrentTaskAsDOM = (value) => {
+    currentTaskAsDOM = value;
+
+}
+
 const getCurrentTask = () => {
     return currentTask;
 }
@@ -36,12 +47,9 @@ const setTaskList = (newTaskList) => {
 const getTaskInTaskList = (task) => {
 
     const titleOfTask = (task.querySelector('.task-title').textContent);
-
     const matchTaskTitle = (taskInTaskList) => {
         return taskInTaskList.title == titleOfTask;
     }
-
-    console.log(getTaskList().find(matchTaskTitle));
     return getTaskList().find(matchTaskTitle);
 }
 
@@ -173,4 +181,8 @@ export {
     getIndexOfTaskInList,
 
     repeatedTaskTitleExists,
+
+    getCurrentTaskAsDOM,
+    setCurrentTaskAsDOM,
+
 };

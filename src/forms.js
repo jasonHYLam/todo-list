@@ -90,13 +90,6 @@ const populateFormForTaskToBeEdited = (taskElement, taskData) => {
     const titleInput = document.querySelector('#task-title');
     const descInput = document.querySelector('#task-desc');
 
-
-    // const form = document.createElement('div');
-    // form.classList.add('form-for-task-to-be-edited');
-    // taskElement.appendChild(form);
-    console.log('IM GONNA IMOOOOOORSE');
-    console.log(taskData);
-
     titleInput.value = taskData.title;
 
     descInput.value = taskData.description;
@@ -124,14 +117,6 @@ const populateFormForTaskToBeEdited = (taskElement, taskData) => {
 
     const projectToMoveTo = document.querySelector('#project-select');
     projectToMoveTo.value = getProjectThatContainsTask(taskElement).title;
-    // for (const project of getProjectsList()) {
-    //     const projectTitle = document.createElement('option');
-    //     projectTitle.textContent = project.title;
-    //     projectToMoveTo.appendChild(projectTitle);
-    // }
-
-    // const editTodoButton = document.createElement('button');
-    // editTodoButton.setAttribute('type', 'button');
 
 //THE BELOW IS EXTREMELY FUCKN IMP
 

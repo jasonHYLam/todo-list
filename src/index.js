@@ -1,9 +1,9 @@
 
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues, formNotExist, populateFormForTaskToBeEdited} from "./forms";
-import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList, repeatedTaskTitleExists} from "./taskListModule";
+import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList, repeatedTaskTitleExists, setCurrentTaskAsDOM, getCurrentTaskAsDOM} from "./taskListModule";
 import {getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray, getIndexOfTaskInProject} from "./projectList";
 import {renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay, showPopup, hideTaskFormContainer, renderGeneralTaskForm} from "./render";
-import {populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, setListsFromLocalStorage } from "./storage";
+import {populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, setListsFromLocalStorage, projectArrayInStorage, taskArrayInStorage } from "./storage";
 import "./style.css"
 import "./popup.css"
 import "./form.css"
@@ -34,13 +34,35 @@ document.addEventListener('click', (e)=> {
                 showPopup();
             } else {
 
+                if (editOrAdd == 'add') {
+                    const newTask = createNewTask(currentForm);
+                    addToTaskList(newTask);
+                    addToProject(newTask, findProjectSelectMatch());
 
-                console.log('was this okay');
-                const newTask = createNewTask(currentForm);
-                addToTaskList(newTask);
-                addToProject(newTask, findProjectSelectMatch());
+                    setPriorityColor(newTask);
 
-                setPriorityColor(newTask);
+                } else if (editOrAdd == 'edit') {
+                    let task = getCurrentTaskAsDOM();
+                    const clonedTask = {...getTaskInTaskList(task)};
+                    console.log(clonedTask);
+                    editTask(getTaskInTaskList(task),returnTaskFormValues());
+                    editTaskInProject(getCurrentProjectInProjectArray(),returnTaskFormValues(), clonedTask);
+
+                    console.log('oh nyo');
+                    console.log(checkIfCurrentProjectMatchesProjectSelectValue());
+
+                    if (checkIfCurrentProjectMatchesProjectSelectValue()) {
+
+                    } else {
+                        console.log('does this happen');
+                        deleteTaskInProject(getCurrentProject(), getIndexOfTaskInProject(task));
+                        setCurrentProject(findProjectSelectMatch());
+                        addToProject(getCurrentTask(), getCurrentProject());
+                    }; 
+                }
+                populateStorage();
+                setUpTasks(getCurrentProjectTasks());
+
 
                 setCurrentProject(findProjectSelectMatch());
 
@@ -57,7 +79,7 @@ document.addEventListener('click', (e)=> {
                     case 'project':
                         setUpTasks(getCurrentProjectTasks());
                 }
-                populateStorage();
+                // populateStorage();
                 hideTaskFormContainer();
                 }
         }
@@ -100,34 +122,36 @@ document.addEventListener('click', function(event) {
         let task = event.target.parentNode;
         // setPriorityColor(getTaskInTaskList(task));
         editOrAdd = 'edit';
+        setCurrentTaskAsDOM(task);
         setCurrentProject(getProjectThatContainsTask(task));
         setCurrentTask(getTaskInTaskList(task));
+
         renderGeneralTaskForm('edit');
         populateFormForTaskToBeEdited(task, getCurrentTask());
     }
 })
 
-//click on submit edit task
-document.addEventListener('click', function(event) {
-    if (event.target.id == 'submit-edit-todo-button') {
-        let task = event.target.parentNode.parentNode;
+// //click on submit edit task
+// document.addEventListener('click', function(event) {
+//     if (event.target.id == 'submit-edit-todo-button') {
+//         let task = event.target.parentNode.parentNode;
         
 
-        editTask(getTaskInTaskList(task),returnTaskFormValues());
-        editTaskInProject(getCurrentProjectInProjectArray(),returnTaskFormValues(), getCurrentTask());
+//         editTask(getTaskInTaskList(task),returnTaskFormValues());
+//         editTaskInProject(getCurrentProjectInProjectArray(),returnTaskFormValues(), getCurrentTask());
 
-        if (checkIfCurrentProjectMatchesProjectSelectValue()) {
+//         if (checkIfCurrentProjectMatchesProjectSelectValue()) {
 
-        } else {
-            deleteTaskInProject(getCurrentProject(), getIndexOfTaskInProject(task));
-            setCurrentProject(findProjectSelectMatch());
-            addToProject(getCurrentTask(), getCurrentProject());
-        }; 
+//         } else {
+//             deleteTaskInProject(getCurrentProject(), getIndexOfTaskInProject(task));
+//             setCurrentProject(findProjectSelectMatch());
+//             addToProject(getCurrentTask(), getCurrentProject());
+//         }; 
 
-        populateStorage();
-        setUpTasks(getCurrentProjectTasks());
-    }
-})
+//         populateStorage();
+//         setUpTasks(getCurrentProjectTasks());
+//     }
+// })
 
 //open project form
 document.addEventListener('click', function(event) {
@@ -154,6 +178,7 @@ document.addEventListener('click', function(event) {
 //click on project in sidebar
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains("project-title")) {
+        console.log('hewwo');
         isInboxOrDailyOrWeeklyOrProject = 'project';
         let project = event.target.parentNode;
         let projectIndex = Array.from(project.parentNode.children).indexOf(project);
@@ -225,15 +250,20 @@ document.addEventListener('click', (e) => {
 
 // on page load
 renderTaskContainer();
-setListsFromLocalStorage();
-
+isInboxOrDailyOrWeeklyOrProject = 'inbox';
+console.log(taskArrayInStorage());
 if (!projectsExistInStorage()) {
     const defaultProject = createNewProject('default');
     addNewProjectToList(defaultProject);
     setCurrentProject(defaultProject);
+    populateStorage();
+
 } else {
-   setProjectListFromLocalStorage();
+    setListsFromLocalStorage();
    setUpTasks(getTaskList());
 }
+console.log(getTaskList());
 renderProjectContainer();
 setUpProjects(getProjectsList());
+
+// localStorage.clear();

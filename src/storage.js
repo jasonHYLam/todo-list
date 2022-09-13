@@ -37,6 +37,10 @@ const populateStorage = () => {
     // console.log(getProjectsList());
 }
 
+const setListFromLocalStorageOnFirstLoad = () => {
+
+}
+
 
 const setListsFromLocalStorage = () => {
     setProjectListFromLocalStorage();
@@ -57,9 +61,19 @@ const tasksExistInStorage = () => {
 
 const projectsExistInStorage = () => {
     // console.log(localStorage.getItem('projectArray'))
-    return (localStorage.getItem('projectArray') != '[]')
+    return (
+        localStorage.getItem('projectArray') != '[]' &&
+        localStorage.getItem('projectArray') != null
+        )
 }
 
+const projectArrayInStorage = () => {
+    return localStorage.getItem('projectArray');
+}
+
+const taskArrayInStorage = () => {
+    return localStorage.getItem('taskArray');
+}
 export {
     storageAvailable,
     populateStorage,
@@ -67,4 +81,7 @@ export {
     setProjectListFromLocalStorage,
     tasksExistInStorage,
     setListsFromLocalStorage,
+
+    projectArrayInStorage,
+    taskArrayInStorage,
 }

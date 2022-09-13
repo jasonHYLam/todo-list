@@ -1,5 +1,6 @@
 import {Project} from "./projectClass";
 import {returnProjectSelectValue} from "./forms.js";
+import { getCurrentTask } from "./taskListModule";
 
 let projectsList = [];
 
@@ -36,12 +37,14 @@ const addNewProjectToList = (newProject) => {
 
 const editTaskInProject = (project, newValues, taskToBeEdited) => {
 
+    console.log('hhhhhh');
+    console.log(taskToBeEdited);
     const projectTasks = project.tasksList;
-
     const isTaskMatching = (taskInProject) => {
         return taskInProject.title == taskToBeEdited.title;
     } 
     const matchingTask = projectTasks.find(isTaskMatching);
+    console.log(matchingTask);
     
     matchingTask.title = newValues.newTitle;
     matchingTask.description = newValues.newDesc;

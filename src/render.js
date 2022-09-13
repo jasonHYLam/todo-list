@@ -344,10 +344,7 @@ const removeFromTaskContainer = () => {
 
 const toggleTaskDetailsDisplay = (taskDiv) => {
 
-    console.log(taskDiv)
     const taskDetailsContainer = taskDiv.querySelector('.task-details-container');
-    console.log(taskDiv)
-    console.log(taskDetailsContainer);
 
     if (taskDetailsContainer.style.display === 'none') {
         taskDetailsContainer.style.display = 'block';
