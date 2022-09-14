@@ -10,6 +10,17 @@ const mainDisplay = document.getElementById('main-display');
 
 const sidebar = document.getElementById('sidebar');
 
+let isInboxOrProject;
+
+const getIsInboxOrProject = () => {
+    return isInboxOrProject;
+}
+
+const setIsInboxOrProject = (value) => {
+    isInboxOrProject = value;
+}
+
+
 
 const renderGeneralTaskForm = (newOrEdit) => {
     const outerTaskFormContainer = document.createElement('div');
@@ -354,6 +365,10 @@ const toggleTaskDetailsDisplay = (taskDiv) => {
 
 }
 
+const renderProjectTitle = () => {
+    if ()
+}
+
 
 
 export {
@@ -371,4 +386,7 @@ export {
     hideTaskFormContainer,
 
     renderGeneralTaskForm,
+
+    getIsInboxOrProject,
+    setIsInboxOrProject,
 }

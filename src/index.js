@@ -2,7 +2,7 @@
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues, formNotExist, populateFormForTaskToBeEdited} from "./forms";
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList, repeatedTaskTitleExists, setCurrentTaskAsDOM, getCurrentTaskAsDOM} from "./taskListModule";
 import {getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray, getIndexOfTaskInProject} from "./projectList";
-import {renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay, showPopup, hideTaskFormContainer, renderGeneralTaskForm} from "./render";
+import {renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay, showPopup, hideTaskFormContainer, renderGeneralTaskForm, getIsInboxOrProject, setIsInboxOrProject} from "./render";
 import {populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, setListsFromLocalStorage, projectArrayInStorage, taskArrayInStorage } from "./storage";
 import "./style.css"
 import "./popup.css"
@@ -46,26 +46,17 @@ document.addEventListener('click', (e)=> {
                     editTask(getTaskInTaskList(task),returnTaskFormValues());
                     editTaskInProject(getCurrentProjectInProjectArray(),returnTaskFormValues(), clonedTask);
 
-                    console.log('oh nyo');
-                    console.log(checkIfCurrentProjectMatchesProjectSelectValue());
-
                     if (checkIfCurrentProjectMatchesProjectSelectValue()) {
-                        console.log('shouldnt be deleted dog');
                     } else {
-                        console.log('does this happen');
                         deleteTaskInProject(getCurrentProject(), getIndexOfTaskInProject(task));
                         setCurrentProject(findProjectSelectMatch());
                         addToProject(getCurrentTask(), getCurrentProject());
                     }; 
                 }
                 populateStorage();
-                console.log('omggg hi hi hi hi')
-
-
                 setCurrentProject(findProjectSelectMatch());
-                console.log(getTaskList());
-                console.log(getCurrentProject());
-                console.log(isInboxOrDailyOrWeeklyOrProject);
+
+                console.log('does it not hide, what about here');
 
                 switch(isInboxOrDailyOrWeeklyOrProject) {
                     case 'inbox':
@@ -81,6 +72,7 @@ document.addEventListener('click', (e)=> {
                         setUpTasks(getCurrentProjectTasks());
                 }
                 // populateStorage();
+                console.log('does it not hide');
                 hideTaskFormContainer();
                 }
         }
@@ -98,7 +90,8 @@ document.addEventListener('click', function(event) {
         deleteTaskInProject(getCurrentProjectInProjectArray(), getIndexOfTaskInProject(task));
         console.log(getCurrentProject());
 
-        switch(isInboxOrDailyOrWeeklyOrProject) {
+        // switch(isInboxOrDailyOrWeeklyOrProject) {
+        switch(getIsInboxOrProject()) {
             case 'inbox':
                 setUpTasks(getTaskList());
                 break;
@@ -180,7 +173,8 @@ document.addEventListener('click', function(event) {
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains("project-title")) {
         console.log('hewwo');
-        isInboxOrDailyOrWeeklyOrProject = 'project';
+        setIsInboxOrProject('project');
+        // isInboxOrDailyOrWeeklyOrProject = 'project';
         let project = event.target.parentNode;
         let projectIndex = Array.from(project.parentNode.children).indexOf(project);
         renderProjectInMainDisplay(projectIndex);
@@ -202,7 +196,8 @@ document.addEventListener('click', function(event) {
 //click on inbox
 document.addEventListener('click', function(event) {
     if (event.target.id == 'inbox') {
-        isInboxOrDailyOrWeeklyOrProject = 'inbox';
+    // isInboxOrDailyOrWeeklyOrProject = 'inbox';
+    setIsInboxOrProject('inbox');
         setUpTasks(getTaskList());
     }
 })
@@ -210,7 +205,8 @@ document.addEventListener('click', function(event) {
 //click on daily
 document.addEventListener('click', function(event) {
     if (event.target.id == 'daily') {
-        isInboxOrDailyOrWeeklyOrProject = 'daily';
+        // isInboxOrDailyOrWeeklyOrProject = 'daily';
+        setIsInboxOrProject('daily');
         setUpTasks(getDailyTasks());
     }
 })
@@ -218,7 +214,8 @@ document.addEventListener('click', function(event) {
 //click on weekly
 document.addEventListener('click', function(event) {
     if (event.target.id == 'weekly') {
-        isInboxOrDailyOrWeeklyOrProject = 'weekly';
+        // isInboxOrDailyOrWeeklyOrProject = 'weekly';
+        setIsInboxOrProject('weekly');
         getWeeklyTasks();
     }
 })
