@@ -2,7 +2,7 @@
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues, formNotExist, populateFormForTaskToBeEdited} from "./forms";
 import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList, repeatedTaskTitleExists, setCurrentTaskAsDOM, getCurrentTaskAsDOM} from "./taskListModule";
 import {getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray, getIndexOfTaskInProject} from "./projectList";
-import {renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay, showPopup, hideTaskFormContainer, renderGeneralTaskForm, getIsInboxOrProject, setIsInboxOrProject} from "./render";
+import {renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay, showPopup, hideTaskFormContainer, renderGeneralTaskForm, getIsInboxOrProject, setIsInboxOrProject, renderProjectTitle} from "./render";
 import {populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, setListsFromLocalStorage, projectArrayInStorage, taskArrayInStorage } from "./storage";
 import "./style.css"
 import "./popup.css"
@@ -58,7 +58,7 @@ document.addEventListener('click', (e)=> {
 
                 console.log('does it not hide, what about here');
 
-                switch(isInboxOrDailyOrWeeklyOrProject) {
+                switch(getIsInboxOrProject()) {
                     case 'inbox':
                         setUpTasks(getTaskList());
                         break;
@@ -172,14 +172,13 @@ document.addEventListener('click', function(event) {
 //click on project in sidebar
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains("project-title")) {
-        console.log('hewwo');
         setIsInboxOrProject('project');
-        // isInboxOrDailyOrWeeklyOrProject = 'project';
         let project = event.target.parentNode;
         let projectIndex = Array.from(project.parentNode.children).indexOf(project);
-        renderProjectInMainDisplay(projectIndex);
-
+        // renderProjectInMainDisplay(projectIndex);
         setCurrentProject(getProjectsList()[projectIndex]);
+        setUpTasks(getProjectsList()[projectIndex].tasksList)
+
     }
 })
 
@@ -196,8 +195,7 @@ document.addEventListener('click', function(event) {
 //click on inbox
 document.addEventListener('click', function(event) {
     if (event.target.id == 'inbox') {
-    // isInboxOrDailyOrWeeklyOrProject = 'inbox';
-    setIsInboxOrProject('inbox');
+        setIsInboxOrProject('inbox');
         setUpTasks(getTaskList());
     }
 })
@@ -248,7 +246,7 @@ document.addEventListener('click', (e) => {
 
 // on page load
 renderTaskContainer();
-isInboxOrDailyOrWeeklyOrProject = 'inbox';
+setIsInboxOrProject('inbox');
 if (!projectsExistInStorage()) {
     const defaultProject = createNewProject('default');
     addNewProjectToList(defaultProject);
@@ -258,6 +256,7 @@ if (!projectsExistInStorage()) {
 } else {
     setListsFromLocalStorage();
 }
+// renderProjectTitle();
 setUpTasks(getTaskList());
 renderProjectContainer();
 setUpProjects(getProjectsList());

@@ -1,6 +1,6 @@
 import { formattedDate } from "./date";
 import { populateFormForNewTask } from "./forms";
-import { getProjectsList } from "./projectList";
+import { getCurrentProject, getProjectsList } from "./projectList";
 import { getTaskInTaskList } from "./taskListModule";
 
 
@@ -9,6 +9,8 @@ const wrapper = document.getElementById('wrapper');
 const mainDisplay = document.getElementById('main-display');
 
 const sidebar = document.getElementById('sidebar');
+
+const projectTitle = document.getElementById('project-title');
 
 let isInboxOrProject;
 
@@ -153,6 +155,8 @@ const renderTaskContainer = () => {
 const setUpTasks = (taskArray) => {
     takeDownRenderedTasksOrProjects('tasks');
     renderTasks(taskArray);
+    // console.log(getCurrentProject().title);
+    renderProjectTitle();
 }
 
 const takeDownRenderedTasksOrProjects = (tasksOrProjects) => {
@@ -189,6 +193,10 @@ const renderTasks = (taskArray) => {
         sendToContainer(outerTaskDiv);
         renderTaskDetailsContainer(task, outerTaskDiv);
     }
+}
+
+const renderTasksAndTitle = () => {
+    renderTasks()
 }
 
 const renderTaskText = (task, taskDiv) => {
@@ -368,6 +376,17 @@ const toggleTaskDetailsDisplay = (taskDiv) => {
 const renderProjectTitle = () => {
     switch (isInboxOrProject) {
         case 'inbox':
+            projectTitle.textContent = 'inbox';
+            break;
+        case 'daily':
+            projectTitle.textContent = 'daily';
+            break;
+        case 'weekly':
+            projectTitle.textContent = 'weekly';
+            break;
+        case 'project':
+            console.log(getCurrentProject().title);
+            projectTitle.textContent = getCurrentProject().title;
             break;
     }
 }
@@ -392,4 +411,5 @@ export {
 
     getIsInboxOrProject,
     setIsInboxOrProject,
+    renderProjectTitle,
 }
