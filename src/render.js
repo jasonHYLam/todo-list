@@ -5,12 +5,12 @@ import { getTaskInTaskList } from "./taskListModule";
 
 
 const wrapper = document.getElementById('wrapper');
-
 const mainDisplay = document.getElementById('main-display');
-
 const sidebar = document.getElementById('sidebar');
-
 const projectTitle = document.getElementById('project-title');
+const projectTitleInSidebar = document.getElementById('project-title-in-sidebar');
+const addProjectButton = document.getElementById('add-project-in-sidebar');
+const projectContainer = document.getElementById('project-container');
 
 let isInboxOrProject;
 
@@ -277,12 +277,12 @@ const sendToContainer = (taskDiv) => {
 }
 
 
-const renderProjectContainer = () => {
-    const projectContainer = document.createElement('div');
-    projectContainer.id = 'project-container';
+// const renderProjectContainer = () => {
+//     const projectContainer = document.createElement('div');
+//     projectContainer.id = 'project-container';
 
-    sidebar.appendChild(projectContainer);
-}
+//     sidebar.appendChild(projectContainer);
+// }
 
 const setUpProjects = (projectArray) => {
 
@@ -391,12 +391,27 @@ const renderProjectTitle = () => {
     }
 }
 
+const setColorOfProjectInSidebar = (project) => {
+    const homeInSideBar = document.querySelectorAll('.home-in-sidebar');
+    const projectsInSidebar = document.querySelectorAll('.project-div');
+
+    homeInSideBar.forEach(elementUnderHomeInSidebar => {
+        elementUnderHomeInSidebar.classList.remove('current-clicked-project');
+    })
+    
+    projectsInSidebar.forEach(elementUnderHomeInSidebar => {
+        elementUnderHomeInSidebar.classList.remove('current-clicked-project');
+    })
+
+    project.classList.add('current-clicked-project');
+}
+
 
 
 export {
     renderTaskContainer,
     setUpTasks,
-    renderProjectContainer,
+    // renderProjectContainer,
     setUpProjects,
 
     renderProjectForm,
@@ -412,4 +427,6 @@ export {
     getIsInboxOrProject,
     setIsInboxOrProject,
     renderProjectTitle,
+
+    setColorOfProjectInSidebar,
 }
