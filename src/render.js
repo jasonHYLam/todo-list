@@ -366,7 +366,10 @@ const toggleTaskDetailsDisplay = (taskDiv) => {
 }
 
 const renderProjectTitle = () => {
-    if ()
+    switch (isInboxOrProject) {
+        case 'inbox':
+            break;
+    }
 }
 
 
