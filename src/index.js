@@ -7,7 +7,7 @@ import {populateStorage, projectsExistInStorage, setProjectListFromLocalStorage,
 import "./style.css"
 import "./popup.css"
 import "./form.css"
-import { setPriorityColor } from "./changingHTMLElement";
+import { setCurrentTaskForSettingPriorityColor, setPriorityColor, setPriorityColorOfCurrentTask, setPriorityOfCurrentTask } from "./changingHTMLElement";
 
 let isInboxOrDailyOrWeeklyOrProject;
 let editOrAdd;
@@ -34,12 +34,14 @@ document.addEventListener('click', (e)=> {
                 showPopup();
             } else {
 
-                setPriorityColor(newTask);
+
+                setPriorityOfCurrentTask();
 
                 if (editOrAdd == 'add') {
                     const newTask = createNewTask(currentForm);
                     addToTaskList(newTask);
                     addToProject(newTask, findProjectSelectMatch());
+                    setCurrentTaskForSettingPriorityColor(newTask);
 
                 } else if (editOrAdd == 'edit') {
                     let task = getCurrentTaskAsDOM();
@@ -53,11 +55,10 @@ document.addEventListener('click', (e)=> {
                         setCurrentProject(findProjectSelectMatch());
                         addToProject(getCurrentTask(), getCurrentProject());
                     }; 
+                    setCurrentTaskForSettingPriorityColor(getCurrentTask());
                 }
                 populateStorage();
                 setCurrentProject(findProjectSelectMatch());
-
-                console.log('does it not hide, what about here');
 
                 switch(getIsInboxOrProject()) {
                     case 'inbox':
@@ -72,8 +73,7 @@ document.addEventListener('click', (e)=> {
                     case 'project':
                         setUpTasks(getCurrentProjectTasks());
                 }
-                // populateStorage();
-                console.log('does it not hide');
+                setPriorityColorOfCurrentTask();
                 hideTaskFormContainer();
                 }
         }
@@ -91,7 +91,6 @@ document.addEventListener('click', function(event) {
         deleteTaskInProject(getCurrentProjectInProjectArray(), getIndexOfTaskInProject(task));
         console.log(getCurrentProject());
 
-        // switch(isInboxOrDailyOrWeeklyOrProject) {
         switch(getIsInboxOrProject()) {
             case 'inbox':
                 setUpTasks(getTaskList());
@@ -115,7 +114,6 @@ document.addEventListener('click', function(event) {
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('edit-button-for-task')) {
         let task = event.target.parentNode;
-        // setPriorityColor(getTaskInTaskList(task));
         editOrAdd = 'edit';
         setCurrentTaskAsDOM(task);
         setCurrentProject(getProjectThatContainsTask(task));
