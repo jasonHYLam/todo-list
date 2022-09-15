@@ -236,13 +236,21 @@ const renderTaskDetailsContainer = (task, outerTaskDiv) => {
     const taskDetailsContainer = document.createElement('div');
     taskDetailsContainer.className = 'task-details-container';
 
+    const taskDetailsContainerAbove = document.createElement('div');
     const taskDetailsContainerLeft = document.createElement('div');
     const taskDetailsContainerRight = document.createElement('div');
+    taskDetailsContainerAbove.appendChild(taskDetailsContainerLeft);
+    taskDetailsContainerAbove.appendChild(taskDetailsContainerRight);
+    const taskDetailsContainerBottom = document.createElement('div');
+
+    taskDetailsContainerAbove.className = 'task-details-container-above';
     taskDetailsContainerLeft.className = 'task-details-container-left';
     taskDetailsContainerRight.className = 'task-details-container-right';
+    taskDetailsContainerBottom.className = 'task-details-container-bottom';
 
-    taskDetailsContainer.appendChild(taskDetailsContainerLeft);
-    taskDetailsContainer.appendChild(taskDetailsContainerRight);
+    taskDetailsContainer.appendChild(taskDetailsContainerAbove);
+
+    taskDetailsContainer.appendChild(taskDetailsContainerBottom);
 
     const title = document.createElement('div');
     const description = document.createElement('div');
@@ -264,12 +272,7 @@ const renderTaskDetailsContainer = (task, outerTaskDiv) => {
     dueDate.textContent = task.dueDate;
     priority.textContent = task.priority;
 
-    // taskDetailsContainer.appendChild(title);
-    // taskDetailsContainer.appendChild(description);
-    // taskDetailsContainer.appendChild(dueDate);
-    // taskDetailsContainer.appendChild(priority);
-    
-    renderTaskClickables(taskDetailsContainer);
+    renderTaskClickables(taskDetailsContainerBottom);
 
     taskDetailsContainer.style.display = 'none';
     outerTaskDiv.appendChild(taskDetailsContainer);
@@ -284,14 +287,6 @@ const sendToContainer = (taskDiv) => {
     const taskContainer = document.getElementById('task-container');
     taskContainer.appendChild(taskDiv);
 }
-
-
-// const renderProjectContainer = () => {
-//     const projectContainer = document.createElement('div');
-//     projectContainer.id = 'project-container';
-
-//     sidebar.appendChild(projectContainer);
-// }
 
 const setUpProjects = (projectArray) => {
 

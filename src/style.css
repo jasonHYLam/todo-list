@@ -87,11 +87,23 @@ body {
 .task-details-container {
     width: 50vw;
     height: 100px;
-    background-color: red;
+    /* background-color: ; */
     /* display: none; */
     border: solid 1px white;
     display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.task-details-container-above {
+    display: grid;
     grid-template-columns: 1fr 1fr;
+    color: lightpink;
+}
+
+.task-details-container-bottom {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .task-details-container-left {
