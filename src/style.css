@@ -30,8 +30,9 @@ body {
 }
 .project-div,
 .home-in-sidebar {
-    background-color: #488db0;
+    /* background-color: #488db0; */
     margin-left: 20px;
+    margin-right: 20px;
     height: 45px;
 }
 
@@ -83,11 +84,12 @@ body {
     display: block;
 }
 
-#task-details-container {
+.task-details-container {
     width: 50vw;
     height: 40px;
     background-color: red;
     display: none;
+    border: solid 1px white;
 }
 
 #project-title {

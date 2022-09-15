@@ -38,7 +38,7 @@ document.addEventListener('click', (e)=> {
                     const newTask = createNewTask(currentForm);
                     addToTaskList(newTask);
                     addToProject(newTask, findProjectSelectMatch());
-                    // setPriorityColor(newTask);
+                    setPriorityColor(newTask);
 
                 } else if (editOrAdd == 'edit') {
                     let task = getCurrentTaskAsDOM();
@@ -125,28 +125,6 @@ document.addEventListener('click', function(event) {
     }
 })
 
-// //click on submit edit task
-// document.addEventListener('click', function(event) {
-//     if (event.target.id == 'submit-edit-todo-button') {
-//         let task = event.target.parentNode.parentNode;
-        
-
-//         editTask(getTaskInTaskList(task),returnTaskFormValues());
-//         editTaskInProject(getCurrentProjectInProjectArray(),returnTaskFormValues(), getCurrentTask());
-
-//         if (checkIfCurrentProjectMatchesProjectSelectValue()) {
-
-//         } else {
-//             deleteTaskInProject(getCurrentProject(), getIndexOfTaskInProject(task));
-//             setCurrentProject(findProjectSelectMatch());
-//             addToProject(getCurrentTask(), getCurrentProject());
-//         }; 
-
-//         populateStorage();
-//         setUpTasks(getCurrentProjectTasks());
-//     }
-// })
-
 //open project form
 document.addEventListener('click', function(event) {
     if (event.target.id == 'add-project-in-sidebar') {
@@ -171,14 +149,19 @@ document.addEventListener('click', function(event) {
 
 //click on project in sidebar
 document.addEventListener('click', function(event) {
-    if (event.target.classList.contains("project-div")) {
+    if (event.target.classList.contains("project-title")) {
+
+
         setIsInboxOrProject('project');
-        let project = event.target.parentNode;
+        // let project = event.target.parentNode;
+        let project = event.target.closest('.project-div');
+        console.log(project)
         let projectIndex = Array.from(project.parentNode.children).indexOf(project);
         // renderProjectInMainDisplay(projectIndex);
+        console.log('what seems to be the prob');
         setCurrentProject(getProjectsList()[projectIndex]);
         setUpTasks(getProjectsList()[projectIndex].tasksList)
-        setColorOfProjectInSidebar(event.target);
+        setColorOfProjectInSidebar(project);
     }
 })
 

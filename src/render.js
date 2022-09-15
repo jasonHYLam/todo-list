@@ -370,7 +370,6 @@ const toggleTaskDetailsDisplay = (taskDiv) => {
     } else {
         taskDetailsContainer.style.display = 'none';
     }
-
 }
 
 const renderProjectTitle = () => {
