@@ -204,11 +204,7 @@ const renderTaskText = (task, taskDiv) => {
         if (key == 'title') {
             const taskPropdiv = document.createElement('div');
             taskPropdiv.textContent = value;
-
-            if (key == 'title') {
-                taskPropdiv.className = 'task-title';
-            }
-
+            taskPropdiv.className = 'task-title';
             taskDiv.appendChild(taskPropdiv);
         }
     }
@@ -240,10 +236,23 @@ const renderTaskDetailsContainer = (task, outerTaskDiv) => {
     const taskDetailsContainer = document.createElement('div');
     taskDetailsContainer.className = 'task-details-container';
 
+    const taskDetailsContainerLeft = document.createElement('div');
+    const taskDetailsContainerRight = document.createElement('div');
+    taskDetailsContainerLeft.className = 'task-details-container-left';
+    taskDetailsContainerRight.className = 'task-details-container-right';
+
+    taskDetailsContainer.appendChild(taskDetailsContainerLeft);
+    taskDetailsContainer.appendChild(taskDetailsContainerRight);
+
     const title = document.createElement('div');
     const description = document.createElement('div');
     const dueDate = document.createElement('div');
     const priority = document.createElement('div');
+
+    taskDetailsContainerLeft.appendChild(title);
+    taskDetailsContainerLeft.appendChild(description);
+    taskDetailsContainerRight.appendChild(dueDate);
+    taskDetailsContainerRight.appendChild(priority);
 
     title.className = 'task-title';
     description.className = 'task-description';
@@ -255,10 +264,10 @@ const renderTaskDetailsContainer = (task, outerTaskDiv) => {
     dueDate.textContent = task.dueDate;
     priority.textContent = task.priority;
 
-    taskDetailsContainer.appendChild(title);
-    taskDetailsContainer.appendChild(description);
-    taskDetailsContainer.appendChild(dueDate);
-    taskDetailsContainer.appendChild(priority);
+    // taskDetailsContainer.appendChild(title);
+    // taskDetailsContainer.appendChild(description);
+    // taskDetailsContainer.appendChild(dueDate);
+    // taskDetailsContainer.appendChild(priority);
     
     renderTaskClickables(taskDetailsContainer);
 
@@ -366,7 +375,7 @@ const toggleTaskDetailsDisplay = (taskDiv) => {
     const taskDetailsContainer = taskDiv.querySelector('.task-details-container');
 
     if (taskDetailsContainer.style.display === 'none') {
-        taskDetailsContainer.style.display = 'block';
+        taskDetailsContainer.style.display = 'grid';
     } else {
         taskDetailsContainer.style.display = 'none';
     }
