@@ -146,3 +146,14 @@ body {
 .low-priority {
     background-color: oldlace;
 }
+
+.task-button {
+    background-color: #140a0a;
+    border: none;
+    color: lightcoral;
+    cursor: pointer;
+}
+
+.task-button:hover {
+    background-color: lightsalmon;
+}

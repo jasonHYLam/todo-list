@@ -212,9 +212,10 @@ const renderTaskText = (task, taskDiv) => {
 
 const renderTaskClickables = (taskDiv) => {
     //done checkbox
-    const doneCheckBox = document.createElement('input');
-    doneCheckBox.classList.add('done-check-box');
-    doneCheckBox.setAttribute('type', 'checkbox');
+    const markCompleteButtonInTask = document.createElement('button');
+    markCompleteButtonInTask.classList.add('task-button');
+    markCompleteButtonInTask.classList.add('mark-complete-button');
+    markCompleteButtonInTask.textContent = 'mark as complete';
 
     //buttons
     const editButtonInTask = document.createElement('button');
@@ -227,7 +228,7 @@ const renderTaskClickables = (taskDiv) => {
     deleteButtonInTask.classList.add('delete-button-for-task');
     deleteButtonInTask.textContent = 'delete';
 
-    taskDiv.appendChild(doneCheckBox);
+    taskDiv.appendChild(markCompleteButtonInTask);
     taskDiv.appendChild(editButtonInTask);
     taskDiv.appendChild(deleteButtonInTask);
 }
