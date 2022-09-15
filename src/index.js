@@ -34,11 +34,12 @@ document.addEventListener('click', (e)=> {
                 showPopup();
             } else {
 
+                setPriorityColor(newTask);
+
                 if (editOrAdd == 'add') {
                     const newTask = createNewTask(currentForm);
                     addToTaskList(newTask);
                     addToProject(newTask, findProjectSelectMatch());
-                    setPriorityColor(newTask);
 
                 } else if (editOrAdd == 'edit') {
                     let task = getCurrentTaskAsDOM();
