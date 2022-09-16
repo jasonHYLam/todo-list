@@ -2,7 +2,12 @@ import { formattedDate } from "./date";
 import { populateFormForNewTask } from "./forms";
 import { getCurrentProject, getProjectsList } from "./projectList";
 import { getTaskInTaskList } from "./taskListModule";
+// import {library, icon } from '@fortawesome/fontawesome-svg-core';
+// import {faPenToSquare, faCamera} from '@fortawesome/free-solid-svg-icons'
 
+// library.add(faPenToSquare, faCamera);
+
+// const editIcon = icon(faCamera);
 
 const wrapper = document.getElementById('wrapper');
 const mainDisplay = document.getElementById('main-display');
@@ -25,10 +30,14 @@ const setIsInboxOrProject = (value) => {
 
 
 const renderGeneralTaskForm = (newOrEdit) => {
+
+    const overlayForPopup = document.createElement('div');
+    overlayForPopup.id = 'overlay-for-popup';
     const outerTaskFormContainer = document.createElement('div');
     outerTaskFormContainer.id = 'outer-task-form-container';
 
-    wrapper.appendChild(outerTaskFormContainer);
+    wrapper.appendChild(overlayForPopup);
+    overlayForPopup.appendChild(outerTaskFormContainer);
 
     const taskFormContainer = document.createElement('div');
     outerTaskFormContainer.appendChild(taskFormContainer);
@@ -228,6 +237,7 @@ const renderTaskClickables = (taskDiv) => {
     deleteButtonInTask.classList.add('delete-button-for-task');
     deleteButtonInTask.textContent = 'delete';
 
+    // taskDiv.appendChild(editIcon);
     taskDiv.appendChild(markCompleteButtonInTask);
     taskDiv.appendChild(editButtonInTask);
     taskDiv.appendChild(deleteButtonInTask);
