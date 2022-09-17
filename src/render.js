@@ -2,12 +2,7 @@ import { formattedDate } from "./date";
 import { populateFormForNewTask } from "./forms";
 import { getCurrentProject, getProjectsList } from "./projectList";
 import { getTaskInTaskList } from "./taskListModule";
-// import {library, icon } from '@fortawesome/fontawesome-svg-core';
-// import {faPenToSquare, faCamera} from '@fortawesome/free-solid-svg-icons'
-
-// library.add(faPenToSquare, faCamera);
-
-// const editIcon = icon(faCamera);
+import "./popup.css";
 
 const wrapper = document.getElementById('wrapper');
 const mainDisplay = document.getElementById('main-display');
@@ -65,14 +60,23 @@ const renderGeneralTaskForm = (newOrEdit) => {
     todoForm.appendChild(todoFormLeft);
     todoForm.appendChild(todoFormRight);
 
-    todoFormLeft.id = 'todoFormLeft';
-    todoFormRight.id = 'todoFormRight';
+    todoFormLeft.id = 'todo-form-left';
+    todoFormRight.id = 'todo-form-right';
 
 
     const titleTitle = document.createElement('p');
     titleTitle.textContent = 'title';
     const titleInput = document.createElement('input');
     titleInput.id = 'task-title';
+
+    const popup = document.createElement('div');
+    popup.className = 'popup';
+    const popupText = document.createElement('span');
+    popupText.className = 'popupText';
+    popupText.id = 'myPopup';
+    popupText.textContent = 'Title already exists';
+    titleInput.appendChild(popup);
+    popup.appendChild(popupText)
 
     const descTitle = document.createElement('p');
     descTitle.textContent = 'description';
@@ -124,7 +128,6 @@ const renderGeneralTaskForm = (newOrEdit) => {
     if (newOrEdit == 'new') {
         populateFormForNewTask();
     } else if (newOrEdit == 'edit') {
-        // renderFormForTaskToBeEdited();
     }
 
     todoFormRight.appendChild(dateTitle);
@@ -141,6 +144,8 @@ const renderGeneralTaskForm = (newOrEdit) => {
     submitTodoButton.textContent = 'add';
 
     const cancelButton = document.createElement('button');
+    cancelButton.setAttribute('type', 'button');
+    cancelButton.id = 'close-task-form-button';
     cancelButton.textContent = 'x';
 
     todoForm.appendChild(submitTodoButton);
@@ -167,7 +172,6 @@ const renderTaskContainer = () => {
 const setUpTasks = (taskArray) => {
     takeDownRenderedTasksOrProjects('tasks');
     renderTasks(taskArray);
-    // console.log(getCurrentProject().title);
     renderProjectTitle();
 }
 

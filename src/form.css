@@ -4,24 +4,46 @@
     row-gap: 10px;
 }
 
-#outer-task-form-container {
+/* #outer-task-form-container {
 
     position: absolute;
-}
+} */
 
+#outer-task-form-container {
+    position: absolute;
+    z-index: 101;
+    top: 20%;
+    left: 20%;
+    transition: transform 250ms, opacity 400ms;
+}
 #task-form-container {
     display:grid;
     grid-template-rows: 1fr 5fr;
     position: fixed;
     height: 300px;
     width: 700px;
-    background-color: antiquewhite;
+    background-color:#242020;
+    color: lightsalmon;
+    padding: 40px;
+}
 
+#todo-form-left {
+    border: 1px white solid;
+}
+
+#todo-form-right {
+    border: 1px white solid;
+}
+#form-below-header {
 
 }
 
-#form-below-header {
+#submit-todo-button {
+    width: 40px;
+}
 
+#close-task-form-button {
+    width: 40px;
 }
 
 #task-form {

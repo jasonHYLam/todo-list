@@ -12,13 +12,13 @@ body {
     background: rgba(0, 0, 0, .6);
 }
 
-#outer-task-form-container {
+/* #outer-task-form-container {
     position: relative;
     z-index: 101;
     top: 20%;
     left: 20%;
     transition: transform 250ms, opacity 400ms;
-}
+} */
 
 #wrapper {
     display: grid;
@@ -117,6 +117,7 @@ body {
 .task-details-container-above {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding: 20px;
     color: lightpink;
 }
 
@@ -176,4 +177,11 @@ body {
 
 .task-button:hover {
     background-color: lightsalmon;
+    color: oldlace;
+}
+
+.delete-project-button,
+#add-project-in-sidebar,
+#add-todo-button {
+    cursor: pointer;
 }

@@ -5,7 +5,7 @@ import {getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewP
 import {renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay, showPopup, hideTaskFormContainer, renderGeneralTaskForm, getIsInboxOrProject, setIsInboxOrProject, renderProjectTitle, setColorOfProjectInSidebar} from "./render";
 import {populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, setListsFromLocalStorage, projectArrayInStorage, taskArrayInStorage } from "./storage";
 import "./style.css"
-import "./popup.css"
+// import "./popup.css"
 import "./form.css"
 import { setCurrentTaskForSettingPriorityColor, setPriorityColor, setPriorityColorOfCurrentTask, setPriorityOfCurrentTask } from "./changingHTMLElement";
 
@@ -30,7 +30,6 @@ document.addEventListener('click', (e)=> {
         if (isFormComplete(currentForm)) {
 
             if (repeatedTaskTitleExists()) {
-                console.log('you utter dolt');
                 showPopup();
             } else {
 
@@ -220,6 +219,12 @@ document.addEventListener('click', function(event) {
     }
 })
 
+//click on x in task form 
+document.addEventListener('click', (e) => {
+    if (e.target.id == 'close-task-form-button') {
+        hideTaskFormContainer();
+    }
+})
 //click on task
 document.addEventListener('click', (e) => {
     const taskDiv = e.target.closest('.task-div')
