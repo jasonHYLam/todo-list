@@ -145,7 +145,7 @@ const renderGeneralTaskForm = (newOrEdit) => {
 
     const todoFormBelow = document.createElement('div');
     todoFormBelow.id = 'todo-form-below';
-    taskFormContainer.appendChild(todoFormBelow);
+    todoForm.appendChild(todoFormBelow);
 
     
 
@@ -441,6 +441,13 @@ const setColorOfProjectInSidebar = (project) => {
 }
 
 
+const addCompletedClassToTaskElement = (taskDiv) => {
+    console.log(taskDiv);
+    console.log('please work?');
+    taskDiv.classList.add('completed-task');
+
+}
+
 
 export {
     renderTaskContainer,
@@ -463,4 +470,6 @@ export {
     renderProjectTitle,
 
     setColorOfProjectInSidebar,
+
+    addCompletedClassToTaskElement,
 }

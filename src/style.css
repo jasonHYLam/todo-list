@@ -213,5 +213,13 @@ body {
     height: 40px;
 
     margin-left: 20px;
+}
 
+#add-todo-button:hover,
+#add-project-in-sidebar:hover {
+    background-color: #fc3041;
+}
+
+.completed-task {
+    filter: grayscale(95%);
 }
