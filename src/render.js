@@ -33,11 +33,12 @@ const renderGeneralTaskForm = (newOrEdit) => {
 
     const overlayForPopup = document.createElement('div');
     overlayForPopup.id = 'overlay-for-popup';
+
     const outerTaskFormContainer = document.createElement('div');
     outerTaskFormContainer.id = 'outer-task-form-container';
 
     wrapper.appendChild(overlayForPopup);
-    overlayForPopup.appendChild(outerTaskFormContainer);
+    wrapper.appendChild(outerTaskFormContainer);
 
     const taskFormContainer = document.createElement('div');
     outerTaskFormContainer.appendChild(taskFormContainer);
@@ -149,8 +150,10 @@ const renderGeneralTaskForm = (newOrEdit) => {
 const hideTaskFormContainer = () => {
     
     const outerTaskFormContainer = document.querySelector('#outer-task-form-container');
+    const overlayForPopup = document.getElementById('overlay-for-popup');
     if (outerTaskFormContainer) {
         wrapper.removeChild(outerTaskFormContainer);
+        wrapper.removeChild(overlayForPopup);
     }
 }
 

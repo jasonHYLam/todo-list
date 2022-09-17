@@ -10,18 +10,21 @@ body {
     z-index: 100;
     position: absolute;
     background: rgba(0, 0, 0, .6);
-
 }
 
 #outer-task-form-container {
+    position: relative;
     z-index: 101;
-
+    top: 20%;
+    left: 20%;
+    transition: transform 250ms, opacity 400ms;
 }
 
 #wrapper {
     display: grid;
     grid-template-rows: 1fr 8fr;
     height: 100vh;
+    z-index: 50;
 }
 
 #header {

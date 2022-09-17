@@ -83,7 +83,7 @@ document.addEventListener('click', (e)=> {
 //click on remove buttons
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('delete-button-for-task')) {
-        let task = event.target.parentNode;
+        let task = event.target.parentNode.previousSibling;
 
         console.log('okay peko');
         setCurrentProject(getProjectThatContainsTask(task));
@@ -113,7 +113,9 @@ document.addEventListener('click', function(event) {
 //click on edit buttons
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('edit-button-for-task')) {
-        let task = event.target.parentNode;
+        let task = event.target.parentNode.previousSibling;
+        console.log(task);
+
         editOrAdd = 'edit';
         setCurrentTaskAsDOM(task);
         setCurrentProject(getProjectThatContainsTask(task));
@@ -225,6 +227,13 @@ document.addEventListener('click', (e) => {
     if (taskDiv) {
         toggleTaskDetailsDisplay(outerTaskDiv);
     } else {
+    }
+})
+
+//click on mark complete button 
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('mark-complete-button')) {
+        console.log(e.target.parentNode.parentNode)
     }
 })
 

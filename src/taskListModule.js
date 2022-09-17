@@ -47,6 +47,8 @@ const setTaskList = (newTaskList) => {
 const getTaskInTaskList = (task) => {
 
     const titleOfTask = (task.querySelector('.task-title').textContent);
+    console.log('title of task uwu');
+    console.log(titleOfTask)
     const matchTaskTitle = (taskInTaskList) => {
         return taskInTaskList.title == titleOfTask;
     }
@@ -153,6 +155,11 @@ const getDailyTasks = () => {
 const getWeeklyTasks = () => {
     setUpTasks(getTaskList().filter(checkIfWithinWeek))
     }
+
+const getDOMElementFromTask = () => {
+
+
+}
 
 
 export {
