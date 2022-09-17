@@ -68,6 +68,7 @@ const renderGeneralTaskForm = (newOrEdit) => {
     titleTitle.textContent = 'title';
     const titleInput = document.createElement('input');
     titleInput.id = 'task-title';
+    titleInput.className = 'task-form-input';
 
     const popup = document.createElement('div');
     popup.className = 'popup';
@@ -80,8 +81,9 @@ const renderGeneralTaskForm = (newOrEdit) => {
 
     const descTitle = document.createElement('p');
     descTitle.textContent = 'description';
-    const descInput = document.createElement('input');
+    const descInput = document.createElement('textarea');
     descInput.id = 'task-desc';
+    descInput.className = 'task-form-input';
 
     todoFormLeft.appendChild(titleTitle);
     todoFormLeft.appendChild(titleInput);
@@ -95,12 +97,14 @@ const renderGeneralTaskForm = (newOrEdit) => {
     const dateInput = document.createElement('input');
     dateInput.setAttribute('type','date');
     dateInput.id = 'due-date';
+    dateInput.className = 'task-form-input';
     
     //priority select list    
     const priorityTitle = document.createElement('p');
     priorityTitle.textContent = 'priority';
     const selectList = document.createElement('select')
     selectList.id = "priority-select";
+    selectList.className = 'task-form-input';
 
     const highOption = document.createElement('option');
     highOption.textContent = 'high';
@@ -119,6 +123,7 @@ const renderGeneralTaskForm = (newOrEdit) => {
     projectTitle.textContent = 'project';
     const projectToSendTo = document.createElement('select');
     projectToSendTo.id = 'project-select';
+    projectToSendTo.className = 'task-form-input';
     for (const project of getProjectsList()) {
         const projectTitle = document.createElement('option');
         projectTitle.textContent = project.title;
@@ -138,10 +143,12 @@ const renderGeneralTaskForm = (newOrEdit) => {
     todoFormRight.appendChild(projectToSendTo);
 
 
+    const todoFormBelow = document.createElement('div');
+    todoFormBelow.id = 'todo-form-below';
     const submitTodoButton = document.createElement('button');
     submitTodoButton.setAttribute('type', 'button');
     submitTodoButton.id = 'submit-todo-button';
-    submitTodoButton.textContent = 'add';
+    submitTodoButton.textContent = 'Submit';
 
     const cancelButton = document.createElement('button');
     cancelButton.setAttribute('type', 'button');

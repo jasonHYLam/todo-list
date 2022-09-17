@@ -146,6 +146,11 @@ body {
     background-color: #242020;
 }
 
+#home-title-in-sidebar,
+#project-title-in-sidebar {
+    border-bottom: 1px solid lightpink;
+}
+
 /* .home-in-sidebar {
     background-color: #488db0;
     margin-left: 20px;

@@ -29,10 +29,12 @@
 
 #todo-form-left {
     border: 1px white solid;
+    padding: 10px;
 }
 
 #todo-form-right {
     border: 1px white solid;
+    padding: 10px;
 }
 #form-below-header {
 
@@ -50,4 +52,12 @@
     display:grid;
     grid-template-columns: 1fr 1fr;
 
+}
+
+.task-form-input {
+    width: 300px;
+}
+
+#task-desc {
+    height: 100px;
 }
