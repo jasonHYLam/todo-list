@@ -28,7 +28,7 @@ body {
 }
 
 #header {
-    background-color: #8a1e1e;
+    background-color: #fc3041;
 }
 
 #below-header {
@@ -40,6 +40,7 @@ body {
 }
 
 #main-display {
+    position: relative;
 
 }
 
@@ -71,6 +72,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 8fr;
     width: 50vw;
+    height: 40px;
 }
 
 .task-div:hover .task-div-right {
@@ -137,6 +139,8 @@ body {
 #project-title {
     color: lightpink;
     border-bottom: 1px solid lightpink;
+    padding-bottom: 30px;
+    width: 50vw;
 }
 
 #sidebar {
@@ -189,4 +193,25 @@ body {
 #add-project-in-sidebar,
 #add-todo-button {
     cursor: pointer;
+}
+
+#add-todo-button {
+    position: absolute;
+    left: 610px;
+    top: 20px;
+    background-color: lightcoral;
+    border: none;
+    color: oldlace;
+    height: 40px;
+
+}
+
+#add-project-in-sidebar {
+    background-color: lightcoral;
+    border: none;
+    color: oldlace;
+    height: 40px;
+
+    margin-left: 20px;
+
 }

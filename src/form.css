@@ -24,7 +24,9 @@
     width: 700px;
     background-color:#242020;
     color: lightsalmon;
-    padding: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 70px;
 }
 
 #todo-form-left {
@@ -41,11 +43,11 @@
 }
 
 #submit-todo-button {
-    width: 40px;
+    width: 70px;
 }
 
 #close-task-form-button {
-    width: 40px;
+    width: 70px;
 }
 
 #task-form {
@@ -60,4 +62,9 @@
 
 #task-desc {
     height: 100px;
+}
+
+#todo-form-below {
+    margin-left: auto;
+    padding-right: 40px;
 }

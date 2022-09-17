@@ -145,6 +145,10 @@ const renderGeneralTaskForm = (newOrEdit) => {
 
     const todoFormBelow = document.createElement('div');
     todoFormBelow.id = 'todo-form-below';
+    taskFormContainer.appendChild(todoFormBelow);
+
+    
+
     const submitTodoButton = document.createElement('button');
     submitTodoButton.setAttribute('type', 'button');
     submitTodoButton.id = 'submit-todo-button';
@@ -155,8 +159,10 @@ const renderGeneralTaskForm = (newOrEdit) => {
     cancelButton.id = 'close-task-form-button';
     cancelButton.textContent = 'x';
 
-    todoForm.appendChild(submitTodoButton);
-    todoForm.appendChild(cancelButton);
+    // todoFormBelow.appendChild(submitTodoButton);
+    // todoFormBelow.appendChild(cancelButton);
+    todoFormBelow.appendChild(submitTodoButton);
+    todoFormBelow.appendChild(cancelButton);
 }
 
 const hideTaskFormContainer = () => {
