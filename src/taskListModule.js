@@ -52,6 +52,9 @@ const getTaskInTaskList = (task) => {
     const matchTaskTitle = (taskInTaskList) => {
         return taskInTaskList.title == titleOfTask;
     }
+    console.log('hoi hoi');
+
+    console.log(getTaskList().find(matchTaskTitle))
     return getTaskList().find(matchTaskTitle);
 }
 
@@ -59,6 +62,18 @@ const  getProjectThatContainsTask = (taskInDOM) => {
     const titleOfTask = taskInDOM.querySelector('.task-title').textContent;
     const findTaskInProjectThatMatches = task => task.title == titleOfTask;
     return getProjectsList().find(project => project.tasksList.find(findTaskInProjectThatMatches));
+}
+
+const setTaskToComplete = (task) => {
+    task.taskDone = 'complete';
+}
+
+const goThroughTasksAndSetDOMToComplete = () => {
+    console.log('i wish those days');
+    console.log(getTaskList().filter(task => {
+        return task.taskDone == 'complete';
+    }))
+
 }
 
 // const editTask = (index, newValues) => {
@@ -92,7 +107,8 @@ const createNewTask = (formValues) => {
         formValues.descValue, 
         formValues.dateValue,
         formValues.priorityValue,
-        formValues.taskDoneValue,
+        // formValues.taskDoneValue,
+        'not complete',
         );
 } 
 
@@ -191,5 +207,8 @@ export {
 
     getCurrentTaskAsDOM,
     setCurrentTaskAsDOM,
+    setTaskToComplete,
+
+    goThroughTasksAndSetDOMToComplete,
 
 };

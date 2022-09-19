@@ -1,6 +1,6 @@
 
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues, formNotExist, populateFormForTaskToBeEdited} from "./forms";
-import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList, repeatedTaskTitleExists, setCurrentTaskAsDOM, getCurrentTaskAsDOM} from "./taskListModule";
+import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList, repeatedTaskTitleExists, setCurrentTaskAsDOM, getCurrentTaskAsDOM, setTaskToComplete, goThroughTasksAndSetDOMToComplete} from "./taskListModule";
 import {getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray, getIndexOfTaskInProject} from "./projectList";
 import {renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay, showPopup, hideTaskFormContainer, renderGeneralTaskForm, getIsInboxOrProject, setIsInboxOrProject, renderProjectTitle, setColorOfProjectInSidebar, addCompletedClassToTaskElement} from "./render";
 import {populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, setListsFromLocalStorage, projectArrayInStorage, taskArrayInStorage } from "./storage";
@@ -84,11 +84,9 @@ document.addEventListener('click', function(event) {
     if (event.target.classList.contains('delete-button-for-task')) {
         let task = event.target.parentNode.previousSibling;
 
-        console.log('okay peko');
         setCurrentProject(getProjectThatContainsTask(task));
         deleteTask(getIndexOfTaskInList(task));
         deleteTaskInProject(getCurrentProjectInProjectArray(), getIndexOfTaskInProject(task));
-        console.log(getCurrentProject());
 
         switch(getIsInboxOrProject()) {
             case 'inbox':
@@ -103,8 +101,6 @@ document.addEventListener('click', function(event) {
             case 'project':
                 setUpTasks(getCurrentProjectTasks());
         }
-
-        checkTasksInCurrentProject(getCurrentProject());
         populateStorage();
     }
 })
@@ -165,15 +161,6 @@ document.addEventListener('click', function(event) {
     }
 })
 
-//click on done checkbox
-document.addEventListener('click', function(event) {
-    if (event.target.className == 'done-check-box') {
-        let task = event.target.parentNode
-        let indexOfTask = Array.from(task.parentNode.children).indexOf(task);
-        let taskInProject = getCurrentProject().tasksList[indexOfTask];
-        checkDoneOnTask(taskInProject);
-    }
-})
 
 //click on inbox
 document.addEventListener('click', function(event) {
@@ -240,8 +227,15 @@ document.addEventListener('click', (e) => {
     if (e.target.classList.contains('mark-complete-button')) {
         // console.log(e.target.parentNode.parentNode.previousSibling)
         console.log(e.target.parentNode.parentNode.parentNode);
-        let task = e.target.parentNode.parentNode.parentNode;
+        let taskAsDOM = e.target.parentNode.parentNode.parentNode;
+        let task = getTaskInTaskList(taskAsDOM);
+        setTaskToComplete(task);
+        console.log('hh');
+        console.log(task);
+        goThroughTasksAndSetDOMToComplete();
+
         addCompletedClassToTaskElement(task);
+        populateStorage();
     }
 })
 
