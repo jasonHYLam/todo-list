@@ -68,13 +68,6 @@ const setTaskToComplete = (task) => {
     task.taskDone = 'complete';
 }
 
-const goThroughTasksAndSetDOMToComplete = () => {
-    console.log('i wish those days');
-    console.log(getTaskList().filter(task => {
-        return task.taskDone == 'complete';
-    }))
-
-}
 
 // const editTask = (index, newValues) => {
 const editTask = (taskInTaskList, newValues) => {
@@ -136,11 +129,31 @@ const getTasksInAllTasksThatMatchProjectTaskList = (project) => {
         getTaskList().find((taskInTaskList) => taskInTaskList.title == taskInProject.title);
     }
 
-    //for each task in a project's task list
     return project.tasksList.forEach(findTaskInTaskList);
+}
 
-    //get the corresponding task in the task list, by matching 
-    //by finding the first task that matches in taskList
+const goThroughTasksAndSetDOMToComplete = () => {
+    const completedTasks = (getTaskList().filter(task => {
+        return task.taskDone == 'complete';
+    }))
+
+    const matchTasksToDOM = (task) => {
+        // how the fuck do i get the task doms
+        const taskDOMs = Array.from(document.querySelectorAll('.outer-task-div'));
+        console.log('i want it now');
+        taskDOMs.forEach(taskDOM => {
+            console.log(taskDOM.querySelector('.task-title').textContent);
+        })
+
+        console.log(
+        taskDOMs.find(taskDOM => {
+            return taskDOM.querySelector('.task-title').textContent == task.title;
+        })
+        )
+    }
+    completedTasks.forEach(matchTasksToDOM);
+
+
 }
 
 const getIndexOfTaskInList = (task) => {
