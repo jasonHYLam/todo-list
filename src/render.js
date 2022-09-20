@@ -442,10 +442,9 @@ const setColorOfProjectInSidebar = (project) => {
 
 
 const addCompletedClassToTaskElement = (taskDiv) => {
-    console.log(taskDiv);
-    console.log('please work?');
-    taskDiv.classList.add('completed-task');
-
+    if (!taskDiv.classList.contains('completed-task')) {
+        taskDiv.classList.add('completed-task');
+    }
 }
 
 

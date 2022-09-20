@@ -225,17 +225,12 @@ document.addEventListener('click', (e) => {
 //click on mark complete button 
 document.addEventListener('click', (e) => {
     if (e.target.classList.contains('mark-complete-button')) {
-        // console.log(e.target.parentNode.parentNode.previousSibling)
-        console.log(e.target.parentNode.parentNode.parentNode);
         let taskAsDOM = e.target.parentNode.parentNode.parentNode;
         let task = getTaskInTaskList(taskAsDOM);
         setTaskToComplete(task);
-        console.log('hh');
-        console.log(task);
         goThroughTasksAndSetDOMToComplete();
-
-        addCompletedClassToTaskElement(task);
         populateStorage();
+        console.log(getTaskList());
     }
 })
 
@@ -254,6 +249,7 @@ if (!projectsExistInStorage()) {
 }
 // renderProjectTitle();
 setUpTasks(getTaskList());
+goThroughTasksAndSetDOMToComplete();
 // renderProjectContainer();
 setUpProjects(getProjectsList());
 

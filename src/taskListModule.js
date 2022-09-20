@@ -3,7 +3,7 @@
 import { format } from "date-fns";
 import { checkIfWithinWeek, formattedDate, returnCurrentDate } from "./date";
 import {getProjectsList} from "./projectList";
-import { setUpTasks } from "./render";
+import { addCompletedClassToTaskElement, setUpTasks } from "./render";
 import { Task } from "./taskClass";
 
 
@@ -47,14 +47,10 @@ const setTaskList = (newTaskList) => {
 const getTaskInTaskList = (task) => {
 
     const titleOfTask = (task.querySelector('.task-title').textContent);
-    console.log('title of task uwu');
-    console.log(titleOfTask)
     const matchTaskTitle = (taskInTaskList) => {
         return taskInTaskList.title == titleOfTask;
     }
-    console.log('hoi hoi');
 
-    console.log(getTaskList().find(matchTaskTitle))
     return getTaskList().find(matchTaskTitle);
 }
 
@@ -100,7 +96,6 @@ const createNewTask = (formValues) => {
         formValues.descValue, 
         formValues.dateValue,
         formValues.priorityValue,
-        // formValues.taskDoneValue,
         'not complete',
         );
 } 
@@ -138,22 +133,14 @@ const goThroughTasksAndSetDOMToComplete = () => {
     }))
 
     const matchTasksToDOM = (task) => {
-        // how the fuck do i get the task doms
         const taskDOMs = Array.from(document.querySelectorAll('.outer-task-div'));
-        console.log('i want it now');
-        taskDOMs.forEach(taskDOM => {
-            console.log(taskDOM.querySelector('.task-title').textContent);
-        })
 
-        console.log(
-        taskDOMs.find(taskDOM => {
+        const matchingDOM = taskDOMs.find(taskDOM => {
             return taskDOM.querySelector('.task-title').textContent == task.title;
         })
-        )
+        addCompletedClassToTaskElement(matchingDOM);
     }
     completedTasks.forEach(matchTasksToDOM);
-
-
 }
 
 const getIndexOfTaskInList = (task) => {
