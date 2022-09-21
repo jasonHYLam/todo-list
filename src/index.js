@@ -1,13 +1,13 @@
 
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues, formNotExist, populateFormForTaskToBeEdited} from "./forms";
-import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, getTaskInTaskList, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList, repeatedTaskTitleExists, setCurrentTaskAsDOM, getCurrentTaskAsDOM, setTaskToComplete, goThroughTasksAndSetDOMToComplete, setUpWeeklyTasks, setUpDailyTasks} from "./taskListModule";
+import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, getTaskInTaskList, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList, repeatedTaskTitleExists, setCurrentTaskAsDOM, getCurrentTaskAsDOM, setTaskToComplete, setUpWeeklyTasks, setUpDailyTasks} from "./taskListModule";
 import {getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray, getIndexOfTaskInProject} from "./projectList";
 import {renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay, showPopup, hideTaskFormContainer, renderGeneralTaskForm, getIsInboxOrProject, setIsInboxOrProject, renderProjectTitle, setColorOfProjectInSidebar, addCompletedClassToTaskElement} from "./render";
 import {populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, setListsFromLocalStorage, projectArrayInStorage, taskArrayInStorage } from "./storage";
 import "./style.css"
 // import "./popup.css"
 import "./form.css"
-import { getCurrentTaskForSettingPriorityColor, setCurrentTaskForSettingPriorityColor, setPriorityColor, setPriorityColorOfCurrentTask, setPriorityOfCurrentTask } from "./changingHTMLElement";
+import { getCurrentTaskForSettingPriorityColor, setCurrentTaskForSettingPriorityColor, setPriorityColor, setPriorityColorOfCurrentTask, setPriorityOfCurrentTask, goThroughTasksAndSetDOMToComplete } from "./changingHTMLElement";
 
 let isInboxOrDailyOrWeeklyOrProject;
 let editOrAdd;

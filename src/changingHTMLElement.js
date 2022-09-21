@@ -1,3 +1,5 @@
+import {getTaskList} from "./taskListModule"
+import { addCompletedClassToTaskElement} from "./render";
 let priorityOfCurrentTask;
 
 const getPriorityOfCurrentTask = () => {
@@ -49,10 +51,31 @@ const setPriorityColorOfCurrentTask = () => {
     }
 }
 
+
+
+const goThroughTasksAndSetDOMToComplete = () => {
+    let completedTasks = (getTaskList().filter(task => {
+        return task.taskDone == 'complete';
+    }))
+
+    const matchTasksToDOM = (task) => {
+        const taskDOMs = Array.from(document.querySelectorAll('.outer-task-div'));
+
+        let matchingDOM = taskDOMs.find(taskDOM => {
+            return taskDOM.querySelector('.task-title').textContent == task.title;
+        })
+        addCompletedClassToTaskElement(matchingDOM);
+    }
+    completedTasks.forEach(matchTasksToDOM);
+}
+
+
+
 export {
     setPriorityOfCurrentTask,
     setPriorityColorOfCurrentTask,
 
     setCurrentTaskForSettingPriorityColor,
     getCurrentTaskForSettingPriorityColor, 
+    goThroughTasksAndSetDOMToComplete,
 }

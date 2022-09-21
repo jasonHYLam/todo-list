@@ -3,7 +3,7 @@
 import { format } from "date-fns";
 import { checkIfWithinWeek, formattedDate, returnCurrentDate } from "./date";
 import {getProjectsList} from "./projectList";
-import { addCompletedClassToTaskElement, setUpTasks } from "./render";
+import {setUpTasks } from "./render";
 import { Task } from "./taskClass";
 
 
@@ -112,11 +112,6 @@ const addToProject = (task, projectToBeAddedTo) => {
     projectToBeAddedTo.tasksList.push(task);
 }
 
-const checkDoneOnTask = (task) => {
-    task.taskDone = 'yes';
-    console.log(task);
-
-}
 
 const getTasksInAllTasksThatMatchProjectTaskList = (project) => {
 
@@ -127,28 +122,21 @@ const getTasksInAllTasksThatMatchProjectTaskList = (project) => {
     return project.tasksList.forEach(findTaskInTaskList);
 }
 
-const goThroughTasksAndSetDOMToComplete = () => {
-    let completedTasks = (getTaskList().filter(task => {
-        return task.taskDone == 'complete';
-    }))
+// const goThroughTasksAndSetDOMToComplete = () => {
+//     let completedTasks = (getTaskList().filter(task => {
+//         return task.taskDone == 'complete';
+//     }))
 
-    console.log(completedTasks);
+//     const matchTasksToDOM = (task) => {
+//         const taskDOMs = Array.from(document.querySelectorAll('.outer-task-div'));
 
-    const matchTasksToDOM = (task) => {
-        const taskDOMs = Array.from(document.querySelectorAll('.outer-task-div'));
-
-        taskDOMs.forEach(x => {
-            console.log(x.querySelector('.task-title').textContent);
-        })
-        let matchingDOM = taskDOMs.find(taskDOM => {
-            return taskDOM.querySelector('.task-title').textContent == task.title;
-        })
-        console.log('everybody wants to rule the world');
-        console.log(matchingDOM);
-        addCompletedClassToTaskElement(matchingDOM);
-    }
-    completedTasks.forEach(matchTasksToDOM);
-}
+//         let matchingDOM = taskDOMs.find(taskDOM => {
+//             return taskDOM.querySelector('.task-title').textContent == task.title;
+//         })
+//         addCompletedClassToTaskElement(matchingDOM);
+//     }
+//     completedTasks.forEach(matchTasksToDOM);
+// }
 
 const getIndexOfTaskInList = (task) => {
     const taskTitle = task.querySelector('.task-title').textContent;
@@ -190,7 +178,6 @@ export {
     editTask, 
     createNewTask, 
     addToProject,
-    checkDoneOnTask,
 
     getTasksInAllTasksThatMatchProjectTaskList,
     setTaskList,
@@ -209,7 +196,5 @@ export {
     getCurrentTaskAsDOM,
     setCurrentTaskAsDOM,
     setTaskToComplete,
-
-    goThroughTasksAndSetDOMToComplete,
 
 };
