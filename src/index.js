@@ -1,13 +1,13 @@
 
 import {returnTaskFormValues, returnProjectFormValue, isFormComplete, returnEditTaskFormValues, formNotExist, populateFormForTaskToBeEdited} from "./forms";
-import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, checkDoneOnTask, getTaskInTaskList, getDailyTasks, getWeeklyTasks, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList, repeatedTaskTitleExists, setCurrentTaskAsDOM, getCurrentTaskAsDOM, setTaskToComplete, goThroughTasksAndSetDOMToComplete} from "./taskListModule";
+import {addToTaskList, deleteTask, getTaskList, createNewTask, addToProject, editTask, getTaskInTaskList, getProjectThatContainsTask, setCurrentTask, getCurrentTask, findTaskAndDelete, getIndexOfTaskInList, repeatedTaskTitleExists, setCurrentTaskAsDOM, getCurrentTaskAsDOM, setTaskToComplete, goThroughTasksAndSetDOMToComplete, setUpWeeklyTasks, setUpDailyTasks} from "./taskListModule";
 import {getCurrentProject, getCurrentProjectTasks, setCurrentProject, createNewProject, addNewProjectToList, deleteProject, getProjectsList, editTaskInProject, deleteTaskInProject, findProjectSelectMatch, checkIfCurrentProjectMatchesProjectSelectValue, getProjectInProjectListFromDOM, checkTasksInCurrentProject, getCurrentProjectInProjectArray, getIndexOfTaskInProject} from "./projectList";
 import {renderTaskContainer, setUpTasks, renderFormForTaskToBeEdited, renderProjectContainer, setUpProjects, renderProjectForm, renderProjectInMainDisplay, renderTaskDetailsContainer, toggleTaskDetailsDisplay, showPopup, hideTaskFormContainer, renderGeneralTaskForm, getIsInboxOrProject, setIsInboxOrProject, renderProjectTitle, setColorOfProjectInSidebar, addCompletedClassToTaskElement} from "./render";
 import {populateStorage, projectsExistInStorage, setProjectListFromLocalStorage, setListsFromLocalStorage, projectArrayInStorage, taskArrayInStorage } from "./storage";
 import "./style.css"
 // import "./popup.css"
 import "./form.css"
-import { setCurrentTaskForSettingPriorityColor, setPriorityColor, setPriorityColorOfCurrentTask, setPriorityOfCurrentTask } from "./changingHTMLElement";
+import { getCurrentTaskForSettingPriorityColor, setCurrentTaskForSettingPriorityColor, setPriorityColor, setPriorityColorOfCurrentTask, setPriorityOfCurrentTask } from "./changingHTMLElement";
 
 let isInboxOrDailyOrWeeklyOrProject;
 let editOrAdd;
@@ -64,14 +64,16 @@ document.addEventListener('click', (e)=> {
                         setUpTasks(getTaskList());
                         break;
                     case 'daily':
-                        setUpTasks(getDailyTasks());
+                        setUpDailyTasks();
                         break;
                     case 'weekly':
-                        setUpTasks(getWeeklyTasks());
+                        setUpWeeklyTasks();
                         break;
                     case 'project':
                         setUpTasks(getCurrentProjectTasks());
                 }
+                goThroughTasksAndSetDOMToComplete();
+                getCurrentTaskForSettingPriorityColor();
                 setPriorityColorOfCurrentTask();
                 hideTaskFormContainer();
                 }
@@ -93,10 +95,10 @@ document.addEventListener('click', function(event) {
                 setUpTasks(getTaskList());
                 break;
             case 'daily':
-                setUpTasks(getDailyTasks());
+                setUpDailyTasks();
                 break;
             case 'weekly':
-                setUpTasks(getWeeklyTasks());
+                setUpWeeklyTasks();
                 break;
             case 'project':
                 setUpTasks(getCurrentProjectTasks());
@@ -149,14 +151,12 @@ document.addEventListener('click', function(event) {
 
 
         setIsInboxOrProject('project');
-        // let project = event.target.parentNode;
         let project = event.target.closest('.project-div');
         console.log(project)
         let projectIndex = Array.from(project.parentNode.children).indexOf(project);
-        // renderProjectInMainDisplay(projectIndex);
-        console.log('what seems to be the prob');
         setCurrentProject(getProjectsList()[projectIndex]);
-        setUpTasks(getProjectsList()[projectIndex].tasksList)
+        setUpTasks(getProjectsList()[projectIndex].tasksList);
+        goThroughTasksAndSetDOMToComplete();
         setColorOfProjectInSidebar(project);
     }
 })
@@ -167,6 +167,7 @@ document.addEventListener('click', function(event) {
     if (event.target.id == 'inbox') {
         setIsInboxOrProject('inbox');
         setUpTasks(getTaskList());
+        goThroughTasksAndSetDOMToComplete();
         setColorOfProjectInSidebar(event.target);
     }
 })
@@ -176,7 +177,8 @@ document.addEventListener('click', function(event) {
     if (event.target.id == 'daily') {
         // isInboxOrDailyOrWeeklyOrProject = 'daily';
         setIsInboxOrProject('daily');
-        setUpTasks(getDailyTasks());
+        setUpDailyTasks();
+        goThroughTasksAndSetDOMToComplete();
         setColorOfProjectInSidebar(event.target);
     }
 })
@@ -185,7 +187,8 @@ document.addEventListener('click', function(event) {
 document.addEventListener('click', function(event) {
     if (event.target.id == 'weekly') {
         setIsInboxOrProject('weekly');
-        getWeeklyTasks();
+        setUpWeeklyTasks();
+        goThroughTasksAndSetDOMToComplete();
         setColorOfProjectInSidebar(event.target);
     }
 })
@@ -218,9 +221,25 @@ document.addEventListener('click', (e) => {
     const outerTaskDiv = taskDiv.parentNode;
     if (taskDiv) {
         toggleTaskDetailsDisplay(outerTaskDiv);
+        console.log('hopefully this fuckin works');
+        checkIfTaskIsComplete(taskDiv);
+        
     } else {
     }
 })
+
+
+//TEST TO SEE IF TASK IS COMPLETE
+const checkIfTaskIsComplete = (taskDOM) => {
+    const taskDOMTitle = taskDOM.querySelector('.task-title').textContent;
+    console.log(taskDOMTitle);
+    const matchTaskDOMToTask = (task) => {
+        return task.title == taskDOMTitle;
+    }
+    console.log(getTaskList().find(matchTaskDOMToTask));
+    console.log('guessing this works');
+
+}
 
 //click on mark complete button 
 document.addEventListener('click', (e) => {

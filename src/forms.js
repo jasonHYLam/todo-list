@@ -45,7 +45,7 @@ const returnProjectSelectValue = () => {
 }
 
 const returnProjectFormValue = () => {
-    const titleValue = document.getElementById('project-title').value;
+    const titleValue = document.getElementById('project-title-input').value;
     return(titleValue);
 
 }

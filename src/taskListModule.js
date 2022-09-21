@@ -128,16 +128,23 @@ const getTasksInAllTasksThatMatchProjectTaskList = (project) => {
 }
 
 const goThroughTasksAndSetDOMToComplete = () => {
-    const completedTasks = (getTaskList().filter(task => {
+    let completedTasks = (getTaskList().filter(task => {
         return task.taskDone == 'complete';
     }))
+
+    console.log(completedTasks);
 
     const matchTasksToDOM = (task) => {
         const taskDOMs = Array.from(document.querySelectorAll('.outer-task-div'));
 
-        const matchingDOM = taskDOMs.find(taskDOM => {
+        taskDOMs.forEach(x => {
+            console.log(x.querySelector('.task-title').textContent);
+        })
+        let matchingDOM = taskDOMs.find(taskDOM => {
             return taskDOM.querySelector('.task-title').textContent == task.title;
         })
+        console.log('everybody wants to rule the world');
+        console.log(matchingDOM);
         addCompletedClassToTaskElement(matchingDOM);
     }
     completedTasks.forEach(matchTasksToDOM);
@@ -160,22 +167,16 @@ const findTaskAndDelete = (project) => {
     }
 }
 
-const getDailyTasks = () => {
+const setUpDailyTasks = () => {
     const isTaskDaily = (task) => {
         return task.dueDate == formattedDate;
-        // return task.dueDate == returnCurrentDate();
     }
-    return getTaskList().filter(isTaskDaily)
+    setUpTasks(getTaskList().filter(isTaskDaily))
 }
 
-const getWeeklyTasks = () => {
+const setUpWeeklyTasks = () => {
     setUpTasks(getTaskList().filter(checkIfWithinWeek))
     }
-
-const getDOMElementFromTask = () => {
-
-
-}
 
 
 export {
@@ -197,8 +198,8 @@ export {
     getTaskInTaskList,
     getProjectThatContainsTask,
 
-    getDailyTasks,
-    getWeeklyTasks,
+    setUpDailyTasks,
+    setUpWeeklyTasks,
 
     findTaskAndDelete,
     getIndexOfTaskInList,

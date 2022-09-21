@@ -360,7 +360,8 @@ const renderProjectForm = () => {
 
     const titleInput = document.createElement('input');
     titleInput.setAttribute('placeholder', 'project: ')
-    titleInput.id = 'project-title';
+    // titleInput.id = 'project-title';
+    titleInput.id = 'project-title-input';
 
     const addButton = document.createElement('button');
     const cancelButton = document.createElement('button');

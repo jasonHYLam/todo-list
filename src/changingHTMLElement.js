@@ -54,4 +54,5 @@ export {
     setPriorityColorOfCurrentTask,
 
     setCurrentTaskForSettingPriorityColor,
+    getCurrentTaskForSettingPriorityColor, 
 }
